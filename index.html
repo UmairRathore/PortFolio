@@ -13,6 +13,18 @@
     <meta property="og:title" content="Umair Rathore — Backend Systems Engineer" />
     <meta property="og:description" content="Laravel + Node.js backend engineer building SaaS, automations, real-time (WebRTC) and migration pipelines." />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Umair Rathore — Backend Systems Engineer" />
+    <meta property="og:image" content="https://umairrathore.github.io/img/og-cover.png" />
+    <meta property="og:url" content="https://umairrathore.github.io/" />
+
+    <link rel="canonical" href="https://umairrathore.github.io/" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Umair Rathore — Backend Systems Engineer" />
+    <meta name="twitter:description" content="Laravel + Node.js backend engineer building SaaS, real-time systems, and migration pipelines." />
+    <meta name="twitter:image" content="https://umairrathore.github.io/img/og-cover.png" />
+
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -515,7 +527,10 @@
                     <span class="pill">SaaS • APIs • Automations</span>
                 </div>
 
-                <h1>Shipping production SaaS backends, real‑time systems, and deterministic migration pipelines.</h1>
+                <h1>
+                    Shipping production SaaS backends,<br>
+                    real-time systems, and deterministic migration pipelines.
+                </h1>
                 <p class="sub">
                     I’m a backend systems engineer with 4+ years of production experience across Laravel/PHP and modern JS. I build clean service layers, resilient queues, webhook‑driven integrations, and performance‑safe data pipelines — and I also ship Node.js real‑time systems (WebRTC signaling, WebSockets, session/room state).
                 </p>
@@ -587,7 +602,7 @@
     <section id="projects">
         <div class="section-title">
             <h2>Selected projects</h2>
-            <p>Click a card for an Upwork-style image preview + details.</p>
+<!--            <p>Click a card for an Upwork-style image preview + details.</p>-->
         </div>
 
         <div class="filters">
@@ -692,8 +707,10 @@
 
     <footer>
         <div class="d-flex flex-wrap justify-content-between gap-2">
-            <div>© <span id="year"></span> Umair Rathore — Built as a single-file GitHub Pages site.</div>
-            <div>Tip: replace the image URLs inside <code>projects</code> in the script to use your own screenshots.</div>
+            <div>© <span id="year"></span> Umair Rathore
+<!--                — Built as a single-file GitHub Pages site.-->
+            </div>
+<!--            <div>Tip: replace the image URLs inside <code>projects</code> in the script to use your own screenshots.</div>-->
         </div>
     </footer>
 </div>
@@ -732,9 +749,9 @@
             </div>
 
             <div class="modal-footer">
-                <div class="me-auto" style="color:var(--muted); font-size:13px">
-                    Preview images are placeholders — swap with your real screenshots anytime.
-                </div>
+<!--                <div class="me-auto" style="color:var(&#45;&#45;muted); font-size:13px">-->
+<!--                    Preview images are placeholders — swap with your real screenshots anytime.-->
+<!--                </div>-->
                 <button type="button" class="btn btn-outline-light" style="border-color:var(--line); color:var(--text)" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
@@ -1107,6 +1124,7 @@
         render();
     });
 
+
     // ---------------------------
     // Theme toggle
     // ---------------------------
@@ -1144,5 +1162,21 @@
     // Initial render
     render();
 </script>
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Umair Rathore",
+        "url": "https://umairrathore.github.io/",
+        "sameAs": [
+            "https://www.linkedin.com/in/umairrathore/",
+            "https://github.com/UmairRathore",
+            "https://www.upwork.com/freelancers/~0189e2b25fac579624"
+        ],
+        "jobTitle": "Backend Systems Engineer",
+        "knowsAbout": ["Laravel", "Node.js", "WebRTC", "SaaS", "APIs"]
+    }
+</script>
+
 </body>
 </html>
