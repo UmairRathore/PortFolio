@@ -1,0 +1,1085 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Umair Rathore — Backend Systems Engineer (Laravel • Node.js • WebRTC)</title>
+  <meta name="description" content="Backend Systems Engineer building production SaaS platforms, APIs, real-time systems (WebRTC), automations, and deterministic data-migration pipelines. Laravel, Node.js, PostgreSQL/MySQL, Stripe, Twilio, OpenAI." />
+  <meta name="keywords" content="Umair Rathore,Laravel,PHP,Node.js,WebRTC,SaaS,Backend Engineer,REST API,PostgreSQL,MySQL,Stripe,Twilio,OpenAI,Queues,Redis,S3" />
+  <meta name="author" content="Umair Rathore" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Umair Rathore — Backend Systems Engineer" />
+  <meta property="og:description" content="Laravel + Node.js backend engineer building SaaS, automations, real-time (WebRTC) and migration pipelines." />
+  <meta property="og:type" content="website" />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --panel2:#101a2d;
+      --text:#eaf0ff;
+      --muted:#a8b3cf;
+      --line:rgba(255,255,255,.10);
+      --brand:#6ea8ff;
+      --brand2:#8b5cf6;
+      --good:#22c55e;
+      --warn:#fbbf24;
+      --shadow: 0 18px 60px rgba(0,0,0,.38);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1160px;
+    }
+    [data-theme="light"]{
+      --bg:#f7f8fb;
+      --panel:#ffffff;
+      --panel2:#ffffff;
+      --text:#0f172a;
+      --muted:#475569;
+      --line:rgba(2,6,23,.10);
+      --shadow: 0 18px 60px rgba(2,6,23,.12);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 500px at 15% 12%, rgba(110,168,255,.22), transparent 55%),
+        radial-gradient(900px 520px at 85% 16%, rgba(139,92,246,.16), transparent 55%),
+        radial-gradient(900px 520px at 65% 90%, rgba(34,197,94,.10), transparent 55%),
+        var(--bg);
+      color:var(--text);
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:12px 0; gap:10px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      font-weight:800; letter-spacing:.2px;
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+    }
+    .brand-dot{
+      width:12px; height:12px; border-radius:50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 5px rgba(110,168,255,.16);
+    }
+    .navlinks{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{
+      text-decoration:none; font-size:14px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{
+      color:var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Hero */
+    .hero{padding:44px 0 18px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media (max-width: 992px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+    .p-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-left{padding:24px; position:relative}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      color:var(--muted); font-weight:600; font-size:14px;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-weight:800;
+      letter-spacing:-.6px;
+      line-height:1.05;
+      font-size: clamp(32px, 3.2vw, 46px);
+    }
+    .sub{
+      color:var(--muted);
+      max-width: 70ch;
+      margin: 0 0 16px;
+      font-size: 15.5px;
+    }
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .btn-brand{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color: #061024;
+      border:0;
+      font-weight:800;
+      padding:10px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      box-shadow: 0 12px 30px rgba(110,168,255,.20);
+    }
+    .btn-ghost{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight:700;
+      padding:10px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    .btn-ghost:hover{background: rgba(255,255,255,.05)}
+    .hero-right{padding:18px}
+    .mini{
+      border:1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      padding:14px;
+      margin-bottom:12px;
+    }
+    .mini h3{
+      margin:0 0 8px;
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-size: 15px;
+      letter-spacing:-.2px;
+    }
+    .kv{display:flex; gap:10px; flex-wrap:wrap}
+    .kv .tag{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid var(--line);
+      color: var(--muted);
+    }
+
+    /* Sections */
+    section{padding:36px 0 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; margin: 0 0 14px;
+    }
+    .section-title h2{
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-weight:800; letter-spacing:-.4px;
+      margin:0;
+    }
+    .section-title p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Project grid */
+    .filters{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      margin: 10px 0 18px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight:700;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .chip.active{
+      color: var(--text);
+      border-color: rgba(110,168,255,.45);
+      background: rgba(110,168,255,.10);
+    }
+    .search{
+      margin-left:auto;
+      min-width: 260px;
+    }
+    .search input{
+      width:100%;
+      border-radius:999px;
+      padding:10px 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      outline:none;
+    }
+    .search input::placeholder{color: color-mix(in srgb, var(--muted) 72%, transparent)}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 992px){
+      .grid{grid-template-columns: repeat(6, 1fr);}
+    }
+    @media (max-width: 640px){
+      .grid{grid-template-columns: repeat(1, 1fr);}
+    }
+    .proj{
+      grid-column: span 6;
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 14px 44px rgba(0,0,0,.22);
+      transition: transform .25s ease, border-color .25s ease;
+      cursor:pointer;
+      display:flex; flex-direction:column;
+      min-height: 320px;
+    }
+    @media (max-width: 992px){ .proj{grid-column: span 6;} }
+    @media (max-width: 640px){ .proj{grid-column: span 12;} }
+    .proj:hover{
+      transform: translateY(-6px);
+      border-color: rgba(110,168,255,.40);
+    }
+    .thumb{
+      position:relative;
+      height: 170px;
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    .thumb img{
+      width:100%; height:100%;
+      object-fit:cover;
+      transform: scale(1.03);
+      transition: transform .35s ease;
+      filter: saturate(1.1);
+    }
+    .proj:hover .thumb img{transform: scale(1.08)}
+    .thumb .overlay{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.55));
+      display:flex;
+      align-items:flex-end;
+      padding:10px 12px;
+      gap:8px;
+    }
+    .badge-pill{
+      font-size:12px;
+      font-weight:800;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+    }
+    .proj-body{padding:14px 14px 12px; flex:1}
+    .proj-title{
+      font-family: Montserrat, Inter, system-ui, sans-serif;
+      font-weight:800;
+      letter-spacing:-.25px;
+      margin:0 0 6px;
+      font-size: 17px;
+      line-height:1.15;
+    }
+    .proj-desc{margin:0; color:var(--muted); font-size:14px}
+    .proj-tags{
+      display:flex; flex-wrap:wrap; gap:8px;
+      padding: 10px 14px 14px;
+      border-top:1px solid var(--line);
+      background: rgba(255,255,255,.015);
+    }
+    .t{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+
+    /* Skills */
+    .skills{
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .skill{
+      font-size:13px;
+      padding:10px 12px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight:700;
+    }
+    .skill small{color:var(--muted); font-weight:700}
+
+    /* Footer */
+    footer{
+      padding:34px 0 40px;
+      color: var(--muted);
+      border-top:1px solid var(--line);
+      margin-top: 38px;
+      font-size:14px;
+    }
+
+    /* Modal polish (Upwork-ish) */
+    .modal-content{
+      background: var(--panel);
+      border:1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      color: var(--text);
+    }
+    .modal-header, .modal-footer{border-color: var(--line)}
+    .modal-title{font-family: Montserrat, Inter, system-ui, sans-serif; font-weight:800}
+    .modal .meta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 6px;
+    }
+    .modal .meta a{
+      color: var(--brand);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+      border:1px solid color-mix(in srgb, var(--brand) 40%, transparent);
+      padding:7px 10px;
+      border-radius:999px;
+      background: rgba(110,168,255,.10);
+    }
+    .modal .meta a:hover{background: rgba(110,168,255,.16)}
+    .modal .bullets{margin:12px 0 0; padding-left: 18px; color: var(--muted)}
+    .carousel-inner{
+      border-radius: 16px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+    }
+    .carousel-item img{
+      width:100%;
+      height: 370px;
+      object-fit: cover;
+    }
+    @media (max-width: 640px){
+      .carousel-item img{height: 260px;}
+      .search{min-width: 160px;}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="topbar-inner">
+        <a class="brand" href="#top">
+          <span class="brand-dot"></span>
+          <span>Umair Rathore</span>
+        </a>
+
+        <div class="d-flex align-items-center gap-2">
+          <div class="navlinks d-none d-md-flex">
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <button id="themeBtn" class="btn btn-sm btn-outline-light" style="border-color:var(--line); color:var(--text); border-radius:12px; background:rgba(255,255,255,.02)">
+            Toggle theme
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="top" class="wrap">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="p-card hero-left">
+          <div class="kicker">
+            <span class="pill">Backend Systems Engineer</span>
+                        <span class="pill">4+ years experience</span>
+<span class="pill">Laravel • Node.js • WebRTC</span>
+            <span class="pill">SaaS • APIs • Automations</span>
+          </div>
+
+          <h1>Shipping production SaaS backends, real‑time systems, and deterministic migration pipelines.</h1>
+          <p class="sub">
+            I build clean service layers, resilient queues, webhook-driven integrations, and performance‑safe data pipelines.
+            Strong on Laravel (DDD-friendly), and increasingly building Node.js real-time systems (WebRTC signaling, messaging, streaming).
+          </p>
+
+          <div class="cta-row">
+            <a class="btn-brand" href="#projects">View Projects</a>
+            <a class="btn-ghost" href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn-ghost" href="https://github.com/UmairRathore" target="_blank" rel="noopener">GitHub</a>
+                        <a class="btn-ghost" href="https://www.upwork.com/freelancers/~0189e2b25fac579624" target="_blank" rel="noopener">Upwork</a>
+<a class="btn-ghost" href="mailto:contactusr22@gmail.com">Email</a>
+          </div>
+
+          <div class="mt-3 kv">
+            <span class="tag">REST APIs</span>
+            <span class="tag">Queues & Idempotency</span>
+            <span class="tag">PostgreSQL/MySQL</span>
+            <span class="tag">Stripe / Twilio</span>
+            <span class="tag">OpenAI integrations</span>
+            <span class="tag">AWS S3</span>
+          </div>
+        </div>
+
+        <div class="p-card hero-right">
+          <div class="mini">
+            <h3>Core stack</h3>
+            <div class="kv">
+              <span class="tag">Laravel</span>
+              <span class="tag">PHP</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">WebRTC</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Livewire/Blade</span>
+              <span class="tag">Redis</span>
+              <span class="tag">Docker</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Integration experience</h3>
+            <div class="kv">
+              <span class="tag">Shopify</span>
+              <span class="tag">Twilio</span>
+              <span class="tag">OpenAI</span>
+              <span class="tag">Google APIs</span>
+              <span class="tag">Calendly</span>
+              <span class="tag">Stripe</span>
+              <span class="tag">FCM</span>
+              <span class="tag">Webhooks</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <h3>Availability</h3>
+            <div class="kv">
+              <span class="tag">Remote • Contract</span>
+              <span class="tag">PKT (UTC+5)</span>
+              <span class="tag">Async-friendly</span>
+            </div>
+            <div class="mt-2" style="color:var(--muted); font-size:13px">
+              Prefer projects that value correct architecture (observability, retries, idempotency, security).
+            </div>
+            <div class="mt-2" style="color:var(--muted); font-size:13px">
+              Quick links: <a href="https://www.upwork.com/freelancers/~0189e2b25fac579624" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:none; font-weight:800">Upwork</a>
+              • <a href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:none; font-weight:800">LinkedIn</a>
+              • <a href="https://github.com/UmairRathore" target="_blank" rel="noopener" style="color:var(--brand); text-decoration:none; font-weight:800">GitHub</a>
+              • <a href="mailto:contactusr22@gmail.com" style="color:var(--brand); text-decoration:none; font-weight:800">contactusr22@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Selected projects</h2>
+        <p>Click a card for an Upwork-style image preview + details.</p>
+      </div>
+
+      <div class="filters">
+        <div class="chip active" data-filter="all">All</div>
+        <div class="chip" data-filter="saas">SaaS</div>
+        <div class="chip" data-filter="migration">Migration</div>
+        <div class="chip" data-filter="automation">Automation</div>
+        <div class="chip" data-filter="ai">AI</div>
+        <div class="chip" data-filter="realtime">Real‑time</div>
+
+        <div class="search">
+          <input id="searchInput" type="text" placeholder="Search projects (e.g., WebRTC, Stripe, Shopify, PDF)…" />
+        </div>
+      </div>
+
+      <div id="projectGrid" class="grid"></div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <p>Backend-first. Pragmatic. Production oriented.</p>
+      </div>
+
+      <div class="p-card p-3" style="border-radius:22px">
+        <div class="skills">
+          <span class="skill">Laravel <small>• Service layer • DDD-ready</small></span>
+          <span class="skill">PHP <small>• OOP • design patterns</small></span>
+          <span class="skill">Node.js <small>• APIs • WebSockets</small></span>
+          <span class="skill">WebRTC <small>• signaling • real-time</small></span>
+          <span class="skill">REST APIs <small>• versioning • auth</small></span>
+          <span class="skill">Queues <small>• retries • idempotency</small></span>
+          <span class="skill">PostgreSQL <small>• query design</small></span>
+          <span class="skill">MySQL <small>• indexing • migrations</small></span>
+          <span class="skill">Redis <small>• cache • rate limits</small></span>
+          <span class="skill">AWS S3 <small>• signed URLs • storage</small></span>
+          <span class="skill">Stripe <small>• payments • webhooks</small></span>
+          <span class="skill">Twilio <small>• SMS • WhatsApp</small></span>
+          <span class="skill">OpenAI <small>• tooling • structured outputs</small></span>
+          <span class="skill">3rd‑party APIs <small>• Shopify • Google</small></span>
+          <span class="skill">Frontend basics <small>• Blade • Livewire • Bootstrap</small></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <p>How I like to work.</p>
+      </div>
+
+      <div class="p-card p-4" style="border-radius:22px">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <div style="color:var(--muted)">
+              I’m a backend-focused engineer from Lahore, Pakistan. I care about correctness under load: safe retries, stable ordering,
+              auditability, and clean boundaries between modules. On product work, I optimize for long-term maintainability (not “scripts that work once”).
+              <br/><br/>
+              Recent themes: deterministic PDF ingestion/parsing pipelines, webhook-heavy integrations, multi-tenant job orchestration,
+              and real-time Node.js systems (WebRTC + signaling).
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="mini" style="margin:0">
+              <h3>What you get</h3>
+              <ul class="bullets">
+                <li>Clear system boundaries + documentation.</li>
+                <li>Resilient background processing: throttling, retries, resumability.</li>
+                <li>Security-first integration patterns (no leaked keys).</li>
+                <li>Performance-aware DB work and caching.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Fastest response: LinkedIn or email.</p>
+      </div>
+
+      <div class="p-card p-4" style="border-radius:22px">
+        <div class="row g-3 align-items-center">
+          <div class="col-lg-8" style="color:var(--muted)">
+            If you want a backend engineer who can own a system end-to-end (design → build → ship → iterate),
+            send context and constraints. I’ll respond with a clear plan + milestones.
+          </div>
+          <div class="col-lg-4 d-flex gap-2 justify-content-lg-end flex-wrap">
+            <a class="btn btn-primary" href="mailto:contactusr22@gmail.com">Email</a>
+            <a class="btn btn-outline-primary" href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener">GitHub</a>
+                      <a class="btn btn-outline-primary" href="https://www.upwork.com/freelancers/~0189e2b25fac579624" target="_blank" rel="noopener">Upwork</a>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="d-flex flex-wrap justify-content-between gap-2">
+        <div>© <span id="year"></span> Umair Rathore — Built as a single-file GitHub Pages site.</div>
+        <div>Tip: replace the image URLs inside <code>projects</code> in the script to use your own screenshots.</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Project Modal -->
+  <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <div class="modal-title h5" id="pmTitle">Project</div>
+            <div class="meta" id="pmLinks"></div>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div id="pmCarouselWrap" class="mb-3"></div>
+
+          <div class="row g-4">
+            <div class="col-lg-7">
+              <div id="pmDesc" style="color:var(--muted)"></div>
+              <ul id="pmBullets" class="bullets"></ul>
+            </div>
+            <div class="col-lg-5">
+              <div class="mini" style="margin:0">
+                <h3>Tech</h3>
+                <div id="pmTech" class="kv"></div>
+              </div>
+              <div class="mini" style="margin:12px 0 0">
+                <h3>Category</h3>
+                <div id="pmCats" class="kv"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <div class="me-auto" style="color:var(--muted); font-size:13px">
+            Preview images are placeholders — swap with your real screenshots anytime.
+          </div>
+          <button type="button" class="btn btn-outline-light" style="border-color:var(--line); color:var(--text)" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+          crossorigin="anonymous"></script>
+
+  <script>
+    // ---------------------------
+    // Data
+    // ---------------------------
+    const projects = [
+      {
+        id: "wooma-migration",
+        title: "HelloReport → Wooma Deterministic Migration Pipeline",
+        subtitle: "Admin-controlled, user-consented migration with resumable state machine",
+        cover: "",
+        images: [],
+        desc: "A system-grade ingestion pipeline to migrate large historical report datasets from HelloReport into Wooma. The pipeline runs fully server-side using session cookies, paginated discovery, deterministic PDF acquisition, strict JSON mapping, and idempotent lifecycle tracking (PENDING → DOWNLOADING → IMPORTED/FAILED).",
+        bullets: [
+          "Queue-driven: throttling, retries, resumability, and reconciliation to prevent silent skips.",
+          "Supports concurrent users and long-running migrations (users can close their PCs).",
+          "PDF storage via S3; deterministic parsing (no OCR) with strict schema mapping to Wooma JSON.",
+          "Traffic-safe profile: per-user + global rate limits."
+        ],
+        tech: ["Laravel", "Queues", "PostgreSQL", "AWS S3", "Redis", "HTTP client", "PDF parsing"],
+        cats: ["migration", "automation", "saas"],
+        links: [
+          { label: "Architecture notes (private)", url: "#" }
+        ]
+      },
+      {
+        id: "salaryleaks",
+        title: "SalaryLeaks.com — Sports Salary Analytics Platform",
+        subtitle: "Multi-sport contracts, SEO, data pipelines, and Livewire admin tooling",
+        cover: "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1471295253337-3ceaaedca402?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "A sports-data platform that models salaries/contracts across multiple sports (including fight-based earnings), with admin tooling for CRUD + CSV imports, and a public site optimized for SEO and discoverability.",
+        bullets: [
+          "Livewire admin components: players, multi-contract handling, fight earnings, and CSV uploads.",
+          "Domain separation per sport + shared contract services where appropriate.",
+          "Currency display logic and compact salary formatting.",
+          "SEO-focused pages: league/team/player routes, sitemaps, and structured content."
+        ],
+        tech: ["Laravel", "Livewire", "MySQL", "Blade", "Caching", "SEO"],
+        cats: ["saas", "automation"],
+        links: [
+          { label: "https://salaryleaks.com", url: "https://salaryleaks.com" }
+        ]
+      },
+      {
+        id: "webrtc-node",
+        title: "WebRTC Real‑Time Platform (Node.js)",
+        subtitle: "Signaling + session management for low-latency communication",
+        cover: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1451188214936-ec16b91c296f?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "A Node.js + WebRTC real-time system focusing on correct signaling, session state, and scalable room management. Designed as a backend-first real-time service that can power calls, streaming, or collaborative apps.",
+        bullets: [
+          "WebRTC signaling (offer/answer/ICE) with room + participant state.",
+          "WebSocket transport and guarded reconnection flows.",
+          "Backpressure-safe messaging and basic observability hooks.",
+          "Designed to evolve into SFU/MCU integrations if needed."
+        ],
+        tech: ["Node.js", "WebRTC", "WebSockets", "TypeScript (optional)", "Redis (optional)"],
+        cats: ["realtime", "saas"],
+        links: [
+          { label: "GitHub (add repo link)", url: "https://github.com/UmairRathore" }
+        ]
+      },
+      {
+        id: "cloudcollege",
+        title: "CloudCollege — E‑Learning SaaS",
+        subtitle: "Backend APIs, auth flows, and integrations",
+        cover: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "A production SaaS for online learning workflows. I work on backend APIs, authentication flows, and integrations to support stable course delivery and admin operations.",
+        bullets: [
+          "Auth + session flows and secure API endpoints.",
+          "Integrations with third-party services where needed.",
+          "Performance and maintainability focused code structure."
+        ],
+        tech: ["Laravel", "REST APIs", "MySQL", "Caching"],
+        cats: ["saas"],
+        links: []
+      },
+      {
+        id: "dentaid",
+        title: "Dentaid — Clinic CRM",
+        subtitle: "Appointments, billing, inventory, patient files",
+        cover: "https://images.unsplash.com/photo-1580281658628-3d7b1637d93d?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1584516150909-c43483ee7932?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "A clinic management CRM tracking appointments, consultations, patient files, clinic inventory, billing, treatment statistics, and users. Built with a strong emphasis on CRUD correctness and operational workflows.",
+        bullets: [
+          "Patient record + appointment lifecycle handling.",
+          "Billing and inventory modules supporting clinic operations.",
+          "Role-based access and maintainable backend structure."
+        ],
+        tech: ["Laravel", "MySQL", "Blade", "RBAC"],
+        cats: ["saas"],
+        links: [
+          { label: "https://dentaid.clinicaid.ch/login", url: "https://dentaid.clinicaid.ch/login" }
+        ]
+      },
+      {
+        id: "contractorbuddy",
+        title: "Contractor Buddy",
+        subtitle: "SaaS app with backend workflows and integrations",
+        cover: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1521790366321-1d46b6ab3c6e?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "A SaaS product where I contributed backend engineering and integration work, focusing on stable APIs and clean data handling.",
+        bullets: [
+          "Backend-first development with reliable API flows.",
+          "Integrations and automation tasks.",
+          "Maintainable Laravel patterns and structured code."
+        ],
+        tech: ["Laravel", "APIs", "Integrations"],
+        cats: ["saas"],
+        links: [
+          { label: "https://app.contractorbuddy.io/", url: "https://app.contractorbuddy.io/" }
+        ]
+      },
+      {
+        id: "adlaunch",
+        title: "AdLaunch",
+        subtitle: "Automation + data workflows for SaaS operations",
+        cover: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "Worked on backend workflows and automation for a SaaS product, focusing on API integrations and data correctness.",
+        bullets: [
+          "API integration + background job automation.",
+          "Data cleanup and structured processing.",
+          "Performance-safe backend patterns."
+        ],
+        tech: ["Laravel", "Queues", "APIs", "Automation"],
+        cats: ["saas", "automation"],
+        links: [
+          { label: "https://app.adlaunch.com/", url: "https://app.adlaunch.com/" }
+        ]
+      },
+      {
+        id: "beezjobs",
+        title: "Beez Jobs",
+        subtitle: "Web app with production backend features",
+        cover: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80",
+        images: [
+          "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1600&q=80",
+          "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1600&q=80"
+        ],
+        desc: "A production web app demonstrating solid Laravel development fundamentals across backend features and workflows.",
+        bullets: [
+          "Stable backend patterns and CRUD flows.",
+          "Production deployment and maintenance experience."
+        ],
+        tech: ["Laravel", "MySQL", "Frontend basics"],
+        cats: ["saas"],
+        links: [
+          { label: "http://beezjobs.com", url: "http://beezjobs.com" }
+        ]
+      },
+      {
+        id: "shopify-bot",
+        title: "Shopify Order Automation (Cron + Webhooks)",
+        subtitle: "Order generation and scheduled automation",
+        cover: "",
+        images: [],
+        desc: "Automated Shopify order creation using cron-driven jobs, with careful rate limiting and error handling to keep flows stable.",
+        bullets: [
+          "Cron-based scheduling and safe retry patterns.",
+          "Shopify API integration + structured payload handling.",
+          "Operational logging and failure visibility."
+        ],
+        tech: ["Laravel", "Shopify API", "Cron/Queues", "Webhooks"],
+        cats: ["automation"],
+        links: []
+      },
+      {
+        id: "twilio-openai",
+        title: "WhatsApp / SMS AI Bot (Twilio + OpenAI)",
+        subtitle: "Webhook-driven messaging with reliable delivery",
+        cover: "",
+        images: [],
+        desc: "An AI-enabled messaging bot built around Twilio webhooks. Focused on correct webhook response handling, async AI calls, and reliable real-time message delivery.",
+        bullets: [
+          "Twilio webhook handling with strict request validation.",
+          "Async AI orchestration with delivery guarantees.",
+          "Observability-friendly logging and failure handling."
+        ],
+        tech: ["Twilio", "OpenAI", "Webhooks", "Node.js/Laravel"],
+        cats: ["ai", "automation"],
+        links: []
+      }
+    ];
+
+    // ---------------------------
+    // UI rendering
+    // ---------------------------
+    const grid = document.getElementById("projectGrid");
+    const searchInput = document.getElementById("searchInput");
+    const chips = Array.from(document.querySelectorAll(".chip"));
+
+    let activeFilter = "all";
+    let activeSearch = "";
+
+    function matches(project){
+      const inFilter = activeFilter === "all" || project.cats.includes(activeFilter);
+      const s = activeSearch.trim().toLowerCase();
+      if(!s) return inFilter;
+
+      const hay = [
+        project.title, project.subtitle, project.desc,
+        ...(project.tech || []), ...(project.cats || [])
+      ].join(" ").toLowerCase();
+
+      return inFilter && hay.includes(s);
+    }
+
+    
+    function cardHTML(p){
+      const cat = (p.cats || [])[0] || "project";
+      const badgeText = cat === "realtime" ? "Real‑time" : cat.charAt(0).toUpperCase() + cat.slice(1);
+
+      const tags = (p.tech || []).slice(0, 4).map(t => `<span class="t">${escapeHtml(t)}</span>`).join("");
+      const hasCover = !!(p.cover && String(p.cover).trim());
+      const thumbInner = hasCover
+        ? `<img loading="lazy" src="${escapeAttr(p.cover)}" alt="${escapeAttr(p.title)} cover" />`
+        : `<div style="height:100%; width:100%; display:flex; align-items:center; justify-content:center;
+                 background: linear-gradient(135deg, rgba(110,168,255,.18), rgba(139,92,246,.16));
+                 border-bottom:1px solid rgba(255,255,255,.08);">
+             <div style="text-align:center; padding:14px 16px">
+               <div style="font-weight:900; letter-spacing:.3px; font-size:13px; color:rgba(255,255,255,.92)">BACKEND PROJECT</div>
+               <div style="margin-top:6px; font-size:12px; color:rgba(255,255,255,.72)">No UI screenshots</div>
+             </div>
+           </div>`;
+
+      return `
+        <div class="proj" role="button" tabindex="0" data-id="${escapeHtml(p.id)}">
+          <div class="thumb">
+            ${thumbInner}
+            <div class="overlay">
+              <span class="badge-pill">${escapeHtml(badgeText)}</span>
+              <span class="badge-pill">${hasCover ? "Click to preview" : "Click for details"}</span>
+            </div>
+          </div>
+          <div class="proj-body">
+            <div class="proj-title">${escapeHtml(p.title)}</div>
+            <p class="proj-desc">${escapeHtml(p.subtitle || "")}</p>
+          </div>
+          <div class="proj-tags">${tags}</div>
+        </div>
+      `;
+    }
+
+
+    function render(){
+      const visible = projects.filter(matches);
+      if(!visible.length){
+        grid.innerHTML = `<div class="p-card p-4" style="grid-column: 1 / -1; border-radius:22px">
+          <div style="color:var(--muted)">No projects match your search/filter.</div>
+        </div>`;
+        return;
+      }
+      grid.innerHTML = visible.map(cardHTML).join("");
+      // click listeners
+      grid.querySelectorAll(".proj").forEach(el => {
+        el.addEventListener("click", () => openProject(el.dataset.id));
+        el.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openProject(el.dataset.id); }
+        });
+      });
+    }
+
+    // ---------------------------
+    // Modal
+    // ---------------------------
+    const modalEl = document.getElementById("projectModal");
+    const modal = new bootstrap.Modal(modalEl);
+    const pmTitle = document.getElementById("pmTitle");
+    const pmLinks = document.getElementById("pmLinks");
+    const pmCarouselWrap = document.getElementById("pmCarouselWrap");
+    const pmDesc = document.getElementById("pmDesc");
+    const pmBullets = document.getElementById("pmBullets");
+    const pmTech = document.getElementById("pmTech");
+    const pmCats = document.getElementById("pmCats");
+
+    function openProject(id){
+      const p = projects.find(x => x.id === id);
+      if(!p) return;
+
+      pmTitle.textContent = p.title;
+
+      pmLinks.innerHTML = (p.links || []).filter(l => l.url && l.url !== "#").map(l => {
+        return `<a href="${escapeAttr(l.url)}" target="_blank" rel="noopener">${escapeHtml(l.label)}</a>`;
+      }).join("");
+
+      pmDesc.textContent = p.desc || "";
+
+      pmBullets.innerHTML = (p.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join("");
+
+      pmTech.innerHTML = (p.tech || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
+      pmCats.innerHTML = (p.cats || []).map(c => `<span class="tag">${escapeHtml(c)}</span>`).join("");
+
+      // Build carousel (Upwork-ish preview)
+      const imgs = (p.images && p.images.length) ? p.images : (p.cover ? [p.cover] : []);
+      if(!imgs.length){
+        pmCarouselWrap.innerHTML = `
+          <div class="p-3" style="border-radius:16px; border:1px dashed var(--line); background: rgba(255,255,255,.02); color: var(--muted)">
+            <strong style="color:var(--text)">Backend-only project.</strong>
+            <span style="display:block; margin-top:6px">No UI screenshots available for this work (pipelines, integrations, automations).</span>
+          </div>
+        `;
+      } else {
+        const carouselId = "pmCarousel";
+        const indicators = imgs.map((_, i) =>
+          `<button type="button" data-bs-target="#${carouselId}" data-bs-slide-to="${i}" ${i===0?'class="active" aria-current="true"':''} aria-label="Slide ${i+1}"></button>`
+        ).join("");
+
+        const slides = imgs.map((src, i) =>
+          `<div class="carousel-item ${i===0?'active':''}">
+            <img src="${escapeAttr(src)}" alt="${escapeAttr(p.title)} screenshot ${i+1}" />
+          </div>`
+        ).join("");
+
+        pmCarouselWrap.innerHTML = `
+          <div id="${carouselId}" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">${indicators}</div>
+            <div class="carousel-inner">${slides}</div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#${carouselId}" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#${carouselId}" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        `;
+      }
+modal.show();
+    }
+
+    // ---------------------------
+    // Filter + search
+    // ---------------------------
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        activeFilter = chip.dataset.filter;
+        render();
+      });
+    });
+
+    searchInput.addEventListener("input", () => {
+      activeSearch = searchInput.value || "";
+      render();
+    });
+
+    // ---------------------------
+    // Theme toggle
+    // ---------------------------
+    const themeBtn = document.getElementById("themeBtn");
+    const root = document.documentElement;
+
+    function setTheme(mode){
+      if(mode === "light") root.setAttribute("data-theme","light");
+      else root.removeAttribute("data-theme");
+      localStorage.setItem("theme", mode);
+    }
+    const saved = localStorage.getItem("theme");
+    if(saved) setTheme(saved);
+
+    themeBtn.addEventListener("click", () => {
+      const isLight = root.getAttribute("data-theme") === "light";
+      setTheme(isLight ? "dark" : "light");
+    });
+
+    // ---------------------------
+    // Helpers
+    // ---------------------------
+    function escapeHtml(str){
+      return String(str ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+    function escapeAttr(str){ return escapeHtml(str); }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Initial render
+    render();
+  </script>
+</body>
+</html>

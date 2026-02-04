@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Umair R. — Full Stack Laravel Developer</title>
+    <meta
+        content="Building scalable web applications with Laravel, modern JavaScript, and cloud infrastructure. Specializing in APIs, SaaS, and E-Commerce solutions."
+        name="description" />
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Nunito:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'nunito': ['Nunito', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace']
+                    },
+                    colors: {
+                        'laravel-orange': '#F05340',
+                        'deep-teal': '#0D9488',
+                        'coral': '#FF6B6B',
+                        'slate-50': '#F8FAFC',
+                        'slate-100': '#F1F5F9',
+                        'slate-900': '#0F172A'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Vanta.js for animated background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.21/dist/vanta.net.min.js"></script>
+
+    <style>
+        /* Custom CSS Variables */
+        :root {
+            --color-primary: #F05340;
+            --color-primary-alt: #0D9488;
+            --color-accent: #FF6B6B;
+            --color-text: #0F172A;
+            --color-text-secondary: #64748B;
+            --color-surface: #FFFFFF;
+            --color-background: #FAFAFA;
+        }
+
+        /* Animation Initial States */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Skills Matrix Styling */
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(240, 83, 64, 0.15);
+        }
+
+        /* Project Card Hover Effects */
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 3px;
+        }
+
+        /* Navigation Active States */
+        .nav-link.active {
+            color: var(--color-primary) !important;
+            position: relative;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--color-primary);
+            border-radius: 1px;
+        }
+
+        /* Animated Background */
+        #vanta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Custom Button Styles */
+        .btn-primary {
+            background: var(--color-primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #D04A32;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(240, 83, 64, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--color-primary-alt);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #0B7A6E;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(13, 148, 136, 0.3);
+        }
+
+        /* Form Styles */
+        .form-input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(240, 83, 64, 0.1);
+        }
+
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            .hero-name {
+                font-size: 3rem !important;
+            }
+
+            .section-title {
+                font-size: 2.5rem !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-name {
+                font-size: 2.5rem !important;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .bento-hero {
+                padding: 1.5rem !important;
+            }
+
+            .container-padding {
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .hero-name {
+                font-size: 2rem !important;
+            }
+
+            .bento-hero {
+                padding: 1rem !important;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-name {
+                font-size: 1.8rem !important;
+            }
+        }
+
+        /* Prevent horizontal overflow */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Ensure text wraps */
+        .hero-name,
+        .hero-title,
+        .bento-hero p,
+        .specialization-text {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+    <base target="_blank">
+</head>
+
+<body class="font-nunito text-slate-900 bg-slate-50 antialiased">
+    <!-- Animated Background -->
+    <div id="vanta-bg"></div>
+
+    <!-- Fixed Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <span class="font-montserrat font-bold text-xl text-slate-900">Umair R.</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a class="nav-link text-slate-700 hover:text-laravel-orange px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                        href="#home">Home</a>
+                    <a class="nav-link text-slate-700 hover:text-laravel-orange px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                        href="#about">About</a>
+                    <a class="nav-link text-slate-700 hover:text-laravel-orange px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                        href="#projects">Projects</a>
+                    <a class="nav-link text-slate-700 hover:text-laravel-orange px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                        href="#services">Services</a>
+                    <a class="nav-link text-slate-700 hover:text-laravel-orange px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                        href="#contact">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button class="mobile-menu-button text-slate-700 hover:text-laravel-orange focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu hidden md:hidden bg-white border-t border-slate-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-laravel-orange hover:bg-slate-50"
+                    href="#home">Home</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-laravel-orange hover:bg-slate-50"
+                    href="#about">About</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-laravel-orange hover:bg-slate-50"
+                    href="#projects">Projects</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-laravel-orange hover:bg-slate-50"
+                    href="#services">Services</a>
+                <a class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-laravel-orange hover:bg-slate-50"
+                    href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8" id="home">
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/80 to-slate-900/90"></div>
+
+        <div class="relative z-10 max-w-6xl mx-auto">
+            <!-- Bento Grid Layout -->
+            <div class="bento-grid grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                <!-- Main Hero Content -->
+                <div class="md:col-span-8 space-y-8">
+                    <div class="space-y-6">
+                        <div class="hero-greeting fade-in-up">
+                            <span class="text-coral font-mono text-base sm:text-lg tracking-wider">Full Stack Laravel
+                                Developer</span>
+                        </div>
+
+                        <h1
+                            class="hero-name font-montserrat font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight fade-in-up">
+                            Hi there! 👋 I&#39;m <span class="text-laravel-orange">Umair R.</span>
+                        </h1>
+
+                        <p class="hero-title text-xl sm:text-2xl text-slate-300 max-w-3xl fade-in-up">
+                            I architect Laravel applications that scale from prototype to millions of users.
+                            <span
+                                class="specialization-text block mt-2 text-base sm:text-lg text-slate-400">Specializing
+                                in APIs, SaaS platforms, and E-Commerce solutions.</span>
+                        </p>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4 fade-in-up">
+                        <button
+                            class="btn-primary px-4 sm:px-8 py-4 rounded-lg text-white font-semibold text-base sm:text-lg transition-all">
+                            <i class="fas fa-calendar-alt mr-2"></i>
+                            Schedule Free Consultation
+                        </button>
+                        <button
+                            class="btn-secondary px-4 sm:px-8 py-4 rounded-lg text-white font-semibold text-base sm:text-lg transition-all">
+                            <i class="fas fa-code mr-2"></i>
+                            View My Work
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Key Highlights -->
+                <div class="md:col-span-4 space-y-4">
+                    <div
+                        class="bento-hero bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 fade-in-up">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-rocket text-laravel-orange text-xl"></i>
+                            <h3 class="font-montserrat font-semibold text-white">5+ Years</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm">Laravel Development Experience</p>
+                    </div>
+
+                    <div
+                        class="bento-hero bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 fade-in-up">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-users text-deep-teal text-xl"></i>
+                            <h3 class="font-montserrat font-semibold text-white">50+</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm">Satisfied Clients</p>
+                    </div>
+
+                    <div
+                        class="bento-hero bg-white/10 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/20 fade-in-up">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-star text-coral text-xl"></i>
+                            <h3 class="font-montserrat font-semibold text-white">100%</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm">Job Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 md:py-32 bg-white container-padding" id="about">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="slide-in-left">
+                    <h2 class="section-title font-montserrat font-bold text-4xl md:text-5xl text-slate-900 mb-6">
+                        About <span class="text-laravel-orange">Me</span>
+                    </h2>
+
+                    <div class="space-y-6 text-lg text-slate-700 leading-relaxed">
+                        <p>
+                            I&#39;m a passionate Full Stack Laravel Developer with over 5 years of experience building
+                            scalable web applications.
+                            My journey began with PHP development, but I found my true calling in Laravel&#39;s elegant
+                            syntax and powerful ecosystem.
+                        </p>
+
+                        <p>
+                            What sets me apart is my commitment to engineering solutions that grow with your business.
+                            I don&#39;t just write code—I architect systems that handle millions of users while
+                            maintaining clean, maintainable codebases.
+                        </p>
+
+                        <p>
+                            When I&#39;m not coding, you&#39;ll find me contributing to open-source projects, exploring
+                            new technologies,
+                            or sharing knowledge through technical writing and community engagement.
+                        </p>
+                    </div>
+
+                    <!-- Skills Summary -->
+                    <div class="mt-8 grid grid-cols-2 gap-4">
+                        <div class="skill-badge bg-slate-100 rounded-lg p-4 text-center">
+                            <i class="fab fa-laravel text-2xl text-laravel-orange mb-2"></i>
+                            <div class="font-semibold text-slate-900">Laravel</div>
+                            <div class="text-sm text-slate-600">5+ Years</div>
+                        </div>
+                        <div class="skill-badge bg-slate-100 rounded-lg p-4 text-center">
+                            <i class="fas fa-database text-2xl text-deep-teal mb-2"></i>
+                            <div class="font-semibold text-slate-900">MySQL</div>
+                            <div class="text-sm text-slate-600">Advanced</div>
+                        </div>
+                        <div class="skill-badge bg-slate-100 rounded-lg p-4 text-center">
+                            <i class="fas fa-code text-2xl text-coral mb-2"></i>
+                            <div class="font-semibold text-slate-900">PHP 8.x</div>
+                            <div class="text-sm text-slate-600">Expert</div>
+                        </div>
+                        <div class="skill-badge bg-slate-100 rounded-lg p-4 text-center">
+                            <i class="fas fa-cogs text-2xl text-slate-700 mb-2"></i>
+                            <div class="font-semibold text-slate-900">REST APIs</div>
+                            <div class="text-sm text-slate-600">Architect</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-in-left">
+                    <img alt="Laravel developer workspace setup" class="rounded-2xl shadow-2xl w-full h-auto"
+                        src="https://kimi-web-img.moonshot.cn/img/i.pinimg.com/cccdd489fcbe123796aac42abe3cad17038a1165.jpg"
+                        size="medium" aspect="wide" style="photo" query="Laravel developer workspace setup"
+                        referrerpolicy="no-referrer" data-modified="1" data-score="0.00" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-20 md:py-32 bg-slate-50 container-padding" id="projects">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="section-title font-montserrat font-bold text-4xl md:text-5xl text-slate-900 mb-6">
+                    Featured <span class="text-laravel-orange">Projects</span>
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    A showcase of Laravel applications that demonstrate technical excellence and business impact.
+                    Each project represents a unique challenge solved with scalable architecture.
+                </p>
+            </div>
+
+            <!-- Project Filter -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 fade-in-up">
+                <button
+                    class="filter-btn active px-6 py-3 rounded-full bg-laravel-orange text-white font-semibold transition-all"
+                    data-filter="all">
+                    All Projects
+                </button>
+                <button
+                    class="filter-btn px-6 py-3 rounded-full bg-white text-slate-700 font-semibold border border-slate-200 hover:bg-slate-50 transition-all"
+                    data-filter="saas">
+                    SaaS Platforms
+                </button>
+                <button
+                    class="filter-btn px-6 py-3 rounded-full bg-white text-slate-700 font-semibold border border-slate-200 hover:bg-slate-50 transition-all"
+                    data-filter="api">
+                    API Development
+                </button>
+                <button
+                    class="filter-btn px-6 py-3 rounded-full bg-white text-slate-700 font-semibold border border-slate-200 hover:bg-slate-50 transition-all"
+                    data-filter="ecommerce">
+                    E-Commerce
+                </button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="project-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-up">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="saas">
+                    <div class="relative">
+                        <img alt="SaaS Platform Dashboard" class="w-full h-48 object-cover"
+                            src="https://kimi-web-img.moonshot.cn/img/cdn.prod.website-files.com/88ce2a2eb4921044f078e05fa2d03cdd36725582.webp"
+                            size="medium" aspect="wide" style="photo" query="SaaS platform dashboard interface"
+                            referrerpolicy="no-referrer" data-modified="1" data-score="0.00" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            <span class="px-3 py-1 bg-laravel-orange text-white text-sm rounded-full">SaaS</span>
+                            <span class="px-3 py-1 bg-deep-teal text-white text-sm rounded-full">Laravel</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-montserrat font-bold text-xl text-slate-900 mb-3">Project Atlas — Enterprise
+                            SaaS Platform</h3>
+                        <p class="text-slate-600 mb-4">Multi-tenant SaaS platform serving 50+ enterprise clients with
+                            advanced tenant isolation and subscription management.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Laravel 10</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Vue.js 3</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">PostgreSQL</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Redis</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <a class="flex-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-slate-800 transition-colors"
+                                href="#">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            <a class="flex-1 bg-laravel-orange text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition-colors"
+                                href="#">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="api">
+                    <div class="relative">
+                        <img alt="API documentation interface" class="w-full h-48 object-cover"
+                            src="https://kimi-web-img.moonshot.cn/img/documentation.alfabet.com/fc2d926b7c302ccc812e6018fd97cf8872a119cb.png"
+                            size="medium" aspect="wide" query="REST API documentation interface"
+                            referrerpolicy="no-referrer" data-modified="1" data-score="0.00" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            <span class="px-3 py-1 bg-coral text-white text-sm rounded-full">API</span>
+                            <span class="px-3 py-1 bg-deep-teal text-white text-sm rounded-full">Laravel</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-montserrat font-bold text-xl text-slate-900 mb-3">FinFlow API — Financial
+                            Services Backend</h3>
+                        <p class="text-slate-600 mb-4">RESTful API handling 10M+ daily requests with OAuth 2.0
+                            authentication and comprehensive OpenAPI documentation.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Laravel 9</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">OAuth 2.0</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">MySQL</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Redis</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <a class="flex-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-slate-800 transition-colors"
+                                href="#">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            <a class="flex-1 bg-laravel-orange text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition-colors"
+                                href="#">
+                                <i class="fas fa-external-link-alt mr-2"></i>API Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="ecommerce">
+                    <div class="relative">
+                        <img alt="E-commerce product catalog interface" class="w-full h-48 object-cover"
+                            src="https://kimi-web-img.moonshot.cn/img/pic.pikbest.com/04665b7fde3b6b92993a31e15e96faf907b061f6.jpg!bw700"
+                            size="medium" aspect="wide" style="photo" query="e-commerce product catalog interface"
+                            referrerpolicy="no-referrer" data-modified="1" data-score="0.00" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            <span class="px-3 py-1 bg-deep-teal text-white text-sm rounded-full">E-Commerce</span>
+                            <span class="px-3 py-1 bg-laravel-orange text-white text-sm rounded-full">Laravel</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-montserrat font-bold text-xl text-slate-900 mb-3">VogueStore — Multi-Vendor
+                            Marketplace</h3>
+                        <p class="text-slate-600 mb-4">Full-featured e-commerce platform processing $2M+ monthly with
+                            advanced inventory and order management.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Laravel 10</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Vue.js 3</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Stripe</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">MySQL</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <a class="flex-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-slate-800 transition-colors"
+                                href="#">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            <a class="flex-1 bg-laravel-orange text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition-colors"
+                                href="#">
+                                <i class="fas fa-external-link-alt mr-2"></i>Live Store
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="saas">
+                    <div class="relative">
+                        <img alt="CRM dashboard interface" class="w-full h-48 object-cover"
+                            src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片21.png" size="medium"
+                            aspect="wide" style="photo" query="CRM dashboard interface" referrerpolicy="no-referrer"
+                            data-modified="1" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            <span class="px-3 py-1 bg-laravel-orange text-white text-sm rounded-full">SaaS</span>
+                            <span class="px-3 py-1 bg-deep-teal text-white text-sm rounded-full">CRM</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-montserrat font-bold text-xl text-slate-900 mb-3">SalesFlow — Enterprise CRM
+                            Solution</h3>
+                        <p class="text-slate-600 mb-4">Custom CRM built for a 200+ person sales team with advanced
+                            analytics and workflow automation.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Laravel 8</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Livewire</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Alpine.js</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">PostgreSQL</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <a class="flex-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-slate-800 transition-colors"
+                                href="#">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            <a class="flex-1 bg-laravel-orange text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition-colors"
+                                href="#">
+                                <i class="fas fa-external-link-alt mr-2"></i>Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="api">
+                    <div class="relative">
+                        <img alt="Telemedicine platform interface" class="w-full h-48 object-cover"
+                            src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片2.png" size="medium"
+                            aspect="wide" style="photo" query="Telemedicine platform interface"
+                            referrerpolicy="no-referrer" data-modified="1" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            <span class="px-3 py-1 bg-coral text-white text-sm rounded-full">API</span>
+                            <span class="px-3 py-1 bg-deep-teal text-white text-sm rounded-full">Health</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-montserrat font-bold text-xl text-slate-900 mb-3">MedConnect — Telemedicine API
+                        </h3>
+                        <p class="text-slate-600 mb-4">HIPAA-compliant API for telemedicine platform with real-time
+                            video consultation and patient data management.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Laravel 9</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">WebRTC</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Socket.io</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">MySQL</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <a class="flex-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-slate-800 transition-colors"
+                                href="#">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            <a class="flex-1 bg-laravel-orange text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition-colors"
+                                href="#">
+                                <i class="fas fa-external-link-alt mr-2"></i>API
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card bg-white rounded-2xl overflow-hidden shadow-lg" data-category="ecommerce">
+                    <div class="relative">
+                        <img alt="Food delivery application interface" class="w-full h-48 object-cover"
+                            src="https://kimi-web-img.moonshot.cn/img/placeholder-0620/图片1.png" size="medium"
+                            aspect="wide" style="photo" query="food delivery app interface" referrerpolicy="no-referrer"
+                            data-modified="1" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 flex space-x-2">
+                            <span class="px-3 py-1 bg-deep-teal text-white text-sm rounded-full">E-Commerce</span>
+                            <span class="px-3 py-1 bg-laravel-orange text-white text-sm rounded-full">Food</span>
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="font-montserrat font-bold text-xl text-slate-900 mb-3">QuickBite — Food Delivery
+                            Platform</h3>
+                        <p class="text-slate-600 mb-4">Complete food delivery ecosystem with real-time tracking, payment
+                            integration, and multi-vendor support.</p>
+
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Laravel 10</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Flutter</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Stripe</span>
+                            <span class="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded">Redis</span>
+                        </div>
+
+                        <div class="flex space-x-2">
+                            <a class="flex-1 bg-slate-900 text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-slate-800 transition-colors"
+                                href="#">
+                                <i class="fab fa-github mr-2"></i>Code
+                            </a>
+                            <a class="flex-1 bg-laravel-orange text-white px-4 py-2 rounded-lg text-center font-semibold hover:bg-orange-600 transition-colors"
+                                href="#">
+                                <i class="fas fa-external-link-alt mr-2"></i>App
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 md:py-32 bg-white container-padding" id="services">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="section-title font-montserrat font-bold text-4xl md:text-5xl text-slate-900 mb-6">
+                    Services &amp; <span class="text-laravel-orange">Engagement</span>
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+                    Comprehensive Laravel development services designed to transform your business ideas into scalable,
+                    production-ready applications.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-in-up">
+                <!-- Service 1 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:shadow-xl transition-all">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-laravel-orange rounded-lg flex items-center justify-center">
+                            <i class="fas fa-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-2xl text-slate-900">Full-Stack Laravel Development
+                        </h3>
+                    </div>
+
+                    <p class="text-slate-600 mb-6">
+                        End-to-end application development from requirements analysis through deployment.
+                        I handle everything from database design to responsive frontend implementation.
+                    </p>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-deep-teal"></i>
+                            <span class="text-slate-700">Database schema design &amp; optimization</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-deep-teal"></i>
+                            <span class="text-slate-700">RESTful API development</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-deep-teal"></i>
+                            <span class="text-slate-700">Modern JavaScript frontend integration</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-deep-teal"></i>
+                            <span class="text-slate-700">Deployment &amp; CI/CD setup</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex space-x-4">
+                        <button
+                            class="flex-1 bg-laravel-orange text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition-colors">
+                            Get Quote
+                        </button>
+                        <button
+                            class="flex-1 bg-white text-slate-700 px-6 py-3 rounded-lg font-semibold border border-slate-300 hover:bg-slate-50 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200 hover:shadow-xl transition-all">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-12 h-12 bg-deep-teal rounded-lg flex items-center justify-center">
+                            <i class="fas fa-plug text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-montserrat font-bold text-2xl text-slate-900">API Design &amp; Implementation
+                        </h3>
+                    </div>
+
+                    <p class="text-slate-600 mb-6">
+                        Build robust, scalable APIs that serve as the backbone for your applications.
+                        From RESTful design to GraphQL implementation with comprehensive documentation.
+                    </p>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-laravel-orange"></i>
+                            <span class="text-slate-700">RESTful &amp; GraphQL API development</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-laravel-orange"></i>
+                            <span class="text-slate-700">OAuth 2.0 authentication</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-laravel-orange"></i>
+                            <span class="text-slate-700">OpenAPI documentation</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-check-circle text-laravel-orange"></i>
+                            <span class="text-slate-700">Rate limiting &amp; security</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex space-x-4">
+                        <button
+                            class="flex-1 bg-deep-teal text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-700 transition-colors">
+                            Get Quote
+                        </button>
+                        <button
+                            class="flex-1 bg-white text-slate-700 px-6 py-3 rounded-lg font-semibold border border-slate-300 hover:bg-slate-50 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-20 md:py-32 bg-slate-900 text-white container-padding" id="contact">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="section-title font-montserrat font-bold text-4xl md:text-5xl mb-6">
+                    Let&#39;s Build Something <span class="text-laravel-orange">Amazing</span>
+                </h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">
+                    Ready to transform your idea into a scalable Laravel application?
+                    Let&#39;s discuss your project and explore how we can bring your vision to life.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 fade-in-up">
+                <!-- Contact Form -->
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                    <h3 class="font-montserrat font-bold text-2xl mb-6">Send a Message</h3>
+
+                    <form class="space-y-6" id="contactForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Name</label>
+                                <input
+                                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:border-laravel-orange focus:ring-2 focus:ring-laravel-orange/20 transition-all"
+                                    placeholder="Your name" required="" type="text" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                                <input
+                                    class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:border-laravel-orange focus:ring-2 focus:ring-laravel-orange/20 transition-all"
+                                    placeholder="your@email.com" required="" type="email" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Project Type</label>
+                            <select
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white focus:border-laravel-orange focus:ring-2 focus:ring-laravel-orange/20 transition-all"
+                                required="">
+                                <option class="text-slate-900" value="">Select project type...</option>
+                                <option class="text-slate-900" value="saas">SaaS Platform</option>
+                                <option class="text-slate-900" value="api">API Development</option>
+                                <option class="text-slate-900" value="ecommerce">E-Commerce</option>
+                                <option class="text-slate-900" value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-2">Message</label>
+                            <textarea
+                                class="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:border-laravel-orange focus:ring-2 focus:ring-laravel-orange/20 transition-all resize-none"
+                                placeholder="Tell me about your project..." required="" rows="4"></textarea>
+                        </div>
+
+                        <button
+                            class="w-full bg-laravel-orange text-white px-8 py-4 rounded-lg font-semibold hover:bg-orange-600 transition-all transform hover:scale-105"
+                            type="submit">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                        <h3 class="font-montserrat font-bold text-2xl mb-6">Get in Touch</h3>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-envelope text-laravel-orange text-xl"></i>
+                                <a class="text-slate-300 hover:text-white transition-colors"
+                                    href="mailto:hello@umairr.dev">
+                                    hello@umairr.dev
+                                </a>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-calendar-alt text-deep-teal text-xl"></i>
+                                <a class="text-slate-300 hover:text-white transition-colors" href="#">
+                                    Schedule a Call
+                                </a>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-clock text-coral text-xl"></i>
+                                <span class="text-slate-300">Response within 24 hours</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                        <h3 class="font-montserrat font-bold text-xl mb-6">Connect With Me</h3>
+
+                        <div class="flex space-x-4">
+                            <a class="w-12 h-12 bg-laravel-orange rounded-lg flex items-center justify-center hover:bg-orange-600 transition-colors"
+                                href="https://www.upwork.com/freelancers/~0189e2b25fac579624">
+                                <i class="fab fa-upwork text-white text-xl"></i>
+                            </a>
+                            <a class="w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center hover:bg-slate-600 transition-colors"
+                                href="#">
+                                <i class="fab fa-github text-white text-xl"></i>
+                            </a>
+                            <a class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
+                                href="#">
+                                <i class="fab fa-linkedin text-white text-xl"></i>
+                            </a>
+                            <a class="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center hover:bg-teal-700 transition-colors"
+                                href="#">
+                                <i class="fas fa-file-alt text-white text-xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-300 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-montserrat font-bold text-xl text-white mb-4">Umair R.</h3>
+                    <p class="text-slate-400 mb-4">
+                        Full Stack Laravel Developer specializing in scalable web applications,
+                        APIs, and SaaS platforms.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a class="text-slate-400 hover:text-laravel-orange transition-colors" href="#">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a class="text-slate-400 hover:text-laravel-orange transition-colors" href="#">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a class="text-slate-400 hover:text-laravel-orange transition-colors"
+                            href="https://www.upwork.com/freelancers/~0189e2b25fac579624">
+                            <i class="fab fa-upwork text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#services">Laravel
+                                Development</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#services">API Development</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#services">SaaS
+                                Architecture</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#services">E-Commerce
+                                Solutions</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#home">Home</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#about">About</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#projects">Projects</a>
+                        </li>
+                        <li>
+                            <a class="hover:text-laravel-orange transition-colors" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-700 mt-8 pt-8 text-center">
+                <p class="text-slate-400">
+                    2024 Umair R. All rights reserved. Built with Laravel, Vue.js, and Tailwind CSS.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Vanta.js background
+        document.addEventListener('DOMContentLoaded', function () {
+            if (typeof VANTA !== 'undefined') {
+                VANTA.NET({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0xf05340,
+                    backgroundColor: 0x0f172a,
+                    points: 10.00,
+                    maxDistance: 25.00,
+                    spacing: 18.00
+                });
+            }
+
+            // Initialize animations
+            initAnimations();
+            initNavigation();
+            initProjectFilters();
+            initContactForm();
+        });
+
+        // Animation initialization
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.fade-in-up, .slide-in-left').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Navigation functionality
+        function initNavigation() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.querySelector('i').classList.add('fa-bars');
+                    mobileMenuButton.querySelector('i').classList.remove('fa-times');
+                });
+            });
+
+            // Active navigation highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            sections.forEach(section => {
+                navObserver.observe(section);
+            });
+        }
+
+        // Project filter functionality
+        function initProjectFilters() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-laravel-orange', 'text-white');
+                        btn.classList.add('bg-white', 'text-slate-700', 'border-slate-200');
+                    });
+                    button.classList.add('active', 'bg-laravel-orange', 'text-white');
+                    button.classList.remove('bg-white', 'text-slate-700', 'border-slate-200');
+
+                    // Filter projects
+                    const filter = button.dataset.filter;
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.9)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+
+        // Contact form functionality
+        function initContactForm() {
+            const form = document.getElementById('contactForm');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                // Simulate form submission
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Message Sent!';
+                    submitBtn.classList.remove('bg-laravel-orange');
+                    submitBtn.classList.add('bg-green-600');
+
+                    // Reset form
+                    setTimeout(() => {
+                        form.reset();
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('bg-green-600');
+                        submitBtn.classList.add('bg-laravel-orange');
+                    }, 2000);
+                }, 1500);
+            });
+        }
+
+        // Smooth scroll behavior for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+
+
+
+</body>
+
+</html>

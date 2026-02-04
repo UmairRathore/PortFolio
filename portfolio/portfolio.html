@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Umair Rathore — Laravel SaaS Engineer</title>
+
+<style>
+/* =============================
+   GLOBAL
+============================= */
+
+:root{
+  --bg:#0b1220;
+  --card:#101a2d;
+  --text:#eef3ff;
+  --muted:#9fb0d0;
+  --line:rgba(255,255,255,.08);
+  --accent:#6ea8ff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:30px 20px;
+}
+
+h1,h2,h3{margin:0 0 12px}
+
+a{color:var(--accent); text-decoration:none}
+
+/* =============================
+   NAVBAR
+============================= */
+
+.nav{
+  position:sticky;
+  top:0;
+  background:rgba(11,18,32,.95);
+  border-bottom:1px solid var(--line);
+  padding:12px 20px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.nav a{
+  color:var(--muted);
+  margin-left:15px;
+}
+
+/* =============================
+   HERO
+============================= */
+
+.hero{
+  padding:70px 0 40px;
+}
+
+.hero h1{
+  font-size:44px;
+}
+
+.hero p{
+  color:var(--muted);
+  max-width:700px;
+}
+
+.btn{
+  background:var(--accent);
+  color:#000;
+  padding:10px 16px;
+  border-radius:8px;
+  display:inline-block;
+  font-weight:600;
+  margin-top:15px;
+}
+
+/* =============================
+   SECTION
+============================= */
+
+section{
+  margin-top:60px;
+}
+
+.section-title{
+  margin-bottom:25px;
+  font-size:26px;
+}
+
+/* =============================
+   PROJECT CARDS
+============================= */
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  transition:.3s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+}
+
+/* image */
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  transition:.4s;
+}
+
+.card:hover img{
+  transform:scale(1.05);
+}
+
+/* content */
+.card-body{
+  padding:16px;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin:10px 0;
+}
+
+.tag{
+  background:#182540;
+  padding:4px 8px;
+  font-size:12px;
+  border-radius:20px;
+  color:#c8d7ff;
+}
+
+/* =============================
+   SKILLS
+============================= */
+
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.skill{
+  background:#182540;
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:13px;
+}
+
+/* =============================
+   FOOTER
+============================= */
+
+footer{
+  margin-top:70px;
+  padding:20px 0;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAV ================= -->
+<div class="nav">
+  <strong>Umair Rathore</strong>
+  <div>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <h1>Laravel SaaS & Backend Engineer</h1>
+  <p>
+    I build production SaaS platforms, APIs, and integrations for US/EU clients.
+    Specialized in Laravel, Livewire, Stripe, Twilio, OpenAI, and scalable systems.
+  </p>
+
+  <a class="btn" href="mailto:Umairrathore05@gmail.com">Hire Me</a>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+
+  <div class="grid">
+
+    <!-- SalaryLeaks -->
+    <div class="card">
+      <img src="assets/images/salaryleaks.png"
+           onerror="this.src='https://placehold.co/800x500/101a2d/ffffff?text=SalaryLeaks'"
+           alt="">
+      <div class="card-body">
+        <h3>SalaryLeaks.com</h3>
+        <p>Sports salary analytics SaaS with CSV imports, admin panel, SEO pages.</p>
+        <div class="tags">
+          <span class="tag">Laravel</span>
+          <span class="tag">Livewire</span>
+          <span class="tag">MySQL</span>
+        </div>
+        <a href="https://salaryleaks.com" target="_blank">Visit →</a>
+      </div>
+    </div>
+
+    <!-- CloudCollege -->
+    <div class="card">
+      <img src="assets/images/cloudcollege.png"
+           onerror="this.src='https://placehold.co/800x500/101a2d/ffffff?text=CloudCollege'"
+           alt="">
+      <div class="card-body">
+        <h3>CloudCollege</h3>
+        <p>EdTech LMS SaaS with modules, APIs, Stripe + Mailgun integrations.</p>
+        <div class="tags">
+          <span class="tag">Laravel</span>
+          <span class="tag">Stripe</span>
+          <span class="tag">LMS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contractor Buddy -->
+    <div class="card">
+      <img src="assets/images/contractorbuddy.png"
+           onerror="this.src='https://placehold.co/800x500/101a2d/ffffff?text=Contractor+Buddy'"
+           alt="">
+      <div class="card-body">
+        <h3>Contractor Buddy</h3>
+        <p>Construction management SaaS for teams and workflow automation.</p>
+        <div class="tags">
+          <span class="tag">APIs</span>
+          <span class="tag">Dashboard</span>
+        </div>
+        <a href="https://app.contractorbuddy.io/" target="_blank">Visit →</a>
+      </div>
+    </div>
+
+    <!-- Dentaid -->
+    <div class="card">
+      <img src="assets/images/dentaid.png"
+           onerror="this.src='https://placehold.co/800x500/101a2d/ffffff?text=Dentaid'"
+           alt="">
+      <div class="card-body">
+        <h3>Dentaid</h3>
+        <p>Clinic system with appointments, billing, inventory and reporting.</p>
+        <div class="tags">
+          <span class="tag">Admin</span>
+          <span class="tag">Reporting</span>
+        </div>
+        <a href="https://dentaid.clinicaid.ch/login" target="_blank">Visit →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+
+  <div class="skills">
+    <span class="skill">Laravel</span>
+    <span class="skill">Livewire</span>
+    <span class="skill">REST APIs</span>
+    <span class="skill">Stripe</span>
+    <span class="skill">Twilio</span>
+    <span class="skill">OpenAI</span>
+    <span class="skill">PostgreSQL</span>
+    <span class="skill">MySQL</span>
+    <span class="skill">Queues/Workers</span>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <p>Email: <a href="mailto:Umairrathore05@gmail.com">Umairrathore05@gmail.com</a></p>
+  <p>
+    <a href="https://github.com/UmairRathore" target="_blank">GitHub</a> |
+    <a href="https://www.linkedin.com/in/umairrathore/" target="_blank">LinkedIn</a> |
+    <a href="https://www.upwork.com/freelancers/~0189e2b25fac579624" target="_blank">Upwork</a>
+  </p>
+</section>
+
+<footer>
+  © 2026 Umair Rathore — Built with GitHub Pages
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,914 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Umair Rathore — Full Stack Laravel Developer</title>
+  <meta name="description" content="Full Stack Laravel Developer specializing in APIs, SaaS, and E-Commerce. I build scalable backend systems with modern frontend integration." />
+  <meta name="theme-color" content="#F05340" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Umair Rathore — Full Stack Laravel Developer" />
+  <meta property="og:description" content="APIs • SaaS • E-Commerce — Scalable Laravel systems with modern frontend integration." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Bootstrap 5 (no jQuery needed) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --color-primary:#F05340;         /* Laravel orange */
+      --color-primary-alt:#0D9488;     /* teal */
+      --color-accent:#FF6B6B;
+      --color-text:#0F172A;
+      --color-text-secondary:#64748B;
+      --color-surface:#FFFFFF;
+      --color-background:#FAFAFA;
+      --color-border:rgba(15,23,42,.10);
+
+      --radius-xl: 1.25rem;
+      --shadow-sm: 0 6px 18px rgba(15,23,42,.08);
+      --shadow-md: 0 18px 40px rgba(15,23,42,.12);
+
+      --font-head: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --font-body: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    /* Optional dark mode via [data-theme="dark"] */
+    [data-theme="dark"]{
+      --color-text:#E5E7EB;
+      --color-text-secondary:#A1A1AA;
+      --color-surface:#0B1220;
+      --color-background:#070B14;
+      --color-border:rgba(226,232,240,.10);
+      --shadow-sm: 0 10px 24px rgba(0,0,0,.35);
+      --shadow-md: 0 22px 52px rgba(0,0,0,.50);
+    }
+
+    html { scroll-behavior:smooth; }
+    body{
+      font-family: var(--font-body);
+      color: var(--color-text);
+      background: var(--color-background);
+    }
+    a { color: inherit; }
+    .muted { color: var(--color-text-secondary); }
+
+    .navbar{
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--color-background) 75%, transparent);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .brand-dot{
+      display:inline-block;width:.55rem;height:.55rem;border-radius:50%;
+      background: var(--color-primary); margin-left:.35rem; transform: translateY(-1px);
+    }
+
+    .btn-primary{
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+    }
+    .btn-primary:hover{
+      background: color-mix(in srgb, var(--color-primary) 88%, black);
+      border-color: color-mix(in srgb, var(--color-primary) 88%, black);
+    }
+    .btn-outline-primary{
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+    .btn-outline-primary:hover{
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: white;
+    }
+    .badge-tech{
+      background: color-mix(in srgb, var(--color-primary-alt) 12%, var(--color-surface));
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-weight: 700;
+      padding: .45rem .6rem;
+      border-radius: 999px;
+      margin: .15rem .2rem 0 0;
+    }
+    .badge-tag{
+      background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-weight: 700;
+      padding: .4rem .65rem;
+      border-radius: 999px;
+    }
+
+    .section{
+      padding: 5rem 0;
+    }
+    .section-title{
+      font-family: var(--font-head);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .card{
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-sm);
+    }
+    .card:hover{ box-shadow: var(--shadow-md); }
+
+    /* HERO */
+    .hero{
+      padding: 6rem 0 4rem;
+    }
+    .hero h1{
+      font-family: var(--font-head);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+      margin-bottom: 1rem;
+    }
+    .name-accent{
+      background: linear-gradient(90deg, var(--color-primary), var(--color-primary-alt));
+      -webkit-background-clip:text;background-clip:text;color:transparent;
+    }
+    .hero-lead{
+      font-size: 1.15rem;
+      color: var(--color-text-secondary);
+      max-width: 54rem;
+    }
+    .hero-metrics{
+      display:flex; gap:1rem; flex-wrap:wrap;
+    }
+    .metric{
+      background: color-mix(in srgb, var(--color-surface) 90%, var(--color-background));
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: .55rem .85rem;
+      display:flex; align-items:center; gap:.5rem;
+      font-weight: 700;
+    }
+    .metric .dot{
+      width:.6rem;height:.6rem;border-radius:50%;
+      background: var(--color-primary);
+    }
+
+    /* Projects grid */
+    .project-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 768px){
+      .project-grid{ grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+    @media (min-width: 1200px){
+      .project-grid{ grid-template-columns: repeat(3, 1fr); }
+    }
+    .project-card{
+      overflow:hidden;
+      position:relative;
+      transition: transform .18s ease;
+    }
+    .project-card:hover{ transform: translateY(-3px); }
+    .project-thumb{
+      aspect-ratio: 16/9;
+      width: 100%;
+      object-fit: cover;
+      display:block;
+      border-bottom: 1px solid var(--color-border);
+      background: #111827;
+    }
+    .project-body{ padding: 1rem 1rem 1.1rem; }
+    .project-title{
+      font-family: var(--font-head);
+      font-weight: 800;
+      margin: 0 0 .35rem 0;
+      letter-spacing: -0.02em;
+    }
+    .project-desc{ color: var(--color-text-secondary); margin-bottom: .6rem; }
+    .project-links{
+      display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.85rem;
+    }
+
+    /* Skills matrix */
+    .skills-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .75rem;
+    }
+    @media (min-width: 768px){
+      .skills-grid{ grid-template-columns: repeat(4, 1fr); }
+    }
+    .skill{
+      border: 1px solid var(--color-border);
+      border-radius: 1rem;
+      padding: .9rem .9rem;
+      background: color-mix(in srgb, var(--color-surface) 92%, var(--color-background));
+    }
+    .skill strong{
+      display:block;
+      font-family: var(--font-head);
+      font-weight: 800;
+      letter-spacing:-0.01em;
+    }
+    .skill small{ color: var(--color-text-secondary); }
+
+    /* Filters */
+    .filter-bar{
+      display:flex; gap:.5rem; flex-wrap:wrap;
+      align-items:center;
+    }
+    .filter-btn{
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      border-radius: 999px;
+      padding: .55rem .9rem;
+      font-weight: 800;
+      font-family: var(--font-head);
+      letter-spacing: -0.01em;
+      cursor:pointer;
+    }
+    .filter-btn.active{
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color:white;
+    }
+
+    /* Back-to-top */
+    #backToTop{
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 50;
+      display:none;
+      border-radius: 999px;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Footer */
+    footer{
+      border-top: 1px solid var(--color-border);
+      padding: 2.2rem 0;
+      color: var(--color-text-secondary);
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition: none !important; animation: none !important; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+
+  <!-- JSON-LD (Person) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Umair Rathore",
+    "jobTitle":"Full Stack Laravel Developer",
+    "url":"https://umairrathore.github.io/",
+    "sameAs":[
+      "https://www.linkedin.com/in/umairrathore/",
+      "https://github.com/UmairRathore"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#top" style="font-family:var(--font-head);">
+        Umair<span class="brand-dot"></span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+          <li class="nav-item ms-lg-3">
+            <button id="themeToggle" class="btn btn-sm btn-outline-primary" type="button" title="Toggle theme">
+              Toggle theme
+            </button>
+          </li>
+
+          <li class="nav-item ms-lg-2">
+            <!-- Replace with your actual CV file path when you add it in repo, e.g. /cv/Umair_Rathore_CV.pdf -->
+            <a class="btn btn-sm btn-primary" href="#" onclick="alert('Add your CV PDF to /cv and update this link.'); return false;">
+              Download CV
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" class="hero">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+          <div class="d-inline-flex align-items-center gap-2 mb-3">
+            <span class="badge-tag">APIs</span>
+            <span class="badge-tag">SaaS</span>
+            <span class="badge-tag">E-Commerce</span>
+          </div>
+
+          <h1>
+            Hi, I’m <span class="name-accent">Umair Rathore</span><br/>
+            Full Stack Laravel Developer
+          </h1>
+
+          <p class="hero-lead">
+            I architect scalable backend systems in Laravel, ship clean REST APIs, and integrate modern frontends for real-world SaaS products.
+            I focus on reliability, idempotent workflows, and production-grade engineering.
+          </p>
+
+          <div class="hero-metrics mt-4">
+            <div class="metric"><span class="dot"></span> 4+ years production experience</div>
+            <div class="metric"><span class="dot"></span> Laravel • MySQL/Postgres • REST</div>
+            <div class="metric"><span class="dot"></span> Integrations: Stripe • Twilio • Shopify</div>
+          </div>
+
+          <div class="d-flex gap-2 flex-wrap mt-4">
+            <a class="btn btn-primary btn-lg" href="#contact">Discuss Your Project</a>
+            <a class="btn btn-outline-primary btn-lg" href="#projects">View My Work</a>
+            <a class="btn btn-outline-secondary btn-lg" href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a class="btn btn-outline-secondary btn-lg" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="card p-3">
+            <img
+              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1400&q=80"
+              alt="Developer workspace"
+              class="img-fluid rounded-4"
+              loading="lazy"
+            />
+            <div class="p-3">
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div>
+                  <div class="fw-bold" style="font-family:var(--font-head);">Availability</div>
+                  <div class="muted">Open to remote contracts</div>
+                </div>
+                <span class="badge rounded-pill text-bg-success">Available</span>
+              </div>
+              <hr/>
+              <div class="muted">
+                I prefer projects that value: strong architecture, clean code, and predictable delivery.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="row g-4 align-items-start">
+        <div class="col-lg-5">
+          <h2 class="section-title">About</h2>
+          <p class="muted">
+            I build Laravel applications end-to-end: database design, APIs, integrations, background jobs/queues, and frontend delivery.
+            I like systems that are observable, restart-safe, and resilient under real traffic.
+          </p>
+
+          <div class="card p-4 mt-3">
+            <div class="fw-bold" style="font-family:var(--font-head);">What you get working with me</div>
+            <ul class="mt-3 mb-0 muted">
+              <li>Clear scope, milestones, and communication</li>
+              <li>Idempotent workflows (safe retries, no silent skips)</li>
+              <li>Performance-minded DB + caching patterns</li>
+              <li>Documentation + handover that your team can maintain</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="card p-4">
+            <h3 class="mb-3" style="font-family:var(--font-head); font-weight:800;">Core focus areas</h3>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="border:1px solid var(--color-border); background:color-mix(in srgb, var(--color-surface) 92%, var(--color-background));">
+                  <div class="fw-bold">API Design & Implementation</div>
+                  <div class="muted">REST endpoints, auth (Sanctum/JWT), versioning, rate-limits, OpenAPI-style documentation.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="border:1px solid var(--color-border); background:color-mix(in srgb, var(--color-surface) 92%, var(--color-background));">
+                  <div class="fw-bold">SaaS Backends</div>
+                  <div class="muted">Multi-tenant foundations, billing (Stripe), roles/permissions, background processing, observability.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="border:1px solid var(--color-border); background:color-mix(in srgb, var(--color-surface) 92%, var(--color-background));">
+                  <div class="fw-bold">Integrations</div>
+                  <div class="muted">Shopify, Twilio, Google APIs, webhooks, event-driven workflows, queue-first reliability.</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-4" style="border:1px solid var(--color-border); background:color-mix(in srgb, var(--color-surface) 92%, var(--color-background));">
+                  <div class="fw-bold">Data Pipelines & Parsing</div>
+                  <div class="muted">Server-side imports, PDF ingestion, deterministic parsing, structured outputs, retry-safe batch processing.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2 flex-wrap mt-4">
+              <a class="btn btn-primary" href="#contact">Hire Me</a>
+              <a class="btn btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">View Code</a>
+              <a class="btn btn-outline-secondary" href="https://umairrathore.github.io/PortFolio/" target="_blank" rel="noopener noreferrer">Old Portfolio</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="d-flex align-items-end justify-content-between gap-3 flex-wrap mb-3">
+        <div>
+          <h2 class="section-title mb-1">Featured Projects</h2>
+          <div class="muted">Filter by category. Links include live demos and/or source code where available.</div>
+        </div>
+        <div class="filter-bar" aria-label="Project filters">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="saas" type="button">SaaS</button>
+          <button class="filter-btn" data-filter="api" type="button">APIs</button>
+          <button class="filter-btn" data-filter="ecommerce" type="button">E-Commerce</button>
+          <button class="filter-btn" data-filter="data" type="button">Data/PDF</button>
+        </div>
+      </div>
+
+      <div class="project-grid" id="projectGrid">
+        <!-- SalaryLeaks -->
+        <article class="card project-card" data-categories="saas,api">
+          <img class="project-thumb" loading="lazy"
+               src="https://images.unsplash.com/photo-1551281044-8b89a6f19818?auto=format&fit=crop&w=1400&q=80"
+               alt="Salary analytics dashboard concept">
+          <div class="project-body">
+            <h3 class="project-title">SalaryLeaks.com</h3>
+            <div class="project-desc">
+              Multi-sport salary analytics platform with complex domain modeling, contracts, comparisons, and public SEO pages.
+            </div>
+            <div>
+              <span class="badge-tech">Laravel</span>
+              <span class="badge-tech">Livewire</span>
+              <span class="badge-tech">MySQL</span>
+              <span class="badge-tech">REST</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-sm btn-primary" href="https://salaryleaks.com" target="_blank" rel="noopener noreferrer">Live</a>
+              <a class="btn btn-sm btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- CloudCollege -->
+        <article class="card project-card" data-categories="saas,api">
+          <img class="project-thumb" loading="lazy"
+               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"
+               alt="E-learning platform concept">
+          <div class="project-body">
+            <h3 class="project-title">CloudCollege (E-Learning SaaS)</h3>
+            <div class="project-desc">
+              SaaS learning platform: course flows, user access control, content delivery, and integrations.
+            </div>
+            <div>
+              <span class="badge-tech">Laravel</span>
+              <span class="badge-tech">PostgreSQL</span>
+              <span class="badge-tech">Stripe</span>
+              <span class="badge-tech">RBAC</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-sm btn-primary" href="https://cloudcollege.com" target="_blank" rel="noopener noreferrer">Live</a>
+              <a class="btn btn-sm btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Wooma Migration / HelloReport -->
+        <article class="card project-card" data-categories="data,api">
+          <img class="project-thumb" loading="lazy"
+               src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1400&q=80"
+               alt="Data pipeline concept">
+          <div class="project-body">
+            <h3 class="project-title">HelloReport → Wooma Migration Pipeline</h3>
+            <div class="project-desc">
+              Queue-first PDF acquisition + deterministic parsing into strict JSON mapping; restart-safe lifecycle per report.
+            </div>
+            <div>
+              <span class="badge-tech">Laravel</span>
+              <span class="badge-tech">Queues</span>
+              <span class="badge-tech">HTTP</span>
+              <span class="badge-tech">PDF Parsing</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-sm btn-outline-primary" href="#contact">Request Details</a>
+              <a class="btn btn-sm btn-outline-secondary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Contractor Buddy -->
+        <article class="card project-card" data-categories="saas,api">
+          <img class="project-thumb" loading="lazy"
+               src="https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=1400&q=80"
+               alt="Business SaaS concept">
+          <div class="project-body">
+            <h3 class="project-title">Contractor Buddy</h3>
+            <div class="project-desc">
+              SaaS application work including backend features, integrations, and production stability improvements.
+            </div>
+            <div>
+              <span class="badge-tech">Laravel</span>
+              <span class="badge-tech">MySQL</span>
+              <span class="badge-tech">APIs</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-sm btn-primary" href="https://app.contractorbuddy.io/" target="_blank" rel="noopener noreferrer">Live</a>
+              <a class="btn btn-sm btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Dentaid -->
+        <article class="card project-card" data-categories="saas,api">
+          <img class="project-thumb" loading="lazy"
+               src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=1400&q=80"
+               alt="Clinic management system concept">
+          <div class="project-body">
+            <h3 class="project-title">Dentaid (Clinic CRM)</h3>
+            <div class="project-desc">
+              CRM tracking appointments, patients, billing, inventory, statistics, and user management in one system.
+            </div>
+            <div>
+              <span class="badge-tech">Laravel</span>
+              <span class="badge-tech">PostgreSQL</span>
+              <span class="badge-tech">RBAC</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-sm btn-primary" href="https://dentaid.clinicaid.ch/login" target="_blank" rel="noopener noreferrer">Live</a>
+              <a class="btn btn-sm btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- AdLaunch -->
+        <article class="card project-card" data-categories="saas,api,ecommerce">
+          <img class="project-thumb" loading="lazy"
+               src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1400&q=80"
+               alt="Marketing platform concept">
+          <div class="project-body">
+            <h3 class="project-title">AdLaunch</h3>
+            <div class="project-desc">
+              Production SaaS work with API integration, data handling, and platform improvements.
+            </div>
+            <div>
+              <span class="badge-tech">Laravel</span>
+              <span class="badge-tech">APIs</span>
+              <span class="badge-tech">Automation</span>
+            </div>
+            <div class="project-links">
+              <a class="btn btn-sm btn-primary" href="https://app.adlaunch.com/" target="_blank" rel="noopener noreferrer">Live</a>
+              <a class="btn btn-sm btn-outline-primary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-4 muted">
+        Tip: replace project images with your real screenshots later. Keep images ~1200×675 and compressed.
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title mb-2">Services</h2>
+      <div class="muted mb-4">Clear engagement models and deliverables, optimized for Laravel-based products.</div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-4 h-100">
+            <h3 style="font-family:var(--font-head); font-weight:800;">Full-Stack Laravel</h3>
+            <p class="muted mb-0">End-to-end development from requirements to deployment: clean architecture, predictable delivery, and maintainable code.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-4 h-100">
+            <h3 style="font-family:var(--font-head); font-weight:800;">API Design</h3>
+            <p class="muted mb-0">REST APIs with auth, versioning, rate limits, and documentation patterns that support mobile + integrations.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-4 h-100">
+            <h3 style="font-family:var(--font-head); font-weight:800;">SaaS Architecture</h3>
+            <p class="muted mb-0">Foundations for SaaS: roles/permissions, multi-tenant thinking, background jobs, observability, and scaling paths.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+          <div class="card p-4 h-100">
+            <h3 style="font-family:var(--font-head); font-weight:800;">Legacy Optimization</h3>
+            <p class="muted mb-0">Audits, performance profiling, refactors, and modernization to stabilize and speed up existing Laravel apps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <h2 class="section-title mb-2">Skills</h2>
+          <p class="muted">
+            Backend-first, full-stack capable. I prioritize correctness, idempotency, and production reliability.
+          </p>
+          <div class="card p-4">
+            <div class="fw-bold" style="font-family:var(--font-head);">Highlights</div>
+            <ul class="mt-3 mb-0 muted">
+              <li>Laravel services + queue-first workflows</li>
+              <li>DB design, indexing, query optimization</li>
+              <li>Integrations: webhooks, third-party APIs</li>
+              <li>Structured data extraction and parsing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="card p-4">
+            <div class="skills-grid">
+              <div class="skill"><strong>Laravel</strong><small>Services • Queues • Auth</small></div>
+              <div class="skill"><strong>PHP</strong><small>Modern patterns</small></div>
+              <div class="skill"><strong>MySQL</strong><small>Schema • Indexing</small></div>
+              <div class="skill"><strong>PostgreSQL</strong><small>Production use</small></div>
+
+              <div class="skill"><strong>Redis</strong><small>Caching • Queues</small></div>
+              <div class="skill"><strong>REST APIs</strong><small>Versioning • Docs</small></div>
+              <div class="skill"><strong>Webhooks</strong><small>Retry-safe flows</small></div>
+              <div class="skill"><strong>Stripe</strong><small>Payments • Billing</small></div>
+
+              <div class="skill"><strong>Twilio</strong><small>Messaging</small></div>
+              <div class="skill"><strong>Shopify</strong><small>Integrations</small></div>
+              <div class="skill"><strong>JS</strong><small>Modern frontend</small></div>
+              <div class="skill"><strong>Livewire</strong><small>Productive UIs</small></div>
+            </div>
+
+            <div class="mt-4">
+              <span class="badge-tech">Git</span>
+              <span class="badge-tech">GitHub</span>
+              <span class="badge-tech">Linux</span>
+              <span class="badge-tech">Docker (basic)</span>
+              <span class="badge-tech">CI/CD (basic)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <h2 class="section-title mb-2">Contact</h2>
+          <p class="muted">
+            Tell me what you’re building, your timeline, and what “done” looks like. I’ll reply with next steps.
+          </p>
+
+          <div class="card p-4">
+            <div class="fw-bold" style="font-family:var(--font-head);">Quick links</div>
+            <div class="mt-3 d-grid gap-2">
+              <a class="btn btn-outline-primary" href="mailto:hello@example.com?subject=Project%20Inquiry%20from%20Portfolio&body=Hi%20Umair,%0A%0AI%20want%20to%20discuss%20a%20project...">
+                Email (replace address)
+              </a>
+              <a class="btn btn-outline-secondary" href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="btn btn-outline-secondary" href="https://www.upwork.com/freelancers/~0189e2b25fac579624" target="_blank" rel="noopener noreferrer">Upwork</a>
+              <a class="btn btn-outline-secondary" href="https://github.com/UmairRathore" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <hr/>
+            <div class="muted">
+              Prefer scheduling? Add a Calendly link here (button or embed).
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="card p-4">
+            <h3 style="font-family:var(--font-head); font-weight:800;">Send a message</h3>
+            <p class="muted">No backend required. Connect Formspree and it works on GitHub Pages.</p>
+
+            <!-- Replace action with your Formspree endpoint:
+                 https://formspree.io/f/YOUR_FORM_ID -->
+            <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="row g-3" novalidate>
+              <div class="col-md-6">
+                <label class="form-label fw-bold" for="name">Name</label>
+                <input class="form-control" id="name" name="name" type="text" placeholder="Your name" required />
+                <div class="invalid-feedback">Please enter your name.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-bold" for="email">Email</label>
+                <input class="form-control" id="email" name="email" type="email" placeholder="you@company.com" required />
+                <div class="invalid-feedback">Please enter a valid email.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-bold" for="projectType">Project type</label>
+                <select class="form-select" id="projectType" name="project-type" required>
+                  <option value="">Select…</option>
+                  <option value="saas">SaaS Platform</option>
+                  <option value="api">API Development</option>
+                  <option value="ecommerce">E-Commerce</option>
+                  <option value="data">Data / PDF Pipeline</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="invalid-feedback">Please choose a project type.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-bold" for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="6" placeholder="What are you building? Timeline? Budget range? Links?" required></textarea>
+                <div class="invalid-feedback">Please write a short message.</div>
+              </div>
+              <div class="col-12 d-flex gap-2 align-items-center flex-wrap">
+                <button class="btn btn-primary btn-lg" type="submit">Send</button>
+                <span id="formStatus" class="muted"></span>
+              </div>
+
+              <div class="col-12 muted small">
+                Note: update the email + Formspree endpoint in this file.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex justify-content-between align-items-center flex-wrap gap-2">
+      <div>© <span id="year"></span> Umair Rathore. Built as a static site for GitHub Pages.</div>
+      <div class="d-flex gap-3">
+        <a href="#top" class="text-decoration-none">Back to top</a>
+        <a href="https://umairrathore.github.io/PortFolio/" target="_blank" rel="noopener noreferrer" class="text-decoration-none">Old Portfolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="backToTop" class="btn btn-primary btn-lg" type="button" aria-label="Back to top">↑</button>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+    // ---------------------------
+    // Theme toggle (stored in localStorage)
+    // ---------------------------
+    (function initTheme(){
+      const key = "umair_theme";
+      const saved = localStorage.getItem(key);
+      if (saved === "dark") document.documentElement.setAttribute("data-theme", "dark");
+      document.getElementById("themeToggle").addEventListener("click", () => {
+        const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        if (isDark) {
+          document.documentElement.removeAttribute("data-theme");
+          localStorage.setItem(key, "light");
+        } else {
+          document.documentElement.setAttribute("data-theme", "dark");
+          localStorage.setItem(key, "dark");
+        }
+      });
+    })();
+
+    // ---------------------------
+    // Year in footer
+    // ---------------------------
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ---------------------------
+    // Back-to-top
+    // ---------------------------
+    const backBtn = document.getElementById("backToTop");
+    window.addEventListener("scroll", () => {
+      backBtn.style.display = (window.scrollY > 700) ? "inline-flex" : "none";
+    });
+    backBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+    // ---------------------------
+    // Project filtering with URL hash persistence
+    // ---------------------------
+    const filterButtons = Array.from(document.querySelectorAll(".filter-btn"));
+    const projectCards = Array.from(document.querySelectorAll(".project-card"));
+
+    function setActiveButton(filter){
+      filterButtons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.filter === filter);
+      });
+    }
+
+    function applyFilter(filter){
+      const f = (filter || "all").toLowerCase();
+      setActiveButton(f);
+
+      projectCards.forEach(card => {
+        const cats = (card.dataset.categories || "").split(",").map(s => s.trim().toLowerCase());
+        const show = (f === "all") ? true : cats.includes(f);
+        card.style.display = show ? "" : "none";
+      });
+
+      // update URL hash without jumping
+      const newHash = (f === "all") ? "" : "#" + f;
+      history.replaceState(null, "", window.location.pathname + window.location.search + newHash);
+    }
+
+    // init from hash (e.g. #api)
+    const initialHash = (window.location.hash || "").replace("#", "").trim();
+    const known = new Set(["all","saas","api","ecommerce","data"]);
+    const initialFilter = known.has(initialHash) ? initialHash : "all";
+    applyFilter(initialFilter);
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => applyFilter(btn.dataset.filter));
+    });
+
+    // ---------------------------
+    // Contact form: Bootstrap validation + AJAX submit (Formspree)
+    // ---------------------------
+    const form = document.getElementById("contactForm");
+    const statusEl = document.getElementById("formStatus");
+
+    form.addEventListener("submit", async (e) => {
+      // Client-side validation
+      if (!form.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        form.classList.add("was-validated");
+        return;
+      }
+
+      // If user didn't replace Formspree endpoint, block and warn
+      if (form.action.includes("YOUR_FORM_ID")) {
+        e.preventDefault();
+        statusEl.textContent = "Update Formspree endpoint (YOUR_FORM_ID) to enable submissions.";
+        return;
+      }
+
+      // AJAX submit
+      e.preventDefault();
+      statusEl.textContent = "Sending…";
+
+      try {
+        const formData = new FormData(form);
+        const res = await fetch(form.action, {
+          method: "POST",
+          body: formData,
+          headers: { "Accept": "application/json" }
+        });
+
+        if (res.ok) {
+          form.reset();
+          form.classList.remove("was-validated");
+          statusEl.textContent = "Message sent. I’ll reply soon.";
+        } else {
+          statusEl.textContent = "Could not send. Try email instead.";
+        }
+      } catch (err) {
+        statusEl.textContent = "Network error. Try email instead.";
+      }
+    });
+  </script>
+</body>
+</html>

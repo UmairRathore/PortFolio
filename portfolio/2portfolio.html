@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1220" />
+
+    <title>Umair Rathore — Laravel SaaS & Backend Engineer</title>
+    <meta name="description" content="Backend-focused Laravel Engineer building production SaaS platforms, APIs, integrations, and automation systems. Laravel, Livewire, PostgreSQL/MySQL, Stripe, Twilio, OpenAI." />
+    <meta name="keywords" content="Laravel, PHP, Livewire, SaaS, Backend Engineer, REST API, PostgreSQL, MySQL, Stripe, Twilio, OpenAI, Webhooks" />
+    <meta name="author" content="Umair Rathore" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Umair Rathore — Laravel SaaS & Backend Engineer" />
+    <meta property="og:description" content="Production SaaS + APIs + integrations. Laravel, Livewire, PostgreSQL/MySQL, Stripe, Twilio, OpenAI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://umairrathore.github.io/" />
+    <!-- Optional: add an og image later -->
+    <!-- <meta property="og:image" content="https://umairrathore.github.io/og.png" /> -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Umair Rathore — Laravel SaaS & Backend Engineer" />
+    <meta name="twitter:description" content="Production SaaS + APIs + integrations. Laravel, Livewire, PostgreSQL/MySQL, Stripe, Twilio, OpenAI." />
+
+    <style>
+        :root{
+            --bg:#0b1220;
+            --panel:#0f1b33;
+            --panel2:#101a2d;
+            --text:#eaf0ff;
+            --muted:#a8b3cf;
+            --line:rgba(255,255,255,.08);
+            --brand:#6ea8ff;
+            --brand2:#8b5cf6;
+            --good:#22c55e;
+            --warn:#fbbf24;
+            --shadow: 0 20px 60px rgba(0,0,0,.35);
+            --radius: 18px;
+            --radius2: 26px;
+            --max: 1120px;
+        }
+
+        *{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            margin:0;
+            font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+            background: radial-gradient(1200px 600px at 15% 10%, rgba(110,168,255,.22), transparent 55%),
+            radial-gradient(900px 500px at 85% 20%, rgba(139,92,246,.18), transparent 55%),
+            radial-gradient(1000px 500px at 60% 90%, rgba(34,197,94,.12), transparent 55%),
+            var(--bg);
+            color:var(--text);
+        }
+
+        a{color:inherit}
+        .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+        .topbar{
+            position:sticky; top:0; z-index:50;
+            backdrop-filter: blur(12px);
+            background: rgba(11,18,32,.72);
+            border-bottom:1px solid var(--line);
+        }
+        .topbar-inner{
+            display:flex; align-items:center; justify-content:space-between;
+            padding:12px 0;
+            gap:12px;
+        }
+        .brand{
+            display:flex; align-items:center; gap:10px;
+            text-decoration:none;
+            font-weight:700;
+            letter-spacing:.2px;
+        }
+        .dot{
+            width:11px; height:11px; border-radius:50%;
+            background: linear-gradient(135deg, var(--brand), var(--brand2));
+            box-shadow: 0 0 0 4px rgba(110,168,255,.18);
+        }
+        nav{
+            display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-end;
+        }
+        nav a{
+            text-decoration:none;
+            font-size:14px;
+            color:var(--muted);
+            padding:8px 10px;
+            border-radius:12px;
+            border:1px solid transparent;
+        }
+        nav a:hover{
+            color:var(--text);
+            border-color: var(--line);
+            background: rgba(255,255,255,.03);
+        }
+
+        .hero{
+            padding:54px 0 22px;
+        }
+        .hero-grid{
+            display:grid;
+            grid-template-columns: 1.3fr .7fr;
+            gap:18px;
+            align-items:stretch;
+        }
+        @media (max-width: 960px){
+            .hero-grid{grid-template-columns:1fr}
+        }
+
+        .card{
+            background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+            border:1px solid var(--line);
+            border-radius: var(--radius2);
+            box-shadow: var(--shadow);
+        }
+        .hero-left{
+            padding:26px;
+            position:relative;
+            overflow:hidden;
+        }
+        .glow{
+            position:absolute;
+            inset:-2px;
+            background: radial-gradient(600px 220px at 30% 10%, rgba(110,168,255,.20), transparent 55%),
+            radial-gradient(560px 240px at 80% 30%, rgba(139,92,246,.16), transparent 55%);
+            pointer-events:none;
+            opacity:.9;
+        }
+        .hero-left > *{position:relative}
+        .kicker{
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            padding:8px 12px;
+            border-radius:999px;
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color:var(--muted);
+            font-size:13px;
+        }
+        .kicker b{color:var(--text); font-weight:600}
+        h1{
+            margin:14px 0 8px;
+            font-size:44px;
+            line-height:1.08;
+            letter-spacing:-.9px;
+        }
+        @media (max-width:520px){
+            h1{font-size:36px}
+        }
+        .subtitle{
+            margin:0;
+            color:var(--muted);
+            font-size:16px;
+            max-width: 70ch;
+        }
+        .pill-row{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin:18px 0 18px;
+        }
+        .pill{
+            font-size:13px;
+            color:rgba(234,240,255,.9);
+            padding:8px 10px;
+            border-radius:999px;
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+        }
+        .cta-row{
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:18px;
+        }
+        .btn{
+            appearance:none;
+            border:none;
+            padding:12px 14px;
+            border-radius:14px;
+            cursor:pointer;
+            font-weight:600;
+            font-size:14px;
+            text-decoration:none;
+            display:inline-flex;
+            align-items:center;
+            gap:10px;
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.04);
+            color:var(--text);
+        }
+        .btn:hover{background: rgba(255,255,255,.06)}
+        .btn.primary{
+            border-color: rgba(110,168,255,.25);
+            background: linear-gradient(135deg, rgba(110,168,255,.20), rgba(139,92,246,.12));
+        }
+        .btn.primary:hover{
+            background: linear-gradient(135deg, rgba(110,168,255,.26), rgba(139,92,246,.16));
+        }
+
+        .hero-right{
+            padding:18px;
+            display:flex;
+            flex-direction:column;
+            gap:12px;
+        }
+        .mini{
+            padding:16px;
+            border-radius: var(--radius);
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+        }
+        .mini h3{
+            margin:0 0 6px;
+            font-size:14px;
+            color: rgba(234,240,255,.92);
+            font-weight:700;
+            letter-spacing:.2px;
+        }
+        .mini p{
+            margin:0;
+            color:var(--muted);
+            font-size:13px;
+        }
+        .mini .tag{
+            display:inline-flex;
+            gap:8px;
+            align-items:center;
+            margin-top:10px;
+            font-size:12px;
+            color: rgba(234,240,255,.85);
+            padding:6px 10px;
+            border-radius:999px;
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.02);
+        }
+        .tag .status{
+            width:8px; height:8px; border-radius:999px;
+            background: var(--good);
+            box-shadow: 0 0 0 4px rgba(34,197,94,.12);
+        }
+
+        section{padding:26px 0}
+        .section-head{
+            display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+            margin-bottom:14px;
+        }
+        .section-head h2{
+            margin:0;
+            font-size:22px;
+            letter-spacing:-.3px;
+        }
+        .section-head p{
+            margin:0;
+            color:var(--muted);
+            font-size:13px;
+            max-width: 68ch;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap:12px;
+        }
+        .col-6{grid-column: span 6}
+        .col-4{grid-column: span 4}
+        .col-8{grid-column: span 8}
+        .col-12{grid-column: span 12}
+        @media (max-width: 900px){
+            .col-6,.col-4,.col-8{grid-column: span 12}
+        }
+
+        .panel{
+            padding:16px;
+            border-radius: var(--radius);
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+        }
+        .panel h3{
+            margin:0 0 8px;
+            font-size:14px;
+            font-weight:700;
+        }
+        .panel p, .panel li{
+            color:var(--muted);
+            margin:0;
+            font-size:14px;
+        }
+        .panel ul{margin:10px 0 0; padding-left:18px}
+        .panel li{margin:6px 0}
+
+        .proj{
+            display:flex; flex-direction:column; gap:10px;
+            height:100%;
+        }
+        .proj-top{
+            display:flex; justify-content:space-between; align-items:flex-start; gap:10px;
+        }
+        .proj-title{display:flex; flex-direction:column; gap:2px}
+        .proj-title b{font-size:15px}
+        .proj-title span{font-size:12px; color:var(--muted)}
+        .chiprow{display:flex; flex-wrap:wrap; gap:8px}
+        .chip{
+            font-size:12px;
+            padding:6px 10px;
+            border-radius:999px;
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.02);
+            color: rgba(234,240,255,.85);
+        }
+        .proj-links{
+            display:flex; flex-wrap:wrap; gap:10px;
+            margin-top:auto;
+        }
+        .link{
+            font-size:13px;
+            color: rgba(234,240,255,.92);
+            text-decoration:none;
+            padding:8px 10px;
+            border-radius:12px;
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+        }
+        .link:hover{background: rgba(255,255,255,.06)}
+        .muted{color:var(--muted)}
+
+        .timeline{
+            display:flex; flex-direction:column; gap:10px;
+        }
+        .job{
+            padding:14px;
+            border-radius: var(--radius);
+            border:1px solid var(--line);
+            background: rgba(255,255,255,.03);
+        }
+        .job-head{
+            display:flex; flex-wrap:wrap;
+            justify-content:space-between;
+            gap:10px;
+            margin-bottom:8px;
+        }
+        .job-head b{font-size:14px}
+        .job-head span{font-size:12px; color:var(--muted)}
+        .job ul{margin:8px 0 0; padding-left:18px}
+        .job li{margin:6px 0; color:var(--muted); font-size:13px}
+
+        .footer{
+            padding:26px 0 34px;
+            border-top:1px solid var(--line);
+            margin-top:18px;
+            color:var(--muted);
+            font-size:13px;
+        }
+        .footer a{color:rgba(234,240,255,.88); text-decoration:none}
+        .footer a:hover{text-decoration:underline}
+
+        .kbd{
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,.03);
+            color: rgba(234,240,255,.9);
+        }
+
+        /* small toast */
+        .toast{
+            position:fixed;
+            left:50%; bottom:18px;
+            transform:translateX(-50%);
+            padding:10px 12px;
+            border-radius: 14px;
+            border:1px solid var(--line);
+            background: rgba(15,27,51,.92);
+            box-shadow: var(--shadow);
+            color: rgba(234,240,255,.92);
+            font-size:13px;
+            opacity:0;
+            pointer-events:none;
+            transition: opacity .22s ease;
+        }
+        .toast.show{opacity:1}
+    </style>
+</head>
+
+<body>
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <a class="brand" href="#top">
+            <span class="dot" aria-hidden="true"></span>
+            <span>Umair Rathore</span>
+        </a>
+        <nav aria-label="Primary">
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#skills">Skills</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main id="top" class="wrap">
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="card hero-left">
+                <div class="glow" aria-hidden="true"></div>
+
+                <div class="kicker">
+                    <span class="kbd">Laravel</span>
+                    <span class="kbd">SaaS</span>
+                    <span class="kbd">APIs</span>
+                    <span>Backend-focused • Integrations • Ownership</span>
+                </div>
+
+                <h1>Laravel SaaS & Backend Engineer</h1>
+                <p class="subtitle">
+                    I build production SaaS platforms, reliable APIs, and automation systems for international clients.
+                    Strong in Laravel, Livewire, PostgreSQL/MySQL, third-party integrations (Stripe, Twilio, OpenAI),
+                    and shipping features end-to-end with clean architecture.
+                </p>
+
+                <div class="pill-row" aria-label="Highlights">
+                    <span class="pill">4+ years professional experience</span>
+                    <span class="pill">Team leadership (5 devs + 2 QAs)</span>
+                    <span class="pill">REST APIs • Webhooks • Queues</span>
+                    <span class="pill">Stripe • Twilio • FCM • Shopify</span>
+                    <span class="pill">Performance & scalability focus</span>
+                </div>
+
+                <div class="cta-row">
+                    <a class="btn primary" href="#contact">Hire / Contact</a>
+                    <a class="btn" href="#projects">View projects</a>
+                    <a class="btn" href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="btn" href="https://github.com/UmairRathore" target="_blank" rel="noopener">GitHub</a>
+                    <button class="btn" type="button" id="copyEmailBtn">Copy email</button>
+                </div>
+            </div>
+
+            <aside class="card hero-right">
+                <div class="mini">
+                    <h3>Availability</h3>
+                    <p>Open to high-trust backend/SaaS work (remote). Prefer long-term product ownership.</p>
+                    <span class="tag"><span class="status" aria-hidden="true"></span>Available for new work</span>
+                </div>
+
+                <div class="mini">
+                    <h3>Core Strengths</h3>
+                    <p>
+                        Laravel architecture, API design, DB modeling, background jobs/queues, integrations,
+                        and building systems that don’t break in production.
+                    </p>
+                </div>
+
+                <div class="mini">
+                    <h3>Location</h3>
+                    <p>Lahore, Pakistan • Works with US/EU time zones</p>
+                </div>
+            </aside>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="section-head">
+            <div>
+                <h2>Selected Projects</h2>
+                <p>Real systems shipped for clients and products. Links are raw and clickable (Upwork-friendly).</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel col-6 proj">
+                <div class="proj-top">
+                    <div class="proj-title">
+                        <b>SalaryLeaks.com — Sports Analytics SaaS</b>
+                        <span>Livewire • Laravel • CSV imports • SEO-driven pages</span>
+                    </div>
+                </div>
+                <p class="muted">
+                    Multi-sport salary/earnings platform with structured data, admin tooling, import pipelines,
+                    and public SEO pages.
+                </p>
+                <div class="chiprow">
+                    <span class="chip">Laravel</span><span class="chip">Livewire</span><span class="chip">MySQL</span>
+                    <span class="chip">CSV pipelines</span><span class="chip">SEO</span>
+                </div>
+                <div class="proj-links">
+                    <a class="link" href="https://salaryleaks.com" target="_blank" rel="noopener">https://salaryleaks.com</a>
+                </div>
+            </div>
+
+            <div class="panel col-6 proj">
+                <div class="proj-top">
+                    <div class="proj-title">
+                        <b>CloudCollege — EdTech SaaS</b>
+                        <span>Rocket LMS customization • modules • integrations</span>
+                    </div>
+                </div>
+                <p class="muted">
+                    Built and maintained a Rocket LMS–based SaaS platform, shipped custom modules, integrations (Pusher, Mailgun, Stripe),
+                    and optimized backend performance.
+                </p>
+                <div class="chiprow">
+                    <span class="chip">Laravel</span><span class="chip">MySQL</span><span class="chip">Stripe</span>
+                    <span class="chip">Mailgun</span><span class="chip">Pusher</span>
+                </div>
+                <div class="proj-links">
+                    <span class="muted">Private client product (link available on request)</span>
+                </div>
+            </div>
+
+            <div class="panel col-6 proj">
+                <div class="proj-top">
+                    <div class="proj-title">
+                        <b>Contractor Buddy — Construction Management SaaS</b>
+                        <span>APIs • dashboards • workflows</span>
+                    </div>
+                </div>
+                <p class="muted">
+                    SaaS tool with role-based workflows, dashboards, and backend modules for operational management.
+                </p>
+                <div class="chiprow">
+                    <span class="chip">Laravel</span><span class="chip">REST APIs</span><span class="chip">PostgreSQL/MySQL</span>
+                </div>
+                <div class="proj-links">
+                    <a class="link" href="https://app.contractorbuddy.io/" target="_blank" rel="noopener">https://app.contractorbuddy.io/</a>
+                </div>
+            </div>
+
+            <div class="panel col-6 proj">
+                <div class="proj-top">
+                    <div class="proj-title">
+                        <b>Dentaid — Dental Clinic System</b>
+                        <span>Admin panel • patient records • billing</span>
+                    </div>
+                </div>
+                <p class="muted">
+                    Clinic system covering appointments, consultations, patient files, inventory, billing, and reporting.
+                </p>
+                <div class="chiprow">
+                    <span class="chip">Laravel</span><span class="chip">Admin</span><span class="chip">Reporting</span>
+                </div>
+                <div class="proj-links">
+                    <a class="link" href="https://dentaid.clinicaid.ch/login" target="_blank" rel="noopener">https://dentaid.clinicaid.ch/login</a>
+                </div>
+            </div>
+
+            <div class="panel col-6 proj">
+                <div class="proj-top">
+                    <div class="proj-title">
+                        <b>BeezJobs — Marketplace Platform</b>
+                        <span>Web + admin panel</span>
+                    </div>
+                </div>
+                <p class="muted">
+                    Jobs marketplace platform with admin tooling and application flows.
+                </p>
+                <div class="chiprow">
+                    <span class="chip">Laravel</span><span class="chip">MySQL</span><span class="chip">Admin</span>
+                </div>
+                <div class="proj-links">
+                    <a class="link" href="http://beezjobs.com" target="_blank" rel="noopener">http://beezjobs.com</a>
+                </div>
+            </div>
+
+            <div class="panel col-6 proj">
+                <div class="proj-top">
+                    <div class="proj-title">
+                        <b>Automation & Integrations</b>
+                        <span>Shopify bot • WhatsApp AI bot • lead scraping</span>
+                    </div>
+                </div>
+                <ul>
+                    <li>Shopify order automation bot (cron-based test order generation)</li>
+                    <li>WhatsApp AI support bot using LLM APIs + Laravel</li>
+                    <li>Chrome extension for structured lead scraping/export</li>
+                </ul>
+                <div class="chiprow">
+                    <span class="chip">Webhooks</span><span class="chip">Queues</span><span class="chip">OpenAI</span>
+                    <span class="chip">Shopify</span><span class="chip">Automation</span>
+                </div>
+                <div class="proj-links">
+                    <a class="link" href="https://github.com/UmairRathore" target="_blank" rel="noopener">Code samples on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-head">
+            <div>
+                <h2>Experience</h2>
+                <p>Recent roles with ownership, delivery, and production responsibility.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="col-8">
+                <div class="timeline">
+                    <div class="job">
+                        <div class="job-head">
+                            <div>
+                                <b>Team Lead Software Engineer — Jerrax (Pvt) Ltd</b><br/>
+                                <span>Feb 2024 – Present • On-site</span>
+                            </div>
+                            <span>Lead • Delivery • Architecture</span>
+                        </div>
+                        <ul>
+                            <li>Led a team of 5 developers + 2 QAs with consistent milestone delivery.</li>
+                            <li>Handled international stakeholder communication and solution alignment.</li>
+                            <li>Owned end-to-end delivery: APIs, DB design, and frontend integration across multiple SaaS products.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-head">
+                            <div>
+                                <b>Associate Software Engineer — Birr Technology (Pvt) Ltd</b><br/>
+                                <span>Nov 2022 – Jan 2024 • Remote</span>
+                            </div>
+                            <span>SaaS modules • APIs • Logging</span>
+                        </div>
+                        <ul>
+                            <li>Built Laravel SaaS modules and APIs across distributed teams/time zones.</li>
+                            <li>Improved product maintainability via structured logging and support workflows.</li>
+                            <li>Delivered sprint commitments with Jira/Zoho/Mattermost coordination.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-head">
+                            <div>
+                                <b>Junior PHP Laravel Developer — Softzee Solutions (Pvt) Ltd</b><br/>
+                                <span>Jan 2022 – Oct 2022 • On-site</span>
+                            </div>
+                            <span>Client platforms • DB design</span>
+                        </div>
+                        <ul>
+                            <li>Shipped and maintained multiple client platforms; focused on bug-free delivery.</li>
+                            <li>Designed schemas and improved query performance through optimization.</li>
+                            <li>Worked in sprint cycles with Slack + ClickUp coordination.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="panel">
+                    <h3>What I’m hired for</h3>
+                    <ul>
+                        <li>Building Laravel SaaS modules that hold up in production</li>
+                        <li>Designing clean REST APIs & webhook-driven systems</li>
+                        <li>Integrations: Stripe, Twilio, FCM, Shopify, OpenAI</li>
+                        <li>Queue/worker pipelines (imports, migration, automation)</li>
+                        <li>Database modeling & performance (Postgres/MySQL)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="section-head">
+            <div>
+                <h2>Skills</h2>
+                <p>Focused on backend systems, integrations, reliability, and product delivery.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel col-4">
+                <h3>Backend</h3>
+                <ul>
+                    <li>Laravel, PHP, Livewire</li>
+                    <li>REST APIs, Authentication</li>
+                    <li>Queues / Workers / Jobs</li>
+                    <li>Webhooks & event-driven flows</li>
+                </ul>
+            </div>
+
+            <div class="panel col-4">
+                <h3>Databases</h3>
+                <ul>
+                    <li>PostgreSQL, MySQL</li>
+                    <li>Schema design & migrations</li>
+                    <li>Query optimization, indexing</li>
+                    <li>Data import pipelines (CSV/PDF)</li>
+                </ul>
+            </div>
+
+            <div class="panel col-4">
+                <h3>Integrations</h3>
+                <ul>
+                    <li>Stripe, Twilio, FCM</li>
+                    <li>Shopify, Google APIs</li>
+                    <li>OpenAI, Unipile, Apify</li>
+                    <li>Mailgun/SendGrid, SMTP</li>
+                </ul>
+            </div>
+
+            <div class="panel col-6">
+                <h3>Frontend (supporting)</h3>
+                <ul>
+                    <li>JavaScript, jQuery, AJAX</li>
+                    <li>HTML, Tailwind, Bootstrap</li>
+                    <li>AlpineJS, Blade</li>
+                    <li>React (basic)</li>
+                </ul>
+            </div>
+
+            <div class="panel col-6">
+                <h3>Workflow / Delivery</h3>
+                <ul>
+                    <li>Git, GitHub, CI/CD</li>
+                    <li>Postman, cURL</li>
+                    <li>cPanel, Hostinger</li>
+                    <li>Agile execution & stakeholder communication</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+        <div class="section-head">
+            <div>
+                <h2>Testimonials</h2>
+                <p>Add real quotes from Upwork clients or founders. Replace placeholders below.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel col-4">
+                <h3>Founder / Client</h3>
+                <p class="muted">“Umair delivered reliably, communicated clearly, and handled complex backend work with ownership.”</p>
+            </div>
+            <div class="panel col-4">
+                <h3>Team / Lead</h3>
+                <p class="muted">“Strong Laravel engineer — fast, structured, and production-minded. Great with integrations.”</p>
+            </div>
+            <div class="panel col-4">
+                <h3>Stakeholder</h3>
+                <p class="muted">“Understands requirements quickly and ships features end-to-end without hand-holding.”</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-head">
+            <div>
+                <h2>Contact</h2>
+                <p>Best for Upwork clients: keep this short, direct, and easy to verify.</p>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="panel col-8">
+                <h3>Let’s work</h3>
+                <p class="muted">
+                    I’m available for SaaS backend work, integrations, automation pipelines, and long-term product engineering.
+                    For fastest response: email or Upwork message.
+                </p>
+
+                <div class="cta-row" style="margin-top:14px">
+                    <a class="btn primary" href="mailto:Umairrathore05@gmail.com">Umairrathore05@gmail.com</a>
+                    <a class="btn" href="https://www.upwork.com/freelancers/~0189e2b25fac579624" target="_blank" rel="noopener">Upwork Profile</a>
+                    <a class="btn" href="https://www.linkedin.com/in/umairrathore/" target="_blank" rel="noopener">LinkedIn</a>
+                    <a class="btn" href="https://github.com/UmairRathore" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </div>
+
+            <div class="panel col-4">
+                <h3>Quick facts</h3>
+                <ul>
+                    <li>Location: Lahore, Pakistan</li>
+                    <li>Focus: Laravel SaaS, APIs, Integrations</li>
+                    <li>Tools: Stripe, Twilio, OpenAI, Shopify</li>
+                    <li>Preferred: long-term ownership work</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer">
+        <div class="wrap" style="padding:0">
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center">
+                <div>© <span id="year"></span> Umair Rathore • Built for GitHub Pages</div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                    <a href="#top">Back to top</a>
+                    <a href="https://umairrathore.github.io/PortFolio/" target="_blank" rel="noopener">Legacy portfolio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="toast" id="toast">Copied</div>
+
+<script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // copy email
+    const email = "Umairrathore05@gmail.com";
+    const btn = document.getElementById('copyEmailBtn');
+    const toast = document.getElementById('toast');
+
+    function showToast(text){
+        toast.textContent = text;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1400);
+    }
+
+    btn?.addEventListener('click', async () => {
+        try{
+            await navigator.clipboard.writeText(email);
+            showToast("Email copied");
+        }catch(e){
+            // fallback
+            const t = document.createElement('textarea');
+            t.value = email;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand('copy');
+            t.remove();
+            showToast("Email copied");
+        }
+    });
+</script>
+</body>
+</html>
