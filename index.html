@@ -380,8 +380,9 @@
             border-radius: 16px;
             border:1px solid var(--line);
             overflow:hidden;
-            background: rgba(255,255,255,.03);
+            background: transparent;
         }
+
         .carousel-item img{
             width:100%;
             height: 370px;
@@ -393,12 +394,82 @@
         }
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-            filter: brightness(0) invert(0.2);
-            background-color: rgba(255,255,255,0.8);
+            filter: none;
+            background-color: rgba(0,0,0,0.75);
             border-radius: 50%;
             padding: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+            background-size: 55%;
+
+            mix-blend-mode: difference;
+
         }
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            transform: scale(1.08);
+        }
+
+        @supports not (mix-blend-mode: difference) {
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                background-color: rgba(0,0,0,0.8);
+            }
+        }
+
+        .carousel-indicators [data-bs-target] {
+            /*width: 8px;*/
+            /*height: 8px;*/
+            border-radius: 50%;
+            /*margin: 0 5px;*/
+            width: 7px;
+            height: 7px;
+            margin: 0 4px;
+            background-color: rgba(255,255,255,0.85);
+
+            /* 🔥 adaptive contrast */
+            mix-blend-mode: difference;
+
+            opacity: 1;
+            border: none;
+        }
+
+        .carousel-indicators .active {
+            background-color: rgba(255,255,255,1);
+            transform: scale(1.25);
+        }
+        @supports not (mix-blend-mode: difference) {
+            .carousel-indicators [data-bs-target] {
+                background-color: rgba(0,0,0,0.65);
+            }
+
+            .carousel-indicators .active {
+                background-color: rgba(0,0,0,0.9);
+            }
+        }
+        .carousel-control-prev,
+        .carousel-control-next,
+        .carousel-indicators {
+            z-index: 3;
+        }
+        .carousel-indicators {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            width: auto;
+            max-width: max-content;
+
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(6px);
+
+            padding: 4px 8px;
+            border-radius: 999px;
+
+            margin: 0 auto 10px auto;
+        }
+
+
+
         @media (max-width: 640px){
             .carousel-item img{height: 260px;}
             .search{min-width: 160px;}
@@ -704,29 +775,6 @@
             ]
         },
         {
-            id: "webrtc-node",
-            title: "WebRTC Real‑Time Platform (Node.js)",
-            subtitle: "Signaling + session management for low-latency communication",
-            cover: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=1400&q=80",
-            images: [
-                "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80",
-                "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1600&q=80",
-                "https://images.unsplash.com/photo-1451188214936-ec16b91c296f?auto=format&fit=crop&w=1600&q=80"
-            ],
-            desc: "A Node.js + WebRTC real-time system focusing on correct signaling, session state, and scalable room management. Designed as a backend-first real-time service that can power calls, streaming, or collaborative apps.",
-            bullets: [
-                "WebRTC signaling (offer/answer/ICE) with room + participant state.",
-                "WebSocket transport and guarded reconnection flows.",
-                "Backpressure-safe messaging and basic observability hooks.",
-                "Designed to evolve into SFU/MCU integrations if needed."
-            ],
-            tech: ["Node.js", "WebRTC", "WebSockets", "TypeScript (optional)", "Redis (optional)"],
-            cats: ["realtime", "saas"],
-            links: [
-                { label: "GitHub (add repo link)", url: "https://github.com/UmairRathore" }
-            ]
-        },
-        {
             id: "cloudcollege",
             title: "CloudCollege — E‑Learning SaaS",
             subtitle: "Backend APIs, auth flows, and integrations",
@@ -833,6 +881,25 @@
             { label: "http://beezjobs.com", url: "http://beezjobs.com" }
           ]
         },*/
+        {
+            id: "webrtc-node",
+            title: "WebRTC Real‑Time Platform (Node.js)",
+            subtitle: "Signaling + session management for low-latency communication",
+            cover: "",
+            images: [],
+            desc: "A Node.js + WebRTC real-time system focusing on correct signaling, session state, and scalable room management. Designed as a backend-first real-time service that can power calls, streaming, or collaborative apps.",
+            bullets: [
+                "WebRTC signaling (offer/answer/ICE) with room + participant state.",
+                "WebSocket transport and guarded reconnection flows.",
+                "Backpressure-safe messaging and basic observability hooks.",
+                "Designed to evolve into SFU/MCU integrations if needed."
+            ],
+            tech: ["Node.js", "WebRTC", "WebSockets", "TypeScript (optional)", "Redis (optional)"],
+            cats: ["realtime", "saas"],
+            links: [
+                // { label: "GitHub (add repo link)", url: "https://github.com/UmairRathore" }
+            ]
+        },
         {
             id: "shopify-bot",
             title: "Shopify Order Automation (Cron + Webhooks)",
