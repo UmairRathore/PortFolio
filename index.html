@@ -4,16 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0b1220" />
-    <title>Umair Rathore - Backend Systems Engineer (Laravel • Node.js • WebRTC) • 4+ Years</title>
-    <meta name="description" content="Backend Systems Engineer building production SaaS platforms, APIs, real-time systems (WebRTC), automations, and deterministic data-migration pipelines. Laravel, Node.js, PostgreSQL/MySQL, Stripe, Twilio, OpenAI." />
+    <title>Umair Rathore - Senior Backend & Full-Stack Engineer • Laravel SaaS, APIs, Automation • 5+ Years</title>
+    <meta name="description" content="Senior Backend & Full-Stack Engineer building production SaaS platforms, APIs, queues, integrations, automation pipelines, and data-intensive systems. Laravel, PHP, Node.js, PostgreSQL/MySQL, Redis, Stripe, Twilio, OpenAI, AWS S3." />
     <meta name="keywords" content="Umair Rathore,Laravel,PHP,Node.js,WebRTC,SaaS,Backend Engineer,REST API,PostgreSQL,MySQL,Stripe,Twilio,OpenAI,Queues,Redis,S3" />
     <meta name="author" content="Umair Rathore" />
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Umair Rathore - Backend Systems Engineer" />
-    <meta property="og:description" content="Laravel + Node.js backend engineer building SaaS, automations, real-time (WebRTC), and deterministic migration pipelines." />
+    <meta property="og:title" content="Umair Rathore - Senior Backend & Full-Stack Engineer" />
+    <meta property="og:description" content="Backend-first full-stack engineer building SaaS products, APIs, integrations, automations, real-time systems, and deterministic migration pipelines." />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Umair Rathore - Backend Systems Engineer" />
+    <meta property="og:site_name" content="Umair Rathore - Senior Backend & Full-Stack Engineer" />
 
     <meta property="og:url" content="https://umairrathore.github.io/PortFolio/" />
     <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png" />
@@ -24,11 +24,9 @@
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Umair Rathore - Backend Systems Engineer" />
-    <meta name="twitter:description" content="Laravel + Node.js backend engineer building SaaS, real-time systems, and migration pipelines." />
+    <meta name="twitter:title" content="Umair Rathore - Senior Backend & Full-Stack Engineer" />
+    <meta name="twitter:description" content="Backend-first full-stack engineer building SaaS products, APIs, integrations, automations, and real-time systems." />
     <meta name="twitter:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png" />
-    >
-
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -490,6 +488,54 @@
             .carousel-item img{height: 260px;}
             .search{min-width: 160px;}
         }
+
+
+        @media (max-width: 768px){
+            .wrap{padding:0 14px}
+            .topbar-inner{align-items:flex-start; flex-direction:column}
+            .topbar-inner > .d-flex{width:100%; flex-direction:column; align-items:stretch !important}
+            .navlinks{display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); width:100%; gap:6px}
+            .navlinks a{text-align:center; padding:8px 6px; font-size:13px}
+            #themeBtn{width:100%; margin-top:2px}
+            .hero{padding:24px 0 8px}
+            .hero-left,.hero-right{padding:16px}
+            .kicker{display:flex; flex-wrap:wrap; gap:8px}
+            h1{font-size:clamp(30px, 9vw, 38px); line-height:1.08; letter-spacing:-.2px}
+            .sub{font-size:15px; max-width:none}
+            .cta-row{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+            .cta-row a{justify-content:center; min-height:42px; text-align:center}
+            .btn-brand{grid-column:1 / -1}
+            .section-title{display:block}
+            .section-title p{margin-top:6px}
+            .filters{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+            .chip{text-align:center; padding:9px 10px}
+            .search{grid-column:1 / -1; margin-left:0; min-width:0; width:100%}
+            .proj{min-height:0}
+            .thumb{height:150px}
+            .proj-tags{gap:6px}
+            .t{white-space:normal}
+            .skills{display:grid; grid-template-columns:1fr; gap:8px}
+            .skill{border-radius:14px; line-height:1.35}
+            .modal-dialog{margin:10px}
+            .modal-body{padding:14px}
+            .carousel-item img{height:220px; object-fit:contain; background:rgba(255,255,255,.03)}
+        }
+
+        @media (max-width: 430px){
+            .wrap{padding:0 12px}
+            .brand span:last-child{font-size:15px}
+            .navlinks{grid-template-columns:repeat(2, minmax(0, 1fr))}
+            .hero-left,.hero-right{padding:14px; border-radius:18px}
+            .pill,.kv .tag,.badge-pill{font-size:11px}
+            .cta-row{grid-template-columns:1fr}
+            .btn-brand{grid-column:auto}
+            .filters{grid-template-columns:1fr}
+            .thumb{height:138px}
+            .proj-title{font-size:16px}
+            .proj-desc{font-size:13.5px}
+            .p-card.p-4{padding:16px !important}
+            .col-lg-4.d-flex{justify-content:flex-start !important}
+        }
     </style>
 </head>
 
@@ -504,7 +550,7 @@
             </a>
 
             <div class="d-flex align-items-center gap-2">
-                <div class="navlinks d-none d-md-flex">
+                <div class="navlinks">
                     <a href="#projects">Projects</a>
                     <a href="#skills">Skills</a>
                     <a href="#about">About</a>
@@ -525,18 +571,18 @@
         <div class="hero-grid">
             <div class="p-card hero-left">
                 <div class="kicker">
-                    <span class="pill">Backend Systems Engineer</span>
-                    <span class="pill">4+ years experience</span>
-                    <span class="pill">Laravel • Node.js • WebRTC</span>
+                    <span class="pill">Senior Backend &amp; Full-Stack Engineer</span>
+                    <span class="pill">5+ years experience</span>
+                    <span class="pill">Laravel • PHP • Node.js</span>
                     <span class="pill">SaaS • APIs • Automations</span>
                 </div>
 
                 <h1>
-                    Shipping production SaaS backends,<br>
-                    real-time systems, and deterministic migration pipelines.
+                    Owning production SaaS systems,<br>
+                    from backend architecture to product delivery.
                 </h1>
                 <p class="sub">
-                    I’m a backend systems engineer with 4+ years of production experience across Laravel/PHP and modern JS. I build clean service layers, resilient queues, webhook‑driven integrations, and performance‑safe data pipelines - and I also ship Node.js real‑time systems (WebRTC signaling, WebSockets, session/room state).
+                    I’m a backend-first full-stack engineer with 5+ years of production experience across Laravel/PHP, Node.js, JavaScript, Blade, and Livewire. I design APIs, service layers, queues, webhook-driven integrations, and performance-safe data pipelines, then connect them to practical product interfaces that teams and customers can actually use.
                 </p>
 
                 <div class="cta-row">
@@ -552,7 +598,7 @@
                     <span class="tag">Queues & Idempotency</span>
                     <span class="tag">PostgreSQL/MySQL</span>
                     <span class="tag">Stripe / Twilio</span>
-                    <span class="tag">OpenAI integrations</span>
+                    <span class="tag">Production AI integrations</span>
                     <span class="tag">AWS S3</span>
                 </div>
             </div>
@@ -566,7 +612,7 @@
                         <span class="tag">Node.js</span>
                         <span class="tag">WebRTC</span>
                         <span class="tag">JavaScript</span>
-                        <span class="tag">Livewire/Blade</span>
+                        <span class="tag">Blade / Livewire</span>
                         <span class="tag">Redis</span>
                         <span class="tag">Docker</span>
                     </div>
@@ -587,7 +633,7 @@
                 </div>
 
                 <div class="mini">
-                    <h3>Availability</h3>
+                    <h3>Delivery profile</h3>
                     <div class="kv">
                         <span class="tag">Remote • Contract</span>
                         <span class="tag">PKT (UTC+5)</span>
@@ -595,7 +641,7 @@
                         <span class="tag">Async-friendly</span>
                     </div>
                     <div class="mt-2" style="color:var(--muted); font-size:13px">
-                        Prefer projects that value correct architecture (observability, retries, idempotency, security).
+                        Best fit: SaaS products, API platforms, data-heavy workflows, integrations, and teams that need one engineer to reason across the whole system.
                     </div>
                 </div>
             </div>
@@ -605,7 +651,7 @@
     <!-- Projects -->
     <section id="projects">
         <div class="section-title">
-            <h2>Selected projects</h2>
+            <h2>Selected production systems</h2>
 <!--            <p>Click a card for an Upwork-style image preview + details.</p>-->
         </div>
 
@@ -629,7 +675,7 @@
     <section id="skills">
         <div class="section-title">
             <h2>Skills</h2>
-            <p>Backend-first. Pragmatic. Production oriented.</p>
+            <p>Backend architecture first, with practical full-stack delivery.</p>
         </div>
 
         <div class="p-card p-3" style="border-radius:22px">
@@ -646,9 +692,9 @@
                 <span class="skill">AWS S3 <small>• signed URLs • storage</small></span>
                 <span class="skill">Stripe <small>• payments • webhooks</small></span>
                 <span class="skill">Twilio <small>• SMS • WhatsApp</small></span>
-                <span class="skill">OpenAI <small>• tooling • structured outputs</small></span>
+                <span class="skill">OpenAI <small>• LLM APIs • structured workflows</small></span>
                 <span class="skill">3rd‑party APIs <small>• Shopify • Google</small></span>
-                <span class="skill">Frontend basics <small>• Blade • Livewire • Bootstrap</small></span>
+                <span class="skill">Product UI delivery <small>• Blade • Livewire • Bootstrap • JavaScript</small></span>
             </div>
         </div>
     </section>
@@ -664,18 +710,17 @@
             <div class="row g-4">
                 <div class="col-lg-7">
                     <div style="color:var(--muted)">
-                        I’m a backend-focused engineer from Lahore, Pakistan. I care about correctness under load: safe retries, stable ordering,
-                        auditability, and clean boundaries between modules. On product work, I optimize for long-term maintainability (not “scripts that work once”).
+                        I’m a backend-first full-stack engineer from Lahore, Pakistan. I care about correctness under load: safe retries, stable ordering,
+                        auditability, and clean boundaries between modules. On product work, I optimize for long-term maintainability, clear ownership boundaries, and software that survives real operational use.
                         <br/><br/>
-                        Recent themes: deterministic PDF ingestion/parsing pipelines, webhook-heavy integrations, multi-tenant job orchestration,
-                        and real-time Node.js systems (WebRTC + signaling).
+                        Recent themes: production SaaS engineering, deterministic PDF ingestion/parsing pipelines, webhook-heavy integrations, multi-tenant job orchestration, AI-assisted workflows, and real-time Node.js systems (WebRTC + signaling).
                     </div>
                 </div>
                 <div class="col-lg-5">
                     <div class="mini" style="margin:0">
                         <h3>What you get</h3>
                         <ul class="bullets">
-                            <li>Clear system boundaries + documentation.</li>
+                            <li>Architecture that supports web clients, APIs, jobs, integrations, data, storage, and deployment.</li>
                             <li>Resilient background processing: throttling, retries, resumability.</li>
                             <li>Security-first integration patterns (no leaked keys).</li>
                             <li>Performance-aware DB work and caching.</li>
@@ -696,8 +741,7 @@
         <div class="p-card p-4" style="border-radius:22px">
             <div class="row g-3 align-items-center">
                 <div class="col-lg-8" style="color:var(--muted)">
-                    If you want a backend engineer who can own a system end-to-end (design → build → ship → iterate),
-                    send context and constraints. I’ll respond with a clear plan + milestones.
+                    If you need a backend-strong engineer who can own a product end-to-end (design, APIs, data model, integrations, product UI, deployment, iteration), send context and constraints. I’ll respond with a clear plan and milestones.
                 </div>
                 <div class="col-lg-4 d-flex gap-2 justify-content-lg-end flex-wrap">
                     <a class="btn btn-primary" href="mailto:contactusr22@gmail.com">Email</a>
@@ -773,20 +817,37 @@
     // ---------------------------
     const projects = [
         {
+            id: "wooma-migration",
+            title: "Wooma / HelloReport Migration Pipeline",
+            subtitle: "Queue-driven report migration, S3 storage, parsing, and resumable lifecycle tracking",
+            cover: "",
+            images: [],
+            desc: "A system-grade ingestion pipeline to migrate large historical report datasets from HelloReport into Wooma. The pipeline runs fully server-side using session cookies, paginated discovery, deterministic PDF acquisition, strict JSON mapping, and idempotent lifecycle tracking (PENDING → DOWNLOADING → IMPORTED/FAILED).",
+            bullets: [
+                "Queue-driven: throttling, retries, resumability, and reconciliation to prevent silent skips.",
+                "Supports concurrent users and long-running migrations (users can close their PCs).",
+                "PDF storage via S3; deterministic parsing (no OCR) with strict schema mapping to Wooma JSON.",
+                "Traffic-safe profile: per-user + global rate limits."
+            ],
+            tech: ["Laravel", "Queues", "PostgreSQL", "AWS S3", "Redis", "HTTP client", "PDF parsing"],
+            cats: ["migration", "automation", "saas"],
+            links: []
+        },
+        {
             id: "salaryleaks",
             title: "SalaryLeaks.com - Sports Salary Analytics Platform",
-            subtitle: "Multi-sport contracts, SEO, data pipelines, and Livewire admin tooling",
+            subtitle: "Production Laravel/Livewire platform for structured salary data, imports, admin workflows, and SEO pages",
             cover: "img/projects/salayrleaks/landing_page.png",
             images: [
                 "img/projects/salayrleaks/landing_page.png",
                 "img/projects/salayrleaks/admin_portal.png",
                 "img/projects/salayrleaks/player_information_page.png"
             ],
-            desc: "A sports-data platform that models salaries/contracts across multiple sports (including fight-based earnings), with admin tooling for CRUD + CSV imports, and a public site optimized for SEO and discoverability.",
+            desc: "A production sports-data platform that models salaries and contracts across multiple sports, including fight-based earnings. The engineering work spans structured data modeling, Livewire admin workflows, CSV ingestion, public SEO routes, and maintainable Laravel domain boundaries.",
             bullets: [
                 "Livewire admin components: players, multi-contract handling, fight earnings, and CSV uploads.",
                 "Domain separation per sport + shared contract services where appropriate.",
-                "Currency display logic and compact salary formatting.",
+                "Currency display logic, compact salary formatting, caching, and public pages designed around structured datasets.",
                 "SEO-focused pages: league/team/player routes, sitemaps, and structured content."
             ],
             tech: ["Laravel", "Livewire", "MySQL", "Blade", "Caching", "SEO"],
@@ -805,7 +866,7 @@
                 "img/projects/cloudcollege/dashboard.png",
                 "img/projects/cloudcollege/courses_listing.png"
             ],
-            desc: "A production SaaS for online learning workflows. I work on backend APIs, authentication flows, and integrations to support stable course delivery and admin operations.",
+            desc: "An e-learning SaaS with course, quiz, dashboard, and admin workflows. Repository evidence supports backend APIs, authentication/session work, MySQL data handling, caching, and integration support for stable course delivery.",
             bullets: [
                 "Auth + session flows and secure API endpoints.",
                 "Integrations with third-party services where needed.",
@@ -825,7 +886,7 @@
                 "img/projects/dentaid/appointments_calender.png",
                 "img/projects/dentaid/Consultation.png"
             ],
-            desc: "A clinic management CRM tracking appointments, consultations, patient files, clinic inventory, billing, treatment statistics, and users. Built with a strong emphasis on CRUD correctness and operational workflows.",
+            desc: "A clinic CRM covering appointments, consultations, patient records, inventory, billing, treatment plans, statistics, and user access. It demonstrates full-stack Laravel delivery around operational workflows, RBAC, and database-backed admin screens.",
             bullets: [
                 "Patient record + appointment lifecycle handling.",
                 "Billing and inventory modules supporting clinic operations.",
@@ -847,11 +908,11 @@
                 "img/projects/contractorbuddy/projects_listing.png",
                 "img/projects/contractorbuddy/project_summary.png"
             ],
-            desc: "A SaaS product where I contributed backend engineering and integration work, focusing on stable APIs and clean data handling.",
+            desc: "A contractor workflow SaaS where the supported evidence points to backend engineering, project/task data flows, and integration work. The project is useful as a production SaaS example, but needs more detail before making stronger claims about architecture or scale.",
             bullets: [
                 "Backend-first development with reliable API flows.",
                 "Integrations and automation tasks.",
-                "Maintainable Laravel patterns and structured code."
+                "Project summary and task workflow screens backed by structured Laravel code."
             ],
             tech: ["Laravel", "APIs", "Integrations"],
             cats: ["saas"],
@@ -862,18 +923,18 @@
         {
             id: "adlaunch",
             title: "AdLaunch",
-            subtitle: "Automation + data workflows for SaaS operations",
+            subtitle: "Backend automation and structured ad-search workflows for a production SaaS",
             cover: "img/projects/adluanch/home_page.png",
             images: [
                 "img/projects/adluanch/home_page.png",
                 "img/projects/adluanch/search_for_category.png",
                 "img/projects/adluanch/searched_Ads_details.png"
             ],
-            desc: "Worked on backend workflows and automation for a SaaS product, focusing on API integrations and data correctness.",
+            desc: "A production SaaS application where the backend work focused on automation, API-driven workflows, and reliable data handling around ad search and saved results. The current repository evidence supports Laravel queues, APIs, and automation, but not a stronger claim about the exact AI/content-generation scope.",
             bullets: [
-                "API integration + background job automation.",
-                "Data cleanup and structured processing.",
-                "Performance-safe backend patterns."
+                "API integration and background job automation for repeatable ad-search workflows.",
+                "Structured processing around searched ads, details, and saved/favorite results.",
+                "Production-oriented Laravel patterns for reliability and maintainability."
             ],
             tech: ["Laravel", "Queues", "APIs", "Automation"],
             cats: ["saas", "automation"],
@@ -896,7 +957,7 @@
             "Stable backend patterns and CRUD flows.",
             "Production deployment and maintenance experience."
           ],
-          tech: ["Laravel", "MySQL", "Frontend basics"],
+          tech: ["Laravel", "MySQL", "Product UI delivery"],
           cats: ["saas"],
           links: [
             { label: "http://beezjobs.com", url: "http://beezjobs.com" }
@@ -913,7 +974,7 @@
                 "WebRTC signaling (offer/answer/ICE) with room + participant state.",
                 "WebSocket transport and guarded reconnection flows.",
                 "Backpressure-safe messaging and basic observability hooks.",
-                "Designed to evolve into SFU/MCU integrations if needed."
+                "Backend architecture transferable to call, streaming, or collaborative clients without claiming mobile specialization."
             ],
             tech: ["Node.js", "WebRTC", "WebSockets", "TypeScript (optional)", "Redis (optional)"],
             cats: ["realtime", "saas"],
@@ -969,7 +1030,7 @@
             subtitle: "Webhook-driven messaging with reliable delivery",
             cover: "",
             images: [],
-            desc: "An AI-enabled messaging bot built around Twilio webhooks. Focused on correct webhook response handling, async AI calls, and reliable real-time message delivery.",
+            desc: "Production-style AI integration work around Twilio webhooks and OpenAI calls. The emphasis is software reliability: validating incoming webhooks, orchestrating async LLM calls, logging failures, and preserving delivery behavior.",
             bullets: [
                 "Twilio webhook handling with strict request validation.",
                 "Async AI orchestration with delivery guarantees.",
@@ -979,25 +1040,7 @@
             cats: ["ai", "automation"],
             links: []
         },
-        {
-            id: "wooma-migration",
-            title: "HelloReport → Wooma Deterministic Migration Pipeline",
-            subtitle: "Admin-controlled, user-consented migration with resumable state machine",
-            cover: "",
-            images: [],
-            desc: "A system-grade ingestion pipeline to migrate large historical report datasets from HelloReport into Wooma. The pipeline runs fully server-side using session cookies, paginated discovery, deterministic PDF acquisition, strict JSON mapping, and idempotent lifecycle tracking (PENDING → DOWNLOADING → IMPORTED/FAILED).",
-            bullets: [
-                "Queue-driven: throttling, retries, resumability, and reconciliation to prevent silent skips.",
-                "Supports concurrent users and long-running migrations (users can close their PCs).",
-                "PDF storage via S3; deterministic parsing (no OCR) with strict schema mapping to Wooma JSON.",
-                "Traffic-safe profile: per-user + global rate limits."
-            ],
-            tech: ["Laravel", "Queues", "PostgreSQL", "AWS S3", "Redis", "HTTP client", "PDF parsing"],
-            cats: ["migration", "automation", "saas"],
-            links: [
-                { label: "Architecture notes (private)", url: "#" }
-            ]
-        }
+
     ];
 
     // ---------------------------
@@ -1035,8 +1078,8 @@
                  background: linear-gradient(135deg, rgba(110,168,255,.18), rgba(139,92,246,.16));
                  border-bottom:1px solid rgba(255,255,255,.08);">
              <div style="text-align:center; padding:14px 16px">
-               <div style="font-weight:900; letter-spacing:.3px; font-size:13px; color:rgba(255,255,255,.92)">BACKEND PROJECT</div>
-               <div style="margin-top:6px; font-size:12px; color:rgba(255,255,255,.72)">No UI screenshots</div>
+               <div style="font-weight:900; letter-spacing:.3px; font-size:13px; color:rgba(255,255,255,.92)">SYSTEM CASE STUDY</div>
+               <div style="margin-top:6px; font-size:12px; color:rgba(255,255,255,.72)">Architecture details</div>
              </div>
            </div>`;
 
@@ -1106,8 +1149,14 @@
         pmTech.innerHTML = (p.tech || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
         pmCats.innerHTML = (p.cats || []).map(c => `<span class="tag">${escapeHtml(c)}</span>`).join("");
 
-        // Build carousel (Upwork-ish preview)
-        const imgs = (p.images && p.images.length) ? p.images : [p.cover];
+        // Build carousel only when screenshots exist.
+        const imgs = (p.images && p.images.length) ? p.images.filter(Boolean) : (p.cover ? [p.cover] : []);
+        if(!imgs.length){
+            pmCarouselWrap.innerHTML = `<div class="mini" style="margin:0 0 12px">
+              <h3>Architecture-focused case study</h3>
+              <div style="color:var(--muted); font-size:14px">No public screenshots are included for this system, so the detail view focuses on the engineering scope, constraints, and implementation.</div>
+            </div>`;
+        } else {
         const carouselId = "pmCarousel";
         const indicators = imgs.map((_, i) =>
             `<button type="button" data-bs-target="#${carouselId}" data-bs-slide-to="${i}" ${i===0?'class="active" aria-current="true"':''} aria-label="Slide ${i+1}"></button>`
@@ -1133,6 +1182,7 @@
           </button>
         </div>
       `;
+        }
 
         modal.show();
     }
@@ -1203,8 +1253,8 @@
             "https://github.com/UmairRathore",
             "https://www.upwork.com/freelancers/~0189e2b25fac579624"
         ],
-        "jobTitle": "Backend Systems Engineer",
-        "knowsAbout": ["Laravel", "Node.js", "WebRTC", "SaaS", "APIs"]
+        "jobTitle": "Senior Backend & Full-Stack Engineer",
+        "knowsAbout": ["Laravel", "PHP", "Node.js", "SaaS", "REST APIs", "Queues", "Redis", "PostgreSQL", "MySQL", "OpenAI integrations", "Automation", "WebRTC"]
     }
 </script>
 
