@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Wooma | Production Migration Pipeline | Umair Rathore</title>
+  <meta name="description" content="A Laravel migration pipeline connecting two live SaaS platforms, with tenant isolation, persistent recovery, asset preservation, and two administrative cutover gates.">
+  <link rel="canonical" href="https://umairrathore.github.io/PortFolio/case-studies/wooma.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Wooma | Production Migration Pipeline">
+  <meta property="og:description" content="Recoverable, multi-tenant document migration between two live SaaS platforms. Engineering case study by Umair Rathore.">
+  <meta property="og:url" content="https://umairrathore.github.io/PortFolio/case-studies/wooma.html">
+  <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (_) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wooma.css">
+  <script src="../js/wooma.js" defer></script>
+</head>
+<body class="wooma-page">
+<a class="skip" href="#main">Skip to case study</a>
+<header class="case-header"><div class="case-wrap"><nav aria-label="Case study navigation">
+  <a href="../index.html#projects">← Back to projects</a>
+  <button id="caseTheme" type="button" aria-pressed="false">Use light theme</button>
+</nav></div></header>
+<main id="main" class="case-wrap">
+  <div class="case-hero">
+    <div class="wooma-eyebrow">Engineering case study · Backend Architecture / Automation</div>
+    <h1>Wooma | Production Migration Pipeline</h1>
+    <p class="lead">Recoverable, multi-tenant document migration between two live SaaS platforms.</p>
+    <p class="muted">Designed, implemented, and deployed a recoverable Laravel/PHP migration pipeline connecting HelloReport and Wooma. I also developed the Python asset extractor used within its preservation workflow, alongside persistent states, retry-safe jobs, and controlled administrative cutovers.</p>
+    <div class="wooma-metrics" aria-label="Historical migration scale">
+      <div class="wooma-metric"><strong>≈104K</strong><span>Reports in the largest tenant<br>Approximate count, not a cross-tenant total</span></div>
+      <div class="wooma-metric"><strong>~5M</strong><span>Estimated associated assets<br>Based on an assumed 50 assets per report</span></div>
+      <div class="wooma-metric"><strong>≈14 days</strong><span>Largest migration duration<br>Approximate historical elapsed time</span></div>
+    </div>
+    <div class="infra" aria-label="Technology stack and delivery"><span>Laravel / PHP</span><span>Redis locks</span><span>Database locks</span><span>PostgreSQL</span><span>Queues</span><span>S3</span><span>Hetzner</span><span>Storage adapters</span><span>Multi-tenancy</span><span>Python asset extraction</span><span>Production deployment</span></div>
+  </div>
+  <nav class="case-nav" aria-label="On this page"><a href="#ownership">Ownership</a><a href="#architecture">Architecture</a><a href="#reliability">Reliability</a><a href="#cutover">Cutover</a><a href="#outcomes">Outcomes</a><a href="#deep-dive">Technical deep dive</a></nav>
+  <section id="ownership">
+    <span class="section-no">01 / OVERVIEW AND OWNERSHIP</span><h2>One pipeline. Two operational products.</h2>
+    <p>I was the sole engineer responsible for the migration pipeline design, implementation, and production deployment. I developed both the Laravel/PHP migration pipeline and the Python asset extractor used during preservation. HelloReport and Wooma were already operational SaaS platforms. My ownership was the migration system connecting them, not the development of either complete product.</p>
+    <div class="two-col"><article class="panel"><h3>Laravel/PHP migration system</h3><p class="muted">Laravel handled migration orchestration, tenant-aware processing, persistent state, Redis queues, locks, report import, and administrative approvals. I personally deployed the Laravel migration pipeline to production.</p></article><article class="panel"><h3>Python asset extractor</h3><p class="muted">I developed a Python-based extractor for the asset-preservation phase. Extracted assets were processed through the existing preservation pipeline. Python's role was asset extraction within that workflow.</p></article></div>
+  </section>
+  <section id="problem">
+    <span class="section-no">02 / THE PROBLEM</span><h2>Move the history without losing control.</h2>
+    <div class="two-col"><div class="panel"><h3>Scale inside live systems</h3><p class="muted">Some tenants held around 8K to 10K reports. The largest held approximately 104K. Both platforms remained live, so tenant isolation and database safety were essential throughout the migration.</p></div><div class="panel"><h3>Documents were only part of the move</h3><p class="muted">PDFs referenced external resources that also needed preservation. Interrupted execution had to recover without restarting a whole tenant, and customer access needed a controlled release.</p></div></div>
+  </section>
+  <section id="architecture">
+    <span class="section-no">03 / ARCHITECTURE</span><h2>A persistent control plane, tenant-aware delivery.</h2>
+    <p class="muted">Laravel queues and Redis-based orchestration coordinated discovery, downloads, parsing, import, and asset preservation. A central control database maintained tenant mapping, processing metadata, state, errors, and progress. Business data was imported into the appropriate destination tenant database.</p>
+    <p class="muted">Redis locks coordinated processing, while database locks and transactions protected database changes. S3 and Hetzner storage were accessed through storage adapters, keeping storage access separate from migration orchestration.</p>
+    <figure class="architecture" aria-labelledby="diagram-title">
+      <h3 id="diagram-title">Migration workflow</h3>
+      <ol class="flow-chain"><li><strong>HelloReport source</strong><small>Existing live SaaS</small></li><li><strong>Authenticate and map tenant</strong><small>Source identity → destination tenant</small></li><li><strong>Paginated report discovery</strong><small>Persist discovery and progress</small></li><li><strong>PDF retrieval and storage</strong><small>Preserve documents through S3 and Hetzner storage adapters</small></li></ol>
+      <div class="branches">
+        <div class="branch" role="group" aria-label="Report data workflow"><div class="branch-label">A / REPORT DATA</div><div class="flow-step"><strong>PDF parsing</strong><small>Extract structured report data</small></div><div class="flow-step"><strong>Tenant-aware import</strong><small>Transactions and locks protect the destination tenant database</small></div><div class="flow-step gate"><strong>Admin approval 1</strong><small>Validated import → report data becomes visible</small></div></div>
+        <div class="branch" role="group" aria-label="Asset preservation workflow"><div class="branch-label">B / ASSOCIATED ASSETS</div><div class="flow-step"><strong>Python asset extractor</strong><small>Asset extraction within the preservation workflow</small></div><div class="flow-step"><strong>Asset preservation</strong><small>Extracted assets enter the existing pipeline; granular jobs preserve referenced resources</small></div><div class="flow-step"><strong>Preservation completion</strong><small>Verify required work using persistent records</small></div><div class="flow-step gate"><strong>Admin approval 2</strong><small>Requires completed import AND required asset preservation, following the first approval. Switch references to Wooma-controlled assets.</small></div></div>
+      </div>
+      <div class="infra" aria-label="Supporting infrastructure"><span>Laravel queue orchestration</span><span>Redis locks</span><span>Database locks</span><span>Persistent migration state</span><span>Destination tenant databases</span><span>S3 and Hetzner storage adapters</span></div>
+      <figcaption>The branches represent logically separate workflows, not simultaneous execution. Production deliberately used one active migration and a single worker. The second cutover depends on completed import and required asset preservation. The Python extractor is shown by responsibility; no communication mechanism between Laravel and Python is specified.</figcaption>
+    </figure>
+  </section>
+  <section id="lifecycle">
+    <span class="section-no">04 / PROCESSING LIFECYCLE</span><h2>Small jobs. Durable progress.</h2>
+    <ol class="lifecycle"><li><strong>Authentication and tenant mapping</strong><span>Authenticate against the source tenant and resolve the correct destination tenant connection.</span></li><li><strong>Discovery</strong><span>Enumerate reports through paginated discovery and retain processing records in the control database.</span></li><li><strong>PDF download</strong><span>Retrieve and preserve PDFs through individual download jobs with recorded progress and failures.</span></li><li><strong>Parsing</strong><span>Extract structured data from the preserved PDF for the destination report model.</span></li><li><strong>Data import</strong><span>Import into the mapped tenant database using tenant-scoped idempotency, transactions, and locks.</span></li><li><strong>Asset preservation</strong><span>Use granular jobs to preserve external resources, tracking completion independently from report import.</span></li><li><strong>Approval and cutover</strong><span>Release report visibility after validated import, then switch asset references after the required preservation and import work is complete.</span></li></ol>
+    <aside class="callout"><strong>Batch size is not concurrency.</strong> Discovery and download jobs were organized in controlled batches of 20 jobs. Individual PDF downloads and asset preservation used granular jobs. A batch of 20 did not mean 20 simultaneous workers.</aside>
+  </section>
+  <section id="reliability">
+    <span class="section-no">05 / RELIABILITY ENGINEERING</span><h2>Recovery was part of the architecture.</h2>
+    <div class="two-col"><article class="panel"><h3>Durable state and safe retries</h3><p class="muted">Persistent migration records retained processing state, errors, and progress. Tenant-scoped idempotency kept repeated work tied to the correct tenant. Retry-safe jobs, Redis locks, database locks, and database transactions protected against duplicate processing and unsafe database changes.</p></article><article class="panel"><h3>Completion beyond the queue</h3><p class="muted">Report import and asset preservation had independent completion tracking. Reconciliation used persisted state and recorded failures rather than assuming that an empty queue meant a completed migration. Interrupted runs could resume without a whole-tenant restart.</p></article></div>
+    <aside class="callout"><strong>Database and storage have different boundaries.</strong> Database transactions do not automatically roll back external object storage operations. Stored objects and database records must be reconciled as separate effects during retries and recovery.</aside>
+  </section>
+  <section id="cutover">
+    <span class="section-no">06 / TWO-STAGE ADMINISTRATIVE CUTOVER</span><h2>Release data first. Move asset ownership second.</h2>
+    <div class="two-col"><article class="panel"><div class="wooma-eyebrow">Approval gate 1</div><h3>Make validated report data visible</h3><p class="muted">After validated import, an administrator could approve customer access to the imported reports. At this point, assets could still reference HelloReport-hosted resources.</p></article><article class="panel"><div class="wooma-eyebrow">Approval gate 2</div><h3>Switch to preserved assets</h3><p class="muted">After successful asset preservation, a separate approval allowed references to switch to assets controlled by Wooma. This second approval depended on completion of the required preservation and import work.</p></article></div>
+  </section>
+  <section id="tradeoff">
+    <span class="section-no">07 / PRODUCTION TRADE-OFF</span><h2>Deliberately serial. Operationally recoverable.</h2>
+    <p>Production used one active migration and a single worker to protect the live source and destination systems. This intentionally traded throughput for controlled load and reliable operation. Multi-tenant routing and logically separate workflows did not imply parallel processing.</p>
+  </section>
+  <section id="outcomes">
+    <span class="section-no">08 / OUTCOMES</span><h2>A successful production migration with controlled release.</h2>
+    <ul class="muted"><li>The largest tenant contained approximately 104K reports.</li><li>Associated assets were estimated at roughly 5M, based on an assumed average of 50 per report. This was an estimate, not a measured asset count.</li><li>The largest migration took approximately two weeks.</li><li>State-based recovery prevented whole-tenant restarts.</li><li>Staged approvals enabled controlled customer access and the later switch to preserved assets.</li></ul>
+  </section>
+  <section id="deep-dive">
+    <span class="section-no">09 / TECHNICAL DEEP DIVE</span><h2>Inside the recovery model.</h2>
+    <details><summary>Explore state, integrity, retries, and approval gates</summary><div class="deep-content">
+      <article><h3>State machine transitions</h3><p class="muted">The model below summarizes processing responsibilities, not internal enum names. Successful stages advance through persisted progress; a failed stage records an error and returns to eligible processing through retry or resume.</p><div class="state-flow" aria-label="Conceptual report processing states"><span>Discovered</span> → <span>PDF preserved</span> → <span>Parsed</span> → <span>Imported</span> → <span>Validated</span></div><p class="muted">Asset preservation has a separate completion path. An imported report is not proof that its associated assets have been preserved.</p></article>
+      <article><h3>Tenant-scoped deduplication</h3><p class="muted">Idempotency was scoped to the tenant, so repeated processing of a source report could be recognized within the correct migration context. The control database held mapping and progress; tenant-aware connections routed business records into the appropriate destination database.</p></article>
+      <article><h3>Queue and worker architecture</h3><p class="muted">Laravel queues and Redis orchestration separated work into recoverable units. Controlled batches contained 20 jobs, while individual downloads and asset-preservation operations remained granular. One active migration and one production worker limited pressure on both operational platforms.</p></article>
+      <article><h3>Database integrity and storage-adapter boundaries</h3><p class="muted">Redis locks coordinated processing, while database locks and transactions protected database integrity. These protections did not create a transaction spanning the database and external storage accessed through S3 or Hetzner adapters. Recovery had to account for a stored object and an unfinished database stage separately.</p></article>
+      <article><h3>Retries and resume</h3><p class="muted">Persisted state identified completed work and unfinished stages after interruption. Tenant-scoped idempotency and retry-safe jobs allowed work to be revisited without restarting the tenant. Logged failures preserved the context needed to recover the affected processing stage.</p></article>
+      <article><h3>Completion and reconciliation</h3><p class="muted">Reconciliation evaluated persisted report and asset progress, including incomplete and failed work. Queue emptiness alone could not establish success. Import completion and asset completion remained distinct prerequisites for the appropriate release decision.</p></article>
+      <article><h3>Two approval gates, two decisions</h3><p class="muted">The first approval released validated imported report data. The second allowed references to move to Wooma-controlled assets once the required import and preservation work was complete. Keeping these gates separate prevented data visibility from being confused with asset readiness.</p></article>
+    </div></details>
+  </section>
+</main>
+<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · Senior Backend &amp; Full-Stack Engineer</p></footer>
+</body>
+</html>

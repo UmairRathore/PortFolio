@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>Translation &amp; Localization SaaS API | Umair Rathore</title>
+  <meta name="description" content="A production JSON localization SaaS combining Laravel, Python/FastAPI, local NLLB inference, Redis Lua quota accounting, asynchronous jobs, and Dockerized delivery.">
+  <link rel="canonical" href="https://umairrathore.github.io/PortFolio/case-studies/translation.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Translation &amp; Localization SaaS API">
+  <meta property="og:description" content="Metered JSON localization with atomic quota accounting and resilient local inference. Engineering case study by Umair Rathore.">
+  <meta property="og:url" content="https://umairrathore.github.io/PortFolio/case-studies/translation.html">
+  <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (_) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wooma.css">
+  <link rel="stylesheet" href="../css/translation.css">
+  <script src="../js/wooma.js" defer></script>
+</head>
+<body class="wooma-page translation-page">
+<a class="skip" href="#main">Skip to case study</a>
+<header class="case-header"><div class="case-wrap"><nav aria-label="Case study navigation"><a href="../index.html#projects">← Back to projects</a><button id="caseTheme" type="button" aria-pressed="false">Use light theme</button></nav></div></header>
+<main id="main" class="case-wrap">
+  <div class="case-hero">
+    <div class="wooma-eyebrow">Engineering case study · AI Integration / Backend Architecture / SaaS</div>
+    <h1>Translation &amp; Localization SaaS API</h1>
+    <p class="lead">Production AI-powered JSON localization with metered usage and resilient inference.</p>
+    <p class="muted">A Laravel SaaS application connected to a separate Python/FastAPI service running local NLLB translation inference. The engineering challenge was to preserve localization structure while coordinating usage quotas, asynchronous work, and dependency failures.</p>
+    <dl class="project-context"><div><dt>Client</dt><dd>Malaysia, through Upwork</dd></div><div><dt>Role</dt><dd>Full-stack/backend engineer</dd></div></dl>
+    <span class="delivery-status">Completed · Tested · Deployed to production · Delivered successfully</span>
+    <div class="infra" aria-label="Technology stack"><span>PHP / Laravel</span><span>Python</span><span>FastAPI</span><span>NLLB</span><span>PostgreSQL</span><span>Stripe</span><span>Redis / Redis Lua</span><span>Laravel Queues</span><span>Database locks</span><span>Docker</span><span>REST APIs</span></div>
+  </div>
+  <nav class="case-nav" aria-label="On this page"><a href="#overview">Product</a><a href="#ownership">Ownership</a><a href="#architecture">Architecture</a><a href="#quotas">Quotas</a><a href="#lifecycle">Request lifecycle</a><a href="#inference">Inference</a><a href="#delivery">Delivery</a><a href="#deep-dive">Technical deep dive</a></nav>
+  <section id="overview">
+    <span class="section-no">01 / PRODUCT AND CLIENT CONTEXT</span><h2>Translate the content. Preserve the structure.</h2>
+    <p>The Malaysian Upwork client needed a SaaS platform for translating JSON localization files into other languages. Users submitted structured localization content and received localized JSON output, with measured word usage counted against their available allowance.</p>
+    <p class="muted">The product combined a Laravel web platform and administration experience with a backend API. A separate local inference service ran NLLB machine translation, avoiding the need to outsource every translation to an external paid LLM API.</p>
+  </section>
+  <section id="ownership">
+    <span class="section-no">02 / WHAT I ENGINEERED</span><h2>From application architecture to production delivery.</h2>
+    <p>I was responsible for architecture, implementation, integration, testing, containerization, and delivery of the complete solution.</p>
+    <div class="two-col"><article class="panel"><h3>SaaS application and API</h3><p class="muted">Laravel authentication, web and admin interfaces, JSON request handling, word metering, quota coordination, asynchronous jobs, and persistent processing state. PostgreSQL provided application persistence, with Stripe supporting billing functionality.</p></article><article class="panel"><h3>Inference and delivery</h3><p class="muted">Python/FastAPI integration for local NLLB inference, dependency failure handling, and circuit-breaker protection. I Dockerized, tested, deployed, and successfully delivered the solution.</p></article></div>
+  </section>
+  <section id="architecture">
+    <span class="section-no">03 / SYSTEM ARCHITECTURE</span><h2>Separate application rules from model execution.</h2>
+    <p class="muted">Laravel owned application behavior, usage accounting, and the request lifecycle. Python/FastAPI exposed a separate API boundary for local translation inference. Queue jobs connected those responsibilities without holding the incoming HTTP request open for model execution.</p>
+    <figure class="service-diagram" aria-labelledby="translation-diagram-title">
+      <h3 id="translation-diagram-title">Conceptual request and service architecture</h3>
+      <div class="dependency-boundary"><strong>User / API client</strong><small>Submit structured JSON localization content</small></div>
+      <div class="diagram-boundary">
+        <div class="boundary-label">Dockerized application and inference environments · conceptual boundary</div>
+        <ol class="request-chain"><li><span class="step-number">01 / APPLICATION</span><strong>Laravel SaaS dashboard and API</strong><small>Authentication and request handling</small></li><li><span class="step-number">02 / INPUT</span><strong>Validation and word counting</strong><small>Identify translatable input while retaining JSON structure</small></li><li><span class="step-number">03 / QUOTA</span><strong>Redis Lua quota accounting</strong><small>Atomic quota reservation and accounting</small></li><li><span class="step-number">04 / ASYNC WORK</span><strong>Redis queue / Laravel job</strong><small>Request-level execution, processing state, and retries</small></li></ol>
+        <div class="dependency-boundary"><strong>05 / Inference client and circuit breaker</strong><small>Application-to-inference dependency boundary ↓</small></div>
+        <div class="inference-chain"><div><span class="step-number">06 / SERVICE API</span><strong>Python / FastAPI</strong><p>Separate translation request processing service.</p></div><div><span class="step-number">07 / MODEL EXECUTION</span><strong>Local NLLB model</strong><p>Machine translation inference within the Python service.</p></div></div>
+        <div class="result-node"><strong>08 / Translated JSON result and request state</strong><p>Results return to the application for persistence and retrieval.</p></div>
+        <div class="infrastructure-view" role="group" aria-label="Supporting state layers"><article><h3>Redis</h3><p>Queue coordination and atomic quota operations through Redis Lua.</p></article><article><h3>PostgreSQL application database</h3><p>Durable request and account state, coordinated with database locks and transactional boundaries.</p></article></div>
+      </div>
+      <figcaption>This is a conceptual responsibility view, not an exact deployment topology. Numbered steps describe the request flow, not the precise timing of permanent quota consumption. Stripe supports application billing; it is separate from the local word-quota and inference workflow.</figcaption>
+    </figure>
+  </section>
+  <section id="service-separation">
+    <span class="section-no">04 / SERVICE SEPARATION</span><h2>Two runtimes. Clear responsibilities.</h2>
+    <div class="two-col"><article class="panel"><h3>Laravel / PHP</h3><ul class="muted"><li>User-facing web platform, administration, authentication, and API requests.</li><li>JSON localization handling, measured word usage, and available quota validation.</li><li>Redis integration, queue jobs, persisted lifecycle state, locking, and idempotency.</li><li>PostgreSQL application data and Stripe billing integration.</li></ul></article><article class="panel"><h3>Python / FastAPI</h3><ul class="muted"><li>A separate API boundary for translation requests.</li><li>Locally hosted NLLB translation inference.</li><li>Model execution isolated from SaaS business logic.</li><li>A Dockerized inference runtime, called through the application's circuit-breaker boundary.</li></ul></article></div>
+  </section>
+  <section id="quotas">
+    <span class="section-no">05 / WORD-BASED QUOTAS AND REDIS LUA</span><h2>Avoid the race between checking and consuming.</h2>
+    <p>Translation requests had measurable word usage. Multiple requests for the same account could compete for an available allowance, so quota operations needed atomic coordination rather than separate, unprotected reads and writes.</p>
+    <p class="muted">Redis maintained or coordinated quota-related state. Redis Lua executed atomic quota operations so concurrent requests could not interleave competing deductions within the same operation. Atomic quota reservation and accounting worked alongside idempotency and persisted processing state to guard against repeated consumption.</p>
+    <aside class="callout"><strong>Atomic within Redis does not mean transactional across the system.</strong> Database locks and transactional boundaries coordinated durable application changes. Redis, PostgreSQL, and inference remained distinct boundaries; no distributed rollback or automatic quota refund is implied.</aside>
+  </section>
+  <section id="lifecycle">
+    <span class="section-no">06 / ASYNCHRONOUS REQUEST LIFECYCLE</span><h2>One translation request, recoverable processing stages.</h2>
+    <ol class="sequence" aria-label="Conceptual translation request sequence"><li><strong>Receive and validate</strong><span>Laravel accepts localization JSON, validates the request, and measures translatable word usage while preserving structural content.</span></li><li><strong>Coordinate quota</strong><span>Validate the available allowance and use Redis Lua for atomic quota reservation and accounting.</span></li><li><strong>Queue application work</strong><span>Redis-backed queuing lets Laravel process translation workloads asynchronously, with durable request state supporting the lifecycle.</span></li><li><strong>Execute the translation job</strong><span>A Laravel job calls the Python/FastAPI inference API through the inference client and circuit-breaker boundary.</span></li><li><strong>Run local inference</strong><span>The Python service uses NLLB to translate the input and return translation results to Laravel.</span></li><li><strong>Persist and retrieve</strong><span>The application persists translated JSON results and request state for retrieval. Failures are handled through processing state, error handling, retries, and idempotency safeguards.</span></li></ol>
+    <p class="muted">This sequence shows request-level processing. It does not imply a separate job for each JSON key or establish the exact point at which quota becomes permanently consumed.</p>
+  </section>
+  <section id="concurrency">
+    <span class="section-no">07 / IDEMPOTENCY AND CONCURRENCY</span><h2>Three safeguards for three different problems.</h2>
+    <div class="guard-grid"><article class="panel"><h3>Redis Lua atomicity</h3><p>Coordinates quota operations when concurrent requests compete for an account's allowance.</p></article><article class="panel"><h3>Idempotency and persisted state</h3><p>Guard against duplicate processing and repeated consumption when work is retried.</p></article><article class="panel"><h3>Database locks and transactions</h3><p>Coordinate durable application changes and protect persisted request and account state.</p></article></div>
+    <aside class="callout"><strong>A retry is not a new purchase of the same work.</strong> Quota accounting and request processing must recognize repeated attempts. Redis atomicity alone does not provide job idempotency, and a database transaction does not undo external inference execution.</aside>
+  </section>
+  <section id="inference">
+    <span class="section-no">08 / LOCAL NLLB AND CIRCUIT BREAKER</span><h2>Keep an unhealthy dependency from dominating the application.</h2>
+    <p class="muted">The Python/FastAPI service ran local NLLB machine translation. My work integrated and operated inference as part of the product; it did not involve training or fine-tuning the model.</p>
+    <p class="muted">The inference client and circuit breaker protected Laravel from repeatedly calling an unhealthy translation dependency. Timeout and error handling, failure isolation, and retry-aware processing kept model execution separate from application business rules during temporary unavailability.</p>
+    <p class="muted">The important boundary was the Laravel application's dependency on the inference API. Model details and hosting hardware are intentionally not specified.</p>
+  </section>
+  <section id="delivery">
+    <span class="section-no">09 / DOCKERIZED PRODUCTION DELIVERY</span><h2>Delivered as a complete working system.</h2>
+    <p>The complete solution was Dockerized, tested, deployed to production, and successfully delivered to the Malaysian client through Upwork.</p>
+    <p class="muted">Docker provided consistent application and inference environments across the two runtimes. Containerization made the Laravel/PHP application and Python/FastAPI service part of a coherent deliverable while preserving their separate responsibilities.</p>
+  </section>
+  <section id="outcomes">
+    <span class="section-no">10 / OUTCOMES AND ENGINEERING TAKEAWAYS</span><h2>Useful inference needs dependable application engineering.</h2>
+    <ul class="muted"><li>A completed production SaaS for translating structured localization JSON.</li><li>A local NLLB service integrated with Laravel through a separate inference API.</li><li>Word-based usage metering with Redis Lua atomic accounting.</li><li>Asynchronous jobs supported by persisted state, idempotency, and database locks.</li><li>Dependency protection through circuit-breaker behavior and failure handling.</li><li>A Dockerized solution tested, deployed, and delivered successfully.</li></ul>
+    <p class="muted">The core lesson was to treat usage accounting, structural correctness, retries, and dependency health as first-class application concerns. Model execution was one part of the production system.</p>
+  </section>
+  <section id="deep-dive">
+    <span class="section-no">TECHNICAL DEEP DIVE</span><h2>Reasoning about races, retries, and boundaries.</h2>
+    <details><summary>Explore the request sequence and concurrency safeguards</summary><div class="deep-content">
+      <article><h3>When two requests compete for quota</h3><p class="muted">Consider two requests reading an account's remaining allowance. With separate unprotected checks and updates, both could proceed using the same apparent balance. Atomic Redis Lua operations prevent that interleaving within the quota operation.</p><ol class="compact-steps"><li>Each request has a measured word usage.</li><li>The quota operation evaluates and updates the relevant quota state atomically within Redis.</li><li>Persisted request state and idempotency distinguish an existing attempt from newly requested work.</li><li>Database locks and transactions coordinate durable application changes.</li></ol><p class="muted">This explains the safeguards without specifying private scripts, key formats, or deduction timing.</p></article>
+      <article><h3>Follow one request through the service boundary</h3><div class="state-flow" aria-label="Conceptual request sequence"><span>Client → Laravel</span> → <span>Validate + count words</span> → <span>Quota coordination</span> → <span>Queue job</span> → <span>Inference client + breaker</span> → <span>FastAPI → NLLB</span> → <span>Result + persisted state</span></div><p class="muted">This is a conceptual sequence rather than internal state enum names. The application tracks progress and failures while the job performs work outside the original HTTP request.</p></article>
+      <article><h3>Retries must preserve accounting identity</h3><p class="muted">A failed or interrupted attempt may lead to retry processing. Idempotency and persisted state guard against treating repeated work as a fresh quota consumption or duplicating the same processing. Atomic quota operations and job-level idempotency solve related but different problems.</p></article>
+      <article><h3>A timeout is not a cross-service rollback</h3><p class="muted">A timeout or inference error must be handled at the application-to-service boundary. Circuit-breaker behavior reduces repeated calls to an unhealthy dependency. Database transactions do not automatically roll back Redis operations or inference execution, and this case study makes no claim about an automatic refund mechanism.</p></article>
+      <article><h3>Keep translation inside the JSON contract</h3><p class="muted">The request contains structured localization content. Validation and input handling identify translatable content, while result handling returns localized JSON without corrupting its structure. The case study does not assume a particular field-level job topology.</p></article>
+    </div></details>
+  </section>
+</main>
+<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · Senior Backend &amp; Full-Stack Engineer</p></footer>
+</body>
+</html>

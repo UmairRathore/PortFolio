@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <title>SalaryLeaks | Multi-Sport Financial Data Platform | Umair Rathore</title>
+  <meta name="description" content="Engineering a Laravel sports financial platform with shared athlete identities, sport-specific financial domains, source ingestion, and a searchable public experience.">
+  <link rel="canonical" href="https://umairrathore.github.io/PortFolio/case-studies/salaryleaks.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="SalaryLeaks | Multi-Sport Financial Data Platform">
+  <meta property="og:description" content="Domain-oriented Laravel architecture, ingestion workflows, and full-stack production ownership. A case study by Umair Rathore.">
+  <meta property="og:url" content="https://umairrathore.github.io/PortFolio/case-studies/salaryleaks.html">
+  <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/projects/salayrleaks/landing_page.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (_) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/wooma.css">
+  <link rel="stylesheet" href="../css/salaryleaks.css">
+  <script src="../js/wooma.js" defer></script>
+</head>
+<body class="wooma-page salary-page">
+<a class="skip" href="#main">Skip to case study</a>
+<header class="case-header"><div class="case-wrap"><nav aria-label="Case study navigation">
+  <a href="../index.html#projects">← Back to projects</a>
+  <button id="caseTheme" type="button" aria-pressed="false">Use light theme</button>
+</nav></div></header>
+<main id="main" class="case-wrap">
+  <div class="case-hero">
+    <div class="wooma-eyebrow">Engineering case study · Domain-Driven Backend Architecture / Data Engineering</div>
+    <h1>SalaryLeaks | Multi-Sport Financial Data Platform</h1>
+    <p class="lead">A shared athlete foundation. Financial models that respect each sport.</p>
+    <p class="muted">I developed SalaryLeaks end to end as its sole full-stack engineer and continue to maintain and operate it in production. My engineering ownership spans the public frontend, backend architecture, ingestion workflows, CI/CD, hosting, deployment, and Cloudflare caching.</p>
+    <dl class="salary-facts"><div><dt>Client</dt><dd>Netherlands</dd></div><div><dt>Role</dt><dd>Sole Full-Stack Engineer | End-to-End Development, DevOps &amp; Maintenance</dd></div><div><dt>Scope</dt><dd>Application development through ongoing production operation</dd></div></dl>
+    <div class="infra" aria-label="Technology stack"><span>PHP / Laravel</span><span>MySQL</span><span>Redis</span><span>Livewire</span><span>Blade</span><span>Tailwind CSS</span><span>JavaScript</span><span>Alpine.js</span><span>Playwright</span><span>GitHub Actions</span><span>Cloudflare</span></div>
+    <a href="https://www.salaryleaks.com/" target="_blank" rel="noopener">Visit live website ↗ <span class="visually-hidden">(opens in a new tab)</span></a>
+  </div>
+  <nav class="case-nav" aria-label="On this page"><a href="#overview">Product</a><a href="#ownership">Ownership</a><a href="#architecture">Architecture</a><a href="#ingestion">Ingestion</a><a href="#public-experience">Public experience</a><a href="#performance">Performance</a><a href="#scale">Scale</a><a href="#decisions">Decisions</a></nav>
+  <section id="overview">
+    <span class="section-no">01 / PRODUCT OVERVIEW</span><h2>Different sports. Different definitions of earnings.</h2>
+    <p>SalaryLeaks tracks athlete salaries, contractual earnings, bonuses, prize money, and career financial information across football, cricket, NBA, NFL, Formula 1, MotoGP, tennis, golf, boxing, and MMA.</p>
+    <p class="muted">The public experience brings together athlete profiles, contracts, rankings, financial comparisons, and team and league information where applicable. Readers can explore financial information through the structure of the relevant sport.</p>
+    <figure class="salary-figure"><a href="../img/projects/salayrleaks/landing_page.png" target="_blank" rel="noopener" aria-label="Open archived SalaryLeaks homepage screenshot at full size in a new tab"><img src="../img/projects/salayrleaks/landing_page.png" width="1434" height="1196" alt="Archived SalaryLeaks homepage showing athlete salary rankings and browse-by-sport navigation" loading="lazy"></a><figcaption>Archived product interface. Figures inside screenshots reflect the captured version, not current platform statistics. Select any screenshot to inspect it at full size.</figcaption></figure>
+  </section>
+  <section id="ownership">
+    <span class="section-no">02 / ENGINEERING RESPONSIBILITIES</span><h2>End-to-End Engineering Ownership</h2>
+    <p>I developed the application end to end as the sole full-stack engineer, from implementation through production deployment, and remain responsible for its ongoing production operation. Sole describes my engineering responsibility for the application.</p>
+    <div class="two-col"><article class="panel"><h3>Application implementation</h3><ul class="muted"><li>Full frontend development using Laravel Blade, Livewire, Tailwind CSS, and JavaScript.</li><li>PHP/Laravel backend architecture and MySQL database design.</li><li>Centralized player and sport entities with sport-specific contract models, services, and logic.</li><li>External platform and API integrations, ingestion pipelines, and Playwright-based browser automation for relevant workflows.</li><li>Admin functionality and SEO-oriented public pages across multiple sports.</li></ul></article><article class="panel"><h3>DevOps and ongoing operation</h3><ul class="muted"><li>GitHub Actions CI/CD workflows.</li><li>Hosting configuration and production deployment.</li><li>Database query and indexing optimization and Redis caching.</li><li>Cloudflare integration, configuration, and caching.</li><li>Ongoing application maintenance, production troubleshooting, and operational care.</li></ul></article></div>
+  </section>
+  <section id="challenge">
+    <span class="section-no">03 / THE MODELING CHALLENGE</span><h2>A fight purse is not a league contract.</h2>
+    <p class="muted">Sports differ in their financial sources, terminology, calculations, and business rules. Football salaries and contractual terms differ from tennis prize money or boxing compensation. Even league-based contracts vary between the NBA, NFL, and cricket.</p>
+    <aside class="callout"><strong>The central decision:</strong> centralize foundational athlete/player and sport entities, while organizing contracts and financial records into sport-specific domains. Share identity and common information without forcing every earnings structure into one generic contract model.</aside>
+  </section>
+  <section id="architecture">
+    <span class="section-no">04 / DOMAIN-ORIENTED BACKEND ARCHITECTURE</span><h2>Shared identity. Deliberate domain separation.</h2>
+    <p class="muted">Models, services, and related business logic reflect each sport's financial behavior. This is domain-oriented organization within the Laravel backend. The diagram describes conceptual responsibilities rather than database tables, class names, or deployment topology.</p>
+    <figure class="architecture" aria-labelledby="salary-diagram-title">
+      <h3 id="salary-diagram-title">From varied sources to sport-aware experiences</h3>
+      <div class="diagram-ingestion"><div class="diagram-layer"><div class="diagram-label">Data ingestion</div><h3>Source-specific collection</h3><p>Third-party APIs and external data sources. Playwright-based browser automation for relevant ingestion workflows, alongside other source-specific tools where applicable.</p></div><div class="diagram-layer"><div class="diagram-label">Transformation</div><h3>Mapping and normalization</h3><p>Interpret source formats and financial meaning before sport-aware persistence and processing.</p></div></div>
+      <div class="diagram-connector" aria-hidden="true">↓ Contextual mapping into the shared core and relevant domains</div>
+      <div class="diagram-layer diagram-core"><div class="diagram-label">Shared core</div><h3>Athletes / Players + Sports</h3><p class="muted">Shared relationships and common information keep athlete identities and sport associations consistent.</p></div>
+      <div class="diagram-connector" aria-hidden="true">↓ Shared identity supports distinct financial behavior</div>
+      <div class="domain-grid" role="group" aria-label="Sport-specific financial domains">
+        <article><h4>Football</h4><p>Player salaries and contractual terms.</p><small>Sport-specific models · services · financial handling</small></article>
+        <article><h4>Cricket</h4><p>League and player contracts.</p><small>Sport-specific models · services · financial handling</small></article>
+        <article><h4>NBA / NFL</h4><p>League-specific salary and contract structures.</p><small>Sport-specific models · services · financial handling</small></article>
+        <article><h4>F1 / MotoGP</h4><p>Driver and rider financial agreements.</p><small>Sport-specific models · services · financial handling</small></article>
+        <article><h4>Tennis / Golf</h4><p>Prize-money and earnings records.</p><small>Sport-specific models · services · financial handling</small></article>
+        <article><h4>Boxing / MMA</h4><p>Fight purses and compensation.</p><small>Sport-specific models · services · financial handling</small></article>
+      </div>
+      <div class="diagram-connector" aria-hidden="true">↓ Domain-specific storage and processing in the Laravel application</div>
+      <div class="diagram-layer"><div class="diagram-label">Application</div><h3>Laravel application and persistence</h3><div class="infra"><span>PHP / Laravel backend</span><span>MySQL</span><span>Admin panel</span><span>Blade / Livewire / Tailwind CSS / JavaScript UI</span><span>Alpine.js</span><span>Sport, team, league and player pages</span><span>Redis caching</span></div></div>
+      <div class="diagram-connector" aria-hidden="true">↓ Application delivery and production operation</div>
+      <div class="diagram-ingestion"><div class="diagram-layer"><div class="diagram-label">CI/CD and deployment</div><h3>GitHub Actions → Deployment infrastructure</h3><p>CI/CD workflows, hosting configuration, and production deployment for the Laravel application.</p></div><div class="diagram-layer"><div class="diagram-label">Public delivery</div><h3>Cloudflare integration and caching</h3><p>CDN and caching configuration supporting the production application, with ongoing maintenance and troubleshooting.</p></div></div>
+      <figcaption>Conceptual architecture based on my engineering responsibilities. Grouped sport labels show related examples, not a claim that paired sports share one implementation. Examples describe financial differences rather than exhaustive schema definitions.</figcaption>
+    </figure>
+    <div class="two-col"><article class="panel"><h3>Consistency without uniformity</h3><p class="muted">Shared athlete identities and sport associations remain consistent. Financial behavior stays close to its sport-specific models and services, so a change in one contract domain need not spread into unrelated domains.</p></article><article class="panel"><h3>Room for new financial structures</h3><p class="muted">New sports and record types can extend the appropriate domain. Ingestion can target the relevant model, and public pages and reporting can accommodate different structures without flattening them into one contract shape.</p></article></div>
+  </section>
+  <section id="ingestion">
+    <span class="section-no">05 / INGESTION AND NORMALIZATION</span><h2>Normalize the meaning, not just the format.</h2>
+    <p>I developed and maintained integrations and ingestion workflows pulling data from multiple sources. Historical integrations and tools included:</p>
+    <ul class="source-list" aria-label="Integrations and ingestion tools"><li>Sportmonks API</li><li>Capology</li><li>Transfermarkt</li><li>Spotrac</li><li>Playwright</li><li>Puppeteer</li><li>Firecrawl</li></ul>
+    <p class="muted">I implemented Playwright-based browser automation for relevant ingestion workflows, alongside external platform integrations and third-party APIs.</p>
+    <ol class="lifecycle"><li><strong>Extract for the source</strong><span>Use the relevant API integration or source-specific extraction workflow. Browser automation and scraping apply where appropriate to that workflow.</span></li><li><strong>Transform and normalize</strong><span>Interpret source formats, athlete context, terminology, and financial record types before persistence.</span></li><li><strong>Map into the relevant sport</strong><span>Connect the record to shared athlete and sport information, then persist and process it through the appropriate sport-specific model and services.</span></li><li><strong>Maintain through operations</strong><span>Support ongoing data and content maintenance through the application's administration experience.</span></li></ol>
+    <aside class="callout"><strong>Historical engineering scope and current editorial practice are distinct.</strong> These integrations do not imply that every provider covers every sport or that every record is collected automatically. The current <a href="https://www.salaryleaks.com/football" target="_blank" rel="noopener">football page</a> describes manual player entry and editorial source checking.</aside>
+  </section>
+  <section id="administration">
+    <span class="section-no">06 / ADMIN AND OPERATIONAL TOOLING</span><h2>A public data product needs operational care.</h2>
+    <p class="muted">The application includes an admin panel for managing sport records, financial data, and content. I developed admin functionality alongside the public website, supporting ongoing data management and production maintenance.</p>
+    <p class="muted">Keeping those tools aligned with the sport-specific models helps operations work with the appropriate financial structures rather than treating all records as interchangeable contracts.</p>
+  </section>
+  <section id="public-experience">
+    <span class="section-no">07 / PUBLIC PAGES AND SEO ARCHITECTURE</span><h2>Make a complex dataset easy to explore.</h2>
+    <p class="muted">Sport landing pages lead into athlete profiles, earnings information, contracts, rankings, and comparisons. Team and league pages provide additional context where applicable. SEO-oriented URLs and content hierarchy make sport and athlete information searchable and directly accessible.</p>
+    <div class="two-col"><article class="panel"><h3>Structure follows the sport</h3><p class="muted">Football browsing emphasizes leagues, clubs, and player contracts. Tennis exposes prize-money and earnings information. Motorsports pages present driver and rider agreements, while combat sports focus on purses and compensation.</p></article><article class="panel"><h3>Interfaces follow the data</h3><p class="muted">Livewire and server-rendered Blade interfaces, with Alpine.js interactions, connect public browsing to the domain model. Comparisons and rankings provide ways to investigate financial information without requiring readers to understand its backend structure.</p></article></div>
+    <figure class="salary-figure"><a href="../img/projects/salayrleaks/compare_players.png" target="_blank" rel="noopener" aria-label="Open archived athlete comparison screenshot at full size in a new tab"><img src="../img/projects/salayrleaks/compare_players.png" width="1919" height="1199" alt="SalaryLeaks comparison interface showing two athletes and a detailed financial comparison" loading="lazy"></a><figcaption>Archived comparison interface. Product features are visible here; the figures are historical screenshot content, not engineering outcomes.</figcaption></figure>
+    <details style="margin-top:24px"><summary>Inspect an athlete profile and contract breakdown</summary><figure class="salary-figure"><a href="../img/projects/salayrleaks/player_information_page.png" target="_blank" rel="noopener" aria-label="Open archived athlete profile screenshot at full size in a new tab"><img src="../img/projects/salayrleaks/player_information_page.png" width="730" height="1149" alt="Archived Stephen Curry profile with current contract, annual breakdown, and contract history" loading="lazy"></a><figcaption>A sport-specific profile brings athlete identity and detailed contract information into one public reading experience.</figcaption></figure></details>
+  </section>
+  <section id="performance">
+    <span class="section-no">08 / PERFORMANCE AND CLOUDFLARE CACHING</span><h2>Reduce repeated work on frequently viewed data.</h2>
+    <div class="two-col"><article class="panel"><h3>Database and application</h3><p class="muted">My performance work included MySQL query and indexing optimization and Redis caching in the Laravel application. The aim was to reduce unnecessary backend work and improve access to frequently viewed public information.</p></article><article class="panel"><h3>Public delivery</h3><p class="muted">Cloudflare CDN and caching configuration complemented the server-rendered Blade and Livewire interfaces. I handled configuration, production maintenance, and troubleshooting alongside the application itself.</p></article></div>
+  </section>
+  <section id="scale">
+    <span class="section-no">09 / PRODUCTION SCALE AND RESULTS</span><h2>Hundreds of thousands of financial records.</h2>
+    <p class="scale-note">Ten sports, with financial structures that extend well beyond athlete contracts.</p>
+    <p class="muted">Historical engineering records describe hundreds of thousands of sport-specific financial records, including large tennis and golf earnings datasets. These are category-specific historical snapshots, not a verified live aggregate or a count of unique athletes.</p>
+    <p class="muted">The result is a production platform I developed end to end, combining shared identities, sport-aware financial handling, operational data management, and public discovery. I remain responsible for CI/CD, hosting, deployment, optimization, maintenance, and troubleshooting.</p>
+    <aside class="callout"><strong>Record types matter.</strong> Tennis and golf earnings records are not necessarily athlete contracts. No aggregate contract total is inferred from mixed record categories, and public monetary totals are not presented as engineering results.</aside>
+  </section>
+  <section id="decisions">
+    <span class="section-no">10 / TECHNICAL DECISIONS AND LESSONS</span><h2>Share the foundation. Preserve the differences.</h2>
+    <div class="decision-list"><article><h3>Put common identity in the shared core</h3><p>Athlete and sport entities provide consistency across the product. Financial rules belong with the relevant sport rather than being embedded in a universal athlete model.</p></article><article><h3>Keep financial behavior close to its domain</h3><p>Sport-specific models and services let new record types evolve without spreading conditional contract logic across unrelated sports. The organizing principle is domain-oriented architecture.</p></article><article><h3>Map source data into business meaning</h3><p>Extraction is only the beginning. Normalization and sport-aware mapping must respect the distinction between a contractual salary, a prize-money record, and fight compensation.</p></article><article><h3>Treat operations and public discovery as part of the system</h3><p>Administration, searchable page structure, query optimization, caching, and production maintenance all contribute to delivering useful financial information.</p></article></div>
+  </section>
+  <section id="references">
+    <div class="wooma-eyebrow">Public product references</div><p class="muted">Product functionality was reviewed against the public pages below. Backend architecture, tools, responsibilities, and historical scale reflect my project account. Archived screenshots show an earlier interface.</p>
+    <ul class="reference-links"><li><a href="https://www.salaryleaks.com/about" target="_blank" rel="noopener">About SalaryLeaks ↗</a></li><li><a href="https://www.salaryleaks.com/football" target="_blank" rel="noopener">Football ↗</a></li><li><a href="https://www.salaryleaks.com/tennis/atp" target="_blank" rel="noopener">Tennis ↗</a></li><li><a href="https://www.salaryleaks.com/formula-1" target="_blank" rel="noopener">Formula 1 ↗</a></li><li><a href="https://www.salaryleaks.com/boxing" target="_blank" rel="noopener">Boxing ↗</a></li><li><a href="https://www.salaryleaks.com/compare" target="_blank" rel="noopener">Comparisons ↗</a></li></ul>
+  </section>
+</main>
+<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · Senior Backend &amp; Full-Stack Engineer</p></footer>
+</body>
+</html>
