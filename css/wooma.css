@@ -6,7 +6,7 @@
 
 .wooma-card .proj-body{
   padding:28px}
-.wooma-card h3{
+.wooma-card h4{
   font-size:clamp(23px,3vw,32px);
   line-height:1.2;
   margin:12px 0}

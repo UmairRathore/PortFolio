@@ -13,6 +13,9 @@
   <meta property="og:url" content="https://umairrathore.github.io/PortFolio/case-studies/translation.html">
   <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Translation &amp; Localization SaaS API | Umair Rathore">
+  <meta name="twitter:description" content="A production JSON localization SaaS combining Laravel, Python/FastAPI, local NLLB inference, Redis Lua quota accounting, asynchronous jobs, and Dockerized delivery.">
+  <meta name="twitter:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png">
   <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (_) {}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +38,7 @@
     <div class="infra" aria-label="Technology stack"><span>PHP / Laravel</span><span>Python</span><span>FastAPI</span><span>NLLB</span><span>PostgreSQL</span><span>Stripe</span><span>Redis / Redis Lua</span><span>Laravel Queues</span><span>Database locks</span><span>Docker</span><span>REST APIs</span></div>
   </div>
   <nav class="case-nav" aria-label="On this page"><a href="#overview">Product</a><a href="#ownership">Ownership</a><a href="#architecture">Architecture</a><a href="#quotas">Quotas</a><a href="#lifecycle">Request lifecycle</a><a href="#inference">Inference</a><a href="#delivery">Delivery</a><a href="#deep-dive">Technical deep dive</a></nav>
+  <section id="key-decision"><h2>Key Engineering Decision: Separating SaaS/Business Orchestration from AI Inference</h2><p>Laravel handled users, Stripe billing, word-based quotas, and asynchronous orchestration. Python/FastAPI served the locally hosted NLLB model using CPU inference. Separating these responsibilities kept model execution outside business logic and the incoming HTTP request. The trade-off was a service boundary requiring timeouts, retry-safe state, and circuit-breaker protection.</p></section>
   <section id="overview">
     <span class="section-no">01 / PRODUCT AND CLIENT CONTEXT</span><h2>Translate the content. Preserve the structure.</h2>
     <p>The Malaysian Upwork client needed a SaaS platform for translating JSON localization files into other languages. Users submitted structured localization content and received localized JSON output, with measured word usage counted against their available allowance.</p>
@@ -55,7 +59,7 @@
         <div class="boundary-label">Dockerized application and inference environments · conceptual boundary</div>
         <ol class="request-chain"><li><span class="step-number">01 / APPLICATION</span><strong>Laravel SaaS dashboard and API</strong><small>Authentication and request handling</small></li><li><span class="step-number">02 / INPUT</span><strong>Validation and word counting</strong><small>Identify translatable input while retaining JSON structure</small></li><li><span class="step-number">03 / QUOTA</span><strong>Redis Lua quota accounting</strong><small>Atomic quota reservation and accounting</small></li><li><span class="step-number">04 / ASYNC WORK</span><strong>Redis queue / Laravel job</strong><small>Request-level execution, processing state, and retries</small></li></ol>
         <div class="dependency-boundary"><strong>05 / Inference client and circuit breaker</strong><small>Application-to-inference dependency boundary ↓</small></div>
-        <div class="inference-chain"><div><span class="step-number">06 / SERVICE API</span><strong>Python / FastAPI</strong><p>Separate translation request processing service.</p></div><div><span class="step-number">07 / MODEL EXECUTION</span><strong>Local NLLB model</strong><p>Machine translation inference within the Python service.</p></div></div>
+        <div class="inference-chain"><div><span class="step-number">06 / SERVICE API</span><strong>Python / FastAPI</strong><p>Separate translation request processing service.</p></div><div><span class="step-number">07 / MODEL EXECUTION</span><strong>Local NLLB model</strong><p>CPU-based machine translation inference within the Python service.</p></div></div>
         <div class="result-node"><strong>08 / Translated JSON result and request state</strong><p>Results return to the application for persistence and retrieval.</p></div>
         <div class="infrastructure-view" role="group" aria-label="Supporting state layers"><article><h3>Redis</h3><p>Queue coordination and atomic quota operations through Redis Lua.</p></article><article><h3>PostgreSQL application database</h3><p>Durable request and account state, coordinated with database locks and transactional boundaries.</p></article></div>
       </div>
@@ -86,7 +90,7 @@
     <span class="section-no">08 / LOCAL NLLB AND CIRCUIT BREAKER</span><h2>Keep an unhealthy dependency from dominating the application.</h2>
     <p class="muted">The Python/FastAPI service ran local NLLB machine translation. My work integrated and operated inference as part of the product; it did not involve training or fine-tuning the model.</p>
     <p class="muted">The inference client and circuit breaker protected Laravel from repeatedly calling an unhealthy translation dependency. Timeout and error handling, failure isolation, and retry-aware processing kept model execution separate from application business rules during temporary unavailability.</p>
-    <p class="muted">The important boundary was the Laravel application's dependency on the inference API. Model details and hosting hardware are intentionally not specified.</p>
+    <p class="muted">The important boundary was the Laravel application's dependency on the inference API. The locally hosted NLLB model used CPU inference. This deployment choice did not imply GPU inference or model training.</p>
   </section>
   <section id="delivery">
     <span class="section-no">09 / DOCKERIZED PRODUCTION DELIVERY</span><h2>Delivered as a complete working system.</h2>
@@ -109,6 +113,6 @@
     </div></details>
   </section>
 </main>
-<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · Senior Backend &amp; Full-Stack Engineer</p></footer>
+<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · PHP / Laravel · Backend &amp; Full-Stack Engineering</p></footer>
 </body>
 </html>

@@ -131,3 +131,10 @@ footer { margin-top:64px; padding:28px 0; }
   html { scroll-behavior:auto; }
   *,*::before,*::after { animation:none !important; transition:none !important; }
 }
+.experience-entry + .experience-entry { margin-top:18px; }
+.navlinks { flex-wrap:wrap; }
+#open-source a { display:inline-block; padding:10px 0; overflow-wrap:anywhere; }
+#open-source .skill-groups p + p { margin-top:12px; }
+
+.navlinks a { display:inline-flex; align-items:center; min-height:44px; }
+.theme-control { min-height:44px; }

@@ -6,7 +6,7 @@
 }
 .translation-card-layout { display: grid; grid-template-columns: 1.15fr 1fr; }
 .translation-card .proj-body { padding: 28px; }
-.translation-card h3 { font-size: clamp(23px, 3vw, 32px); line-height: 1.2; margin: 14px 0; }
+.translation-card h4 { font-size: clamp(23px, 3vw, 32px); line-height: 1.2; margin: 14px 0; }
 .translation-card .proj-desc { color: var(--muted); line-height: 1.75; }
 .translation-card .proj-tags { padding: 16px 28px; }
 .translation-card .wooma-link { margin-top: 16px; }

@@ -9,10 +9,13 @@
   <link rel="canonical" href="https://umairrathore.github.io/PortFolio/case-studies/salaryleaks.html">
   <meta property="og:type" content="article">
   <meta property="og:title" content="SalaryLeaks | Multi-Sport Financial Data Platform">
-  <meta property="og:description" content="Domain-oriented Laravel architecture, ingestion workflows, and full-stack production ownership. A case study by Umair Rathore.">
+  <meta property="og:description" content="Domain-informed Laravel architecture, ingestion workflows, and full-stack production ownership. A case study by Umair Rathore.">
   <meta property="og:url" content="https://umairrathore.github.io/PortFolio/case-studies/salaryleaks.html">
   <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/projects/salayrleaks/landing_page.png">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SalaryLeaks | Multi-Sport Financial Data Platform | Umair Rathore">
+  <meta name="twitter:description" content="Engineering a Laravel sports financial platform with shared athlete identities, sport-specific financial domains, source ingestion, and a searchable public experience.">
+  <meta name="twitter:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png">
   <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (_) {}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +32,7 @@
 </nav></div></header>
 <main id="main" class="case-wrap">
   <div class="case-hero">
-    <div class="wooma-eyebrow">Engineering case study · Domain-Driven Backend Architecture / Data Engineering</div>
+    <div class="wooma-eyebrow">Engineering case study · Domain-Informed Backend Architecture / Data Engineering</div>
     <h1>SalaryLeaks | Multi-Sport Financial Data Platform</h1>
     <p class="lead">A shared athlete foundation. Financial models that respect each sport.</p>
     <p class="muted">I developed SalaryLeaks end to end as its sole full-stack engineer and continue to maintain and operate it in production. My engineering ownership spans the public frontend, backend architecture, ingestion workflows, CI/CD, hosting, deployment, and Cloudflare caching.</p>
@@ -52,11 +55,11 @@
   <section id="challenge">
     <span class="section-no">03 / THE MODELING CHALLENGE</span><h2>A fight purse is not a league contract.</h2>
     <p class="muted">Sports differ in their financial sources, terminology, calculations, and business rules. Football salaries and contractual terms differ from tennis prize money or boxing compensation. Even league-based contracts vary between the NBA, NFL, and cricket.</p>
-    <aside class="callout"><strong>The central decision:</strong> centralize foundational athlete/player and sport entities, while organizing contracts and financial records into sport-specific domains. Share identity and common information without forcing every earnings structure into one generic contract model.</aside>
+    <aside class="callout"><strong>Key Engineering Decision: Shared Identity, Sport-Specific Financial Rules.</strong> Centralize foundational athlete/player and sport entities, while organizing contracts and financial records into sport-specific domains. Share identity and common information without forcing every earnings structure into one generic contract model. This domain-informed design trades a single uniform financial schema for sport-specific models and services that respect different calculation rules.</aside>
   </section>
   <section id="architecture">
-    <span class="section-no">04 / DOMAIN-ORIENTED BACKEND ARCHITECTURE</span><h2>Shared identity. Deliberate domain separation.</h2>
-    <p class="muted">Models, services, and related business logic reflect each sport's financial behavior. This is domain-oriented organization within the Laravel backend. The diagram describes conceptual responsibilities rather than database tables, class names, or deployment topology.</p>
+    <span class="section-no">04 / DOMAIN-INFORMED BACKEND ARCHITECTURE</span><h2>Shared identity. Deliberate domain separation.</h2>
+    <p class="muted">Models, services, and related business logic reflect each sport's financial behavior. This is domain-informed organization within the Laravel backend. The diagram describes conceptual responsibilities rather than database tables, class names, or deployment topology.</p>
     <figure class="architecture" aria-labelledby="salary-diagram-title">
       <h3 id="salary-diagram-title">From varied sources to sport-aware experiences</h3>
       <div class="diagram-ingestion"><div class="diagram-layer"><div class="diagram-label">Data ingestion</div><h3>Source-specific collection</h3><p>Third-party APIs and external data sources. Playwright-based browser automation for relevant ingestion workflows, alongside other source-specific tools where applicable.</p></div><div class="diagram-layer"><div class="diagram-label">Transformation</div><h3>Mapping and normalization</h3><p>Interpret source formats and financial meaning before sport-aware persistence and processing.</p></div></div>
@@ -112,13 +115,13 @@
   </section>
   <section id="decisions">
     <span class="section-no">10 / TECHNICAL DECISIONS AND LESSONS</span><h2>Share the foundation. Preserve the differences.</h2>
-    <div class="decision-list"><article><h3>Put common identity in the shared core</h3><p>Athlete and sport entities provide consistency across the product. Financial rules belong with the relevant sport rather than being embedded in a universal athlete model.</p></article><article><h3>Keep financial behavior close to its domain</h3><p>Sport-specific models and services let new record types evolve without spreading conditional contract logic across unrelated sports. The organizing principle is domain-oriented architecture.</p></article><article><h3>Map source data into business meaning</h3><p>Extraction is only the beginning. Normalization and sport-aware mapping must respect the distinction between a contractual salary, a prize-money record, and fight compensation.</p></article><article><h3>Treat operations and public discovery as part of the system</h3><p>Administration, searchable page structure, query optimization, caching, and production maintenance all contribute to delivering useful financial information.</p></article></div>
+    <div class="decision-list"><article><h3>Put common identity in the shared core</h3><p>Athlete and sport entities provide consistency across the product. Financial rules belong with the relevant sport rather than being embedded in a universal athlete model.</p></article><article><h3>Keep financial behavior close to its domain</h3><p>Sport-specific models and services let new record types evolve without spreading conditional contract logic across unrelated sports. The organizing principle is domain-informed architecture.</p></article><article><h3>Map source data into business meaning</h3><p>Extraction is only the beginning. Normalization and sport-aware mapping must respect the distinction between a contractual salary, a prize-money record, and fight compensation.</p></article><article><h3>Treat operations and public discovery as part of the system</h3><p>Administration, searchable page structure, query optimization, caching, and production maintenance all contribute to delivering useful financial information.</p></article></div>
   </section>
   <section id="references">
     <div class="wooma-eyebrow">Public product references</div><p class="muted">Product functionality was reviewed against the public pages below. Backend architecture, tools, responsibilities, and historical scale reflect my project account. Archived screenshots show an earlier interface.</p>
     <ul class="reference-links"><li><a href="https://www.salaryleaks.com/about" target="_blank" rel="noopener">About SalaryLeaks ↗</a></li><li><a href="https://www.salaryleaks.com/football" target="_blank" rel="noopener">Football ↗</a></li><li><a href="https://www.salaryleaks.com/tennis/atp" target="_blank" rel="noopener">Tennis ↗</a></li><li><a href="https://www.salaryleaks.com/formula-1" target="_blank" rel="noopener">Formula 1 ↗</a></li><li><a href="https://www.salaryleaks.com/boxing" target="_blank" rel="noopener">Boxing ↗</a></li><li><a href="https://www.salaryleaks.com/compare" target="_blank" rel="noopener">Comparisons ↗</a></li></ul>
   </section>
 </main>
-<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · Senior Backend &amp; Full-Stack Engineer</p></footer>
+<footer class="case-wrap"><a href="../index.html#projects">← Back to all projects</a><p class="muted">Umair Rathore · PHP / Laravel · Backend &amp; Full-Stack Engineering</p></footer>
 </body>
 </html>
