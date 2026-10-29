@@ -36,7 +36,7 @@ Wooma: 15+ UK tenant companies migrated without disrupting live operations; 250,
 
 SalaryLeaks is a financial data platform, not SaaS. Its September 28 to October 28, 2026 Cloudflare domain analytics reported 5.25M HTTP requests and 48.5% cached requests; requests are not unique users or page views. Sole engineering responsibility does not imply business ownership. Translation uses multi-tenant access, Stripe usage-based billing, Redis Lua quota reservation and rollback, and locally hosted CPU inference. BCM describes integration support and troubleshooting without claiming ownership of its bidding engine.
 
-The four open-source PRs linked on the homepage were verified as merged and authored by `UmairRathore` on October 23, 2026. Employment overlaps are intentional: Softzee Solutions January to October 2022; Birr Technologies November 2022 to May 2024; Jerrax February 2024 to May 2025; CloudCollege April 2025 to July 2026; SalaryLeaks February 2025 to Present as a flexible part-time remote contract. No generic public résumé is provided by design.
+The four open-source PRs linked on the homepage were verified as merged and authored by `UmairRathore` on October 23, 2026. Employment overlaps are intentional: Softzee Solutions January to October 2022; Birr Technologies November 2022 to January 2024; Jerrax February 2024 to May 2025; CloudCollege April 2025 to July 2026; SalaryLeaks February 2025 to Present as a flexible part-time remote contract. No generic public résumé is provided by design.
 
 ## GitHub Pages and repository metadata
 
