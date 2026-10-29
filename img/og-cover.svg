@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Umair Rathore | Software Engineer</title><desc id="desc">PHP and Laravel. Backend Architecture, SaaS and Distributed Systems. 4+ years of professional experience since January 2022.</desc>
+<rect width="1200" height="630" fill="#0b1220"/>
+<circle cx="86" cy="77" r="6" fill="#8bb7ff"/>
+<g font-family="Inter,Arial,sans-serif"><text x="108" y="85" font-size="24" fill="#a8b3cf">umairrathore.github.io/PortFolio/</text>
+<text x="80" y="225" fill="#eaf0ff" font-size="68" font-weight="700" letter-spacing="-2">Umair Rathore</text>
+<text x="80" y="291" fill="#eaf0ff" font-size="38" font-weight="600">Software Engineer | PHP &amp; Laravel</text>
+<text x="80" y="358" fill="#a8b3cf" font-size="30">Backend Architecture, SaaS &amp; Distributed Systems</text>
+<path d="M80 425 H1120" stroke="#283449"/>
+<text x="80" y="485" fill="#8bb7ff" font-size="26">4+ years · Professional experience since January 2022</text>
+<text x="80" y="541" fill="#a8b3cf" font-size="24">Production engineering · International delivery · Open source</text></g></svg>

@@ -5,17 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1220">
   <title>SalaryLeaks | Multi-Sport Financial Data Platform | Umair Rathore</title>
-  <meta name="description" content="Engineering a Laravel sports financial platform with shared athlete identities, sport-specific financial domains, source ingestion, and a searchable public experience.">
+  <meta name="description" content="Sole full-stack engineering of a Laravel sports financial platform. Historical Cloudflare analytics: 5.25M HTTP requests over 30 days, 48.5% cached; sport-aware data and production ownership.">
   <link rel="canonical" href="https://umairrathore.github.io/PortFolio/case-studies/salaryleaks.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="SalaryLeaks | Multi-Sport Financial Data Platform">
-  <meta property="og:description" content="Domain-informed Laravel architecture, ingestion workflows, and full-stack production ownership. A case study by Umair Rathore.">
+  <meta property="og:title" content="SalaryLeaks | Multi-Sport Financial Data Platform | Umair Rathore">
+  <meta property="og:description" content="Sole full-stack engineering of a Laravel sports financial platform. Historical Cloudflare analytics: 5.25M HTTP requests over 30 days, 48.5% cached; sport-aware data and production ownership.">
   <meta property="og:url" content="https://umairrathore.github.io/PortFolio/case-studies/salaryleaks.html">
   <meta property="og:image" content="https://umairrathore.github.io/PortFolio/img/projects/salayrleaks/landing_page.png">
+  <meta property="og:image:alt" content="Archived SalaryLeaks homepage with sport navigation and athlete financial information.">
+  <meta name="twitter:image:alt" content="Umair Rathore, Software Engineer specializing in PHP and Laravel, backend architecture, SaaS and distributed systems.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SalaryLeaks | Multi-Sport Financial Data Platform | Umair Rathore">
-  <meta name="twitter:description" content="Engineering a Laravel sports financial platform with shared athlete identities, sport-specific financial domains, source ingestion, and a searchable public experience.">
-  <meta name="twitter:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.png">
+  <meta name="twitter:description" content="Sole full-stack engineering of a Laravel sports financial platform. Historical Cloudflare analytics: 5.25M HTTP requests over 30 days, 48.5% cached; sport-aware data and production ownership.">
+  <meta name="twitter:image" content="https://umairrathore.github.io/PortFolio/img/og-cover.jpg">
   <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (_) {}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,12 +37,13 @@
     <div class="wooma-eyebrow">Engineering case study · Domain-Informed Backend Architecture / Data Engineering</div>
     <h1>SalaryLeaks | Multi-Sport Financial Data Platform</h1>
     <p class="lead">A shared athlete foundation. Financial models that respect each sport.</p>
-    <p class="muted">I developed SalaryLeaks end to end as its sole full-stack engineer and continue to maintain and operate it in production. My engineering ownership spans the public frontend, backend architecture, ingestion workflows, CI/CD, hosting, deployment, and Cloudflare caching.</p>
+    <p class="muted">I developed SalaryLeaks end to end as its sole full-stack engineer and continue to maintain and operate it in production. My ongoing remote contract began in February 2025 and is flexible and part-time. Engineering responsibility spans frontend implementation, backend architecture, database design, ingestion and normalization, reporting, hosting, GitHub Actions CI/CD, Redis/Cloudflare caching, monitoring, performance optimization, and production troubleshooting. This is application engineering ownership, not ownership of the business.</p>
     <dl class="salary-facts"><div><dt>Client</dt><dd>Netherlands</dd></div><div><dt>Role</dt><dd>Sole Full-Stack Engineer | End-to-End Development, DevOps &amp; Maintenance</dd></div><div><dt>Scope</dt><dd>Application development through ongoing production operation</dd></div></dl>
     <div class="infra" aria-label="Technology stack"><span>PHP / Laravel</span><span>MySQL</span><span>Redis</span><span>Livewire</span><span>Blade</span><span>Tailwind CSS</span><span>JavaScript</span><span>Alpine.js</span><span>Playwright</span><span>GitHub Actions</span><span>Cloudflare</span></div>
     <a href="https://www.salaryleaks.com/" target="_blank" rel="noopener">Visit live website ↗ <span class="visually-hidden">(opens in a new tab)</span></a>
   </div>
-  <nav class="case-nav" aria-label="On this page"><a href="#overview">Product</a><a href="#ownership">Ownership</a><a href="#architecture">Architecture</a><a href="#ingestion">Ingestion</a><a href="#public-experience">Public experience</a><a href="#performance">Performance</a><a href="#scale">Scale</a><a href="#decisions">Decisions</a></nav>
+  <div class="wooma-metrics" aria-label="Historical product statistics"><div class="wooma-metric"><strong>10</strong><span>Sports covered</span></div><div class="wooma-metric"><strong>11.6K+</strong><span>Athletes in a previously observed snapshot</span></div><div class="wooma-metric"><strong>32.7K+</strong><span>Contracts in a previously observed snapshot</span></div></div>
+  <nav class="case-nav" aria-label="On this page"><a href="#overview">Product</a><a href="#ownership">Ownership</a><a href="#architecture">Architecture</a><a href="#ingestion">Ingestion</a><a href="#public-experience">Public experience</a><a href="#performance">Performance</a><a href="#traffic">Traffic</a><a href="#scale">Scale</a><a href="#decisions">Decisions</a></nav>
   <section id="overview">
     <span class="section-no">01 / PRODUCT OVERVIEW</span><h2>Different sports. Different definitions of earnings.</h2>
     <p>SalaryLeaks tracks athlete salaries, contractual earnings, bonuses, prize money, and career financial information across football, cricket, NBA, NFL, Formula 1, MotoGP, tennis, golf, boxing, and MMA.</p>
@@ -105,11 +108,23 @@
   <section id="performance">
     <span class="section-no">08 / PERFORMANCE AND CLOUDFLARE CACHING</span><h2>Reduce repeated work on frequently viewed data.</h2>
     <div class="two-col"><article class="panel"><h3>Database and application</h3><p class="muted">My performance work included MySQL query and indexing optimization and Redis caching in the Laravel application. The aim was to reduce unnecessary backend work and improve access to frequently viewed public information.</p></article><article class="panel"><h3>Public delivery</h3><p class="muted">Cloudflare CDN and caching configuration complemented the server-rendered Blade and Livewire interfaces. I handled configuration, production maintenance, and troubleshooting alongside the application itself.</p></article></div>
+    <h3 style="margin-top:28px">Observed real-user performance</h3>
+    <p class="muted">Cloudflare Web Analytics comparison: August 2026 versus the October 2026 rolling 30-day report, as supplied in the project records.</p>
+    <div class="two-col"><article class="panel"><h3>August 2026</h3><ul class="muted"><li>LCP P75: 2,824 ms</li><li>Reported TTFB P75 within the LCP breakdown: 2,373 ms</li><li>Good LCP: 69%</li><li>Good CLS: 91%</li></ul></article><article class="panel"><h3>October 2026 rolling 30 days</h3><ul class="muted"><li>LCP P75: 2,152 ms</li><li>Reported TTFB P75 within the LCP breakdown: 1,383 ms</li><li>Good LCP: 81%</li><li>Good CLS: 98%</li></ul></article></div>
+    <aside class="callout"><strong>Observed changes between periods:</strong> approximately 24% lower P75 LCP and 42% lower reported P75 TTFB. Good LCP increased by 12 percentage points and good CLS by 7 percentage points. Query optimization, Redis caching, Cloudflare configuration, and production performance work formed part of my responsibilities; the comparison does not isolate their individual effects or establish caching alone as the cause.</aside>
+  </section>
+  <section id="traffic">
+    <span class="section-no">PRODUCTION DELIVERY METRICS</span><h2>Requests, visitors, and page views measure different things.</h2>
+    <p class="muted">Historical Cloudflare reporting window: September 28 to October 28, 2026. Source: my production analytics reports. These figures describe that reporting period, with separate measurement definitions below.</p>
+    <div class="wooma-metrics" aria-label="Historical Cloudflare domain analytics"><div class="wooma-metric"><strong>5.25M</strong><span>HTTP requests over 30 days</span></div><div class="wooma-metric"><strong>48.5%</strong><span>Requests cached</span></div><div class="wooma-metric"><strong>74 GB</strong><span>Total data served<br>36 GB cached bandwidth</span></div></div>
+    <div class="two-col"><article class="panel"><h3>Domain-level analytics</h3><p class="muted">269.37K estimated unique visitors. Cloudflare's domain-level visitor estimates may include automated activity. HTTP requests are neither unique users, sessions, nor page views.</p></article><article class="panel"><h3>Separate Web Analytics report</h3><p class="muted">With bot exclusion enabled, approximately 87K tracked visits and 129.65K page views were recorded. Visits, page views, and domain-level estimated visitors are separate measurements with different collection methods.</p></article></div>
   </section>
   <section id="scale">
     <span class="section-no">09 / PRODUCTION SCALE AND RESULTS</span><h2>Hundreds of thousands of financial records.</h2>
     <p class="scale-note">Ten sports, with financial structures that extend well beyond athlete contracts.</p>
-    <p class="muted">Historical engineering records describe hundreds of thousands of sport-specific financial records, including large tennis and golf earnings datasets. These are category-specific historical snapshots, not a verified live aggregate or a count of unique athletes.</p>
+    <p class="muted">Previously observed product statistics included 10 sports, 11.6K+ athletes, and 32.7K+ contracts. These are historical product-level snapshots, not current live counts or totals derived from the ingestion datasets below.</p>
+    <ul class="muted"><li>15,055 football contracts in an existing dataset snapshot.</li><li>583,711 golf earnings records in an existing dataset snapshot.</li><li>51,292 tennis earnings records in an existing dataset snapshot.</li></ul>
+    <p class="muted">These historical ingestion snapshots have different record types and observation points. They are not summed into the product contract count or treated as unique athlete counts.</p>
     <p class="muted">The result is a production platform I developed end to end, combining shared identities, sport-aware financial handling, operational data management, and public discovery. I remain responsible for CI/CD, hosting, deployment, optimization, maintenance, and troubleshooting.</p>
     <aside class="callout"><strong>Record types matter.</strong> Tennis and golf earnings records are not necessarily athlete contracts. No aggregate contract total is inferred from mixed record categories, and public monetary totals are not presented as engineering results.</aside>
   </section>
@@ -118,7 +133,7 @@
     <div class="decision-list"><article><h3>Put common identity in the shared core</h3><p>Athlete and sport entities provide consistency across the product. Financial rules belong with the relevant sport rather than being embedded in a universal athlete model.</p></article><article><h3>Keep financial behavior close to its domain</h3><p>Sport-specific models and services let new record types evolve without spreading conditional contract logic across unrelated sports. The organizing principle is domain-informed architecture.</p></article><article><h3>Map source data into business meaning</h3><p>Extraction is only the beginning. Normalization and sport-aware mapping must respect the distinction between a contractual salary, a prize-money record, and fight compensation.</p></article><article><h3>Treat operations and public discovery as part of the system</h3><p>Administration, searchable page structure, query optimization, caching, and production maintenance all contribute to delivering useful financial information.</p></article></div>
   </section>
   <section id="references">
-    <div class="wooma-eyebrow">Public product references</div><p class="muted">Product functionality was reviewed against the public pages below. Backend architecture, tools, responsibilities, and historical scale reflect my project account. Archived screenshots show an earlier interface.</p>
+    <div class="wooma-eyebrow">Public product references</div><p class="muted">Product functionality was reviewed against the public pages below. Engineering responsibilities, dataset snapshots, and historical analytics reflect my project account and supplied production reports. Financial totals are not company revenue or money processed by the platform. Archived screenshots show an earlier interface.</p>
     <ul class="reference-links"><li><a href="https://www.salaryleaks.com/about" target="_blank" rel="noopener">About SalaryLeaks ↗</a></li><li><a href="https://www.salaryleaks.com/football" target="_blank" rel="noopener">Football ↗</a></li><li><a href="https://www.salaryleaks.com/tennis/atp" target="_blank" rel="noopener">Tennis ↗</a></li><li><a href="https://www.salaryleaks.com/formula-1" target="_blank" rel="noopener">Formula 1 ↗</a></li><li><a href="https://www.salaryleaks.com/boxing" target="_blank" rel="noopener">Boxing ↗</a></li><li><a href="https://www.salaryleaks.com/compare" target="_blank" rel="noopener">Comparisons ↗</a></li></ul>
   </section>
 </main>
